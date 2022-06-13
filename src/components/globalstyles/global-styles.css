@@ -1,0 +1,44 @@
+@import 'normalize.css';
+@import url('http://fonts.cdnfonts.com/css/samsungone');
+
+:root {
+    --primary: #fe2c55;
+
+    /* Default layout */
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
+
+    --white: #fff;
+    --black-color: #000;
+    --text-color: #333;
+}
+html {
+    font-size: 62.5%;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'SamsungOne', sans-serif;
+    /* font-family: 'Samsung Sharp Sans', sans-serif; */
+}
+body {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a[href] {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+}

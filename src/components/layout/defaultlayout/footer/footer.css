@@ -1,0 +1,109 @@
+.footer {
+    background-color: #1f2024;
+    width: 100%;
+    color: #e4e7eb;
+    min-height: 479px;
+}
+
+.footer-inner {
+    padding: 60px 0 74px 0;
+    text-align: center;
+}
+
+.footer-block-item {
+    text-align: left;
+}
+
+.footer-title {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
+    color: #878792;
+    letter-spacing: -0.04em;
+}
+
+.footer-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    padding: 0.4rem 0;
+    cursor: pointer; 
+}
+.footer-item .footer-item-link, 
+.footer-item .footer-map-link {
+    color: #e4e7eb;
+    display: inline-block;
+
+}
+.footer-item .footer-map-link {
+    margin-right: 6px;
+}
+
+.footer-item .footer-item-link:hover, 
+.footer-map-link:hover,
+.footer-contacts .footer-social-icon:hover, 
+.footer-signature .footer-legal-links a:hover {
+    color: #878792;
+        outline-offset: 0;
+        transition: background-color 0.25s linear, border-color 0.25s linear,
+            opacity 0.25s linear, color 0.25s linear, fill 0.25s linear;
+}
+
+.footer-block-row .footer-list-item {
+    display: flex;
+    justify-content: flex-end;
+    gap: 18px;
+}
+
+.footer-contacts {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    line-height: 0;
+}
+
+.footer-contacts .footer-social-icon {
+    display: flex;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    color: #e4e7eb;
+}
+
+.footer-signature {
+    border-top: solid 1px #3c3c42;
+    margin-top: 0.9375em;
+    padding: 1.75em 0;
+}
+
+.footer-copyright {
+    display: block;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: #878792;
+    line-height: 2;
+    letter-spacing: 0.01rem;
+}
+
+.footer-copyright.small {
+    font-size: 1.15rem;
+}
+
+.footer-signature .footer-legal-links {
+    display: flex;
+    gap: 10px;
+    color: #e4e7eb;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.footer-signature .footer-legal-links a {
+    display: inline-block;
+    color: #e4e7eb;
+}
+

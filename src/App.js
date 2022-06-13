@@ -1,9 +1,38 @@
-import AppRouter from './router';
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+import { DefaultLayout } from '~/components/layout/layout.component';
 
-export default function App() {
-  return (
-    <div>
-      <AppRouter />
-    </div>
-  );
+function App() {
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component; //cpn khi đặt biến dùng trong JSX phải viết hoa chữ cái đầu
+
+                        let Layout = DefaultLayout;
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            />
+                        );
+                    })}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
+
+export default App;

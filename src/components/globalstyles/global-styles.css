@@ -15,19 +15,21 @@
 }
 html {
     font-size: 62.5%;
-}
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     font-family: 'SamsungOne', sans-serif;
     /* font-family: 'Samsung Sharp Sans', sans-serif; */
-}
-body {
-    font-size: 1.6rem;
     line-height: 1.5;
-    text-rendering: optimizeSpeed;
     color: var(--text-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-size: 1.6rem; */
+    text-rendering: optimizeSpeed;
 }
 
 button,
@@ -41,4 +43,34 @@ a[href] {
     display: block;
     color: var(--text-color);
     text-decoration: none;
+}
+
+/* Common */
+.mt-20px {
+    margin-top: 20px;
+}
+
+.ml-2px {
+    margin-left: 2px;
+}
+
+.mr-16px {
+    margin-right: 16px;
+}
+
+.pl-4px {
+    padding-left: 4px;
+}
+
+.f-grow-1 {
+    flex-grow: 1;
+}
+
+.f-shrink-0 {
+    flex-shrink: 0;
+}
+
+/* Color */
+.gray {
+    color: #ccc;
 }

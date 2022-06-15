@@ -9,7 +9,7 @@ function App() {
             <div className="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
-                        const Page = route.component; //cpn khi đặt biến dùng trong JSX phải viết hoa chữ cái đầu
+                        const Page = route.component;
 
                         let Layout = DefaultLayout;
                         if (route.layout) {

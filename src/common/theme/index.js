@@ -6,6 +6,12 @@ const theme = createTheme({
             styleOverrides: {
                 body: {
                     letterSpacing: 0,
+                    fontSize: '1.6rem',
+                    lineHeight: 1.5,
+                    textRendering: 'optimizeSpeed',
+                    color: 'var(--text-color)',
+                    overflowY: 'overlay',
+                    fontFamily: `'SamsungOne', sans-serif`,
                 },
             },
         },

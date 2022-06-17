@@ -12,29 +12,22 @@
     --white: #fff;
     --black-color: #000;
     --text-color: #333;
+
+    --font-family-One: 'SamsungOne', sans-serif;
+    --font-family-Two: 'Samsung Sharp Sans', sans-serif;
 }
 
 html {
     font-size: 62.5%;
-    font-family: 'SamsungOne', sans-serif;
-    /* font-family: 'Samsung Sharp Sans', sans-serif; */
     line-height: 1.5;
     color: var(--text-color);
+    
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-size: 1.6rem;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-    color: var(--text-color);
-    font-family: var(--font-family);
-    overflow-y: overlay;
 }
 
 /* Scrollbar css */

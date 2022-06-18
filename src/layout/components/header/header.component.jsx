@@ -100,7 +100,10 @@ function Header() {
         <header className={cx('header-wrapper')}>
             <div className={cx('header-inner')}>
                 <div className={cx('header-logo')}>
-                    <Link to={config.routes.home} className={cx('header-logo-link')}>
+                    <Link
+                        to={config.routes.home}
+                        className={cx('header-logo-link')}
+                    >
                         <img src={images.logo} alt="logo" />
                     </Link>
                 </div>
@@ -126,7 +129,9 @@ function Header() {
                             >
                                 <button className={cx('header-action-btn')}>
                                     <InboxIcon />
-                                    <span className={cx('header-badge')}>12</span>
+                                    <span className={cx('header-badge')}>
+                                        12
+                                    </span>
                                 </button>
                             </Tippy>
                             <Tippy
@@ -164,7 +169,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('header-user-avatar')}
-                                src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/283042525_3127793060792907_687868091453720612_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=v3eL5mA8QjoAX-He9uq&_nc_oc=AQllL028L4HM7S82f_al_FQGTmXeDN3UTPA0W9Y09dCdDvH4-lG2ndLcdXOe2ir41X4&_nc_ht=scontent.fsgn2-6.fna&oh=00_AT8SM7TRw_hhR8_AsnKPgWMDks_ho9HfrJdtA8MvyKimEg&oe=629E0180"
+                                src="https://scontent.fpnh22-4.fna.fbcdn.net/v/t39.30808-6/283042525_3127793060792907_687868091453720612_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Rb-K6yhJPTgAX-O616B&_nc_oc=AQmcUy4w4YvlLxjDH5ajep8PoX6v2GsNS9uXyXlAX1ALurHcBcTcBm_AdSts2COJt3Q&_nc_ht=scontent.fpnh22-4.fna&oh=00_AT_SOZqoutbFDRP5izSTy3MyoVrEJuzuoYu7EWIbew2ZTQ&oe=62B1C800"
                                 alt="Pham Quoc Vuong"
                             />
                         ) : (

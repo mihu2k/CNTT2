@@ -21,6 +21,13 @@ const theme = createTheme({
             },
         },
     },
+    MuiLink: {
+        styleOverrides: {
+            root: {
+                fontFamily: "'SamsungOne', sans-serif",
+            },
+        },
+    },
     breakpoints: {
         values: {
             xs: 0,
@@ -30,6 +37,9 @@ const theme = createTheme({
             l: 1440,
             xl: 1536,
         },
+    },
+    typography: {
+        fontFamily: 'SamsungOne, sans-serif',
     },
     overrides: {},
 });

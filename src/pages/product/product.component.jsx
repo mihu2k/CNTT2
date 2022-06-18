@@ -1,152 +1,181 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { Grid } from '@mui/material';
-import ProductCard from '~/components/product-card/card.component';
+import React from 'react';
+// Styles
+import { useStyles } from './product.style';
+// Icons
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+// Components
 import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Typography,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Breadcrumbs,
+  Checkbox,
+  Grid,
+  Link,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  Select,
+  Typography,
 } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import cx from 'classnames';
-import { useStyles } from '~/components/product-card/card.style';
+import ProductCard from '~/components/product-card/card.component';
 
 function Product() {
-    const classes = useStyles();
-    const renderStars = (star) => {
-        const TOTAL_STAR = 5;
-        let listStar = [];
-        const disableStar = TOTAL_STAR - star;
+  const classes = useStyles();
 
-        for (let i = 0; i < star; i++) {
-            if (i === 0) {
-                listStar.push(<StarIcon color="warning" fontSize="large" />);
-                continue;
-            }
-            listStar.push(
-                <StarIcon
-                    color="warning"
-                    fontSize="large"
-                    className="ml-2px"
-                />,
-            );
-        }
-        for (let i = 0; i < disableStar; i++) {
-            listStar.push(
-                <StarIcon fontSize="large" className="gray ml-2px" />,
-            );
-        }
-        return listStar;
-    };
-    return (
-        <Grid container spacing={4}>
-            <Grid item xs={3}>
-                <div style={{ backgroundColor: '#ccc', height: '100%' }}></div>
-            </Grid>
-            <Grid item xs={9}>
-                <Grid container spacing={4}>
-                    <Grid item xs={4} style={{ display: 'flex' }}>
-                        <ProductCard />
-                    </Grid>
-                    <Grid item xs={4} style={{ display: 'flex' }}>
-                        <Card className={classes.wrapper}>
-                            <img
-                                src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                                alt="product image"
-                                height="160"
-                                width="160"
-                                className={classes.imgProd}
+  const [checked, setChecked] = React.useState([0]);
+
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+
+  return (
+    <div className={classes.root}>
+      <div className={classes.wrapHeaderFilter}>
+        <div>
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="medium" />}
+            aria-label="breadcrumb"
+          >
+            <Link
+              underline="hover"
+              key="1"
+              color="inherit"
+              href="/"
+              // onClick={handleClick}
+            >
+              Trang chủ
+            </Link>
+            <Link
+              underline="hover"
+              key="2"
+              color="inherit"
+              href="/material-ui/getting-started/installation/"
+              // onClick={handleClick}
+            >
+              Sản phẩm
+            </Link>
+            <Typography
+              key="3"
+              color="text.primary"
+              fontSize={14}
+              fontFamily="SamsungOne"
+            >
+              Tai nghe không dây
+            </Typography>
+          </Breadcrumbs>
+        </div>
+        <div>
+          <Select
+            id="filter-select"
+            value={10}
+            className={classes.select}
+            // onChange={handleChange}
+            // variant="standard"
+          >
+            <MenuItem value={10} className={classes.selectItem}>
+              Mới nhất
+            </MenuItem>
+            <MenuItem value={11} className={classes.selectItem}>
+              Đánh giá cao nhất
+            </MenuItem>
+            <MenuItem value={20} className={classes.selectItem}>
+              Giá thấp đến cao
+            </MenuItem>
+            <MenuItem value={30} className={classes.selectItem}>
+              Giá cao đến thấp
+            </MenuItem>
+          </Select>
+        </div>
+      </div>
+      <Grid container spacing={3}>
+        {/* <Grid item xs={12}>
+        </Grid> */}
+        <Grid item xs={3}>
+          <div className={classes.wrapAccordion}>
+            <Accordion expanded>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography fontSize={14}>Nhãn hiệu</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <List
+                  sx={{
+                    width: '100%',
+                    maxWidth: 360,
+                    bgcolor: 'background.paper',
+                  }}
+                >
+                  {[0, 1, 2, 3].map((value) => {
+                    const labelId = `checkbox-list-label-${value}`;
+
+                    return (
+                      <ListItem key={value} disablePadding>
+                        <ListItemButton
+                          role={undefined}
+                          onClick={handleToggle(value)}
+                          dense
+                        >
+                          <ListItemIcon>
+                            <Checkbox
+                              edge="start"
+                              checked={checked.indexOf(value) !== -1}
+                              tabIndex={-1}
+                              disableRipple
+                              inputProps={{
+                                'aria-labelledby': labelId,
+                              }}
                             />
-                            <CardContent className={classes.cardContent}>
-                                <Typography
-                                    fontFamily="SamsungOne"
-                                    fontWeight="600"
-                                    fontSize={16}
-                                    gutterBottom
-                                    variant="h4"
-                                    component="div"
-                                    className={cx('f-grow-1', classes.prodName)}
-                                >
-                                    Galaxy Watch4 Bluetooth (40mm) Galaxy Watch4
-                                    Bluetooth (40mm)
-                                </Typography>
-                                <div
-                                    className={cx(
-                                        'f-shrink-0',
-                                        classes.wrapColor,
-                                    )}
-                                >
-                                    <div>
-                                        <span style={{ fontWeight: 600 }}>
-                                            Màu sắc:
-                                        </span>
-                                        <span className="pl-4px">
-                                            Vàng Hồng Thanh Lịch
-                                        </span>
-                                    </div>
-                                    <div className={classes.wrapChooseColor}>
-                                        <div
-                                            className={cx(
-                                                classes.circleBox,
-                                                'mr-16px',
-                                            )}
-                                        ></div>
-                                        <div
-                                            className={cx(
-                                                classes.circleBox,
-                                                'mr-16px',
-                                            )}
-                                        ></div>
-                                        <div
-                                            className={cx(
-                                                classes.circleBox,
-                                                'mr-16px',
-                                            )}
-                                        ></div>
-                                    </div>
-                                </div>
-                                <div
-                                    className={cx(
-                                        'f-shrink-0',
-                                        classes.wrapPrice,
-                                    )}
-                                >
-                                    <div>5.489.891 ₫</div>
-                                    <div className="mt-20px">
-                                        {renderStars(4)}
-                                    </div>
-                                </div>
-                            </CardContent>
-                            <CardActions className={classes.cardAction}>
-                                <Button
-                                    size="large"
-                                    variant="contained"
-                                    fullWidth
-                                    className={cx(classes.btn)}
-                                >
-                                    Mua ngay
-                                </Button>
-                                <Button
-                                    size="large"
-                                    variant="outlined"
-                                    fullWidth
-                                    className={cx(
-                                        classes.btnDetails,
-                                        classes.btn,
-                                    )}
-                                >
-                                    Tìm hiểu thêm
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Grid>
+                          </ListItemIcon>
+                          <ListItemText
+                            id={labelId}
+                            primaryTypographyProps={{
+                              fontSize: '1.4rem',
+                            }}
+                            primary={`Line item ${value + 1}`}
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </AccordionDetails>
+            </Accordion>
+          </div>
         </Grid>
-    );
+        <Grid item xs={9}>
+          <Grid container spacing={3}>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
 export default Product;

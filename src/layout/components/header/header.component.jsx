@@ -101,7 +101,7 @@ function Header() {
             <div className={cx('header-inner')}>
                 <div className={cx('header-logo')}>
                     <Link to={config.routes.home} className={cx('header-logo-link')}>
-                        <img src={images.logo} alt="tiktok-logo" />
+                        <img src={images.logo} alt="logo" />
                     </Link>
                 </div>
 

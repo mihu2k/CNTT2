@@ -263,12 +263,12 @@ function Footer() {
                     <span className={cx('footer-copyright')}>
                         2022 &copy; Bản quyền thuộc sở hữu René Việt Nam.
                     </span>
-                    <span className={cx('footer-copyright')}>
+                    <span className={cx('footer-copyright', 'size-s')}>
                         Địa chỉ: Tầng 6 TTTM Giga Mall, 240, 242 Đ. Phạm Văn
                         Đồng, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh
                         700000, Việt Nam.
                     </span>
-                    <span className={cx('footer-copyright')}>
+                    <span className={cx('footer-copyright', 'size-s')}>
                         Điện thoại: 19006017
                     </span>
 

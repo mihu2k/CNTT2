@@ -9,19 +9,19 @@ import Container from '@mui/material/Container';
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-    return (
-        <div>
-            <Header />
-            <Container className="mt-header" maxWidth="l">
-                {children}
-            </Container>
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <Header />
+      <Container className="mt-header" maxWidth="lg">
+        {children}
+      </Container>
+      <Footer />
+    </div>
+  );
 }
 
 DefaultLayout.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default DefaultLayout;

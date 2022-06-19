@@ -102,7 +102,7 @@ function Product() {
           </Select>
         </div>
       </div>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {/* <Grid item xs={12}>
         </Grid> */}
         <Grid item xs={3}>
@@ -161,7 +161,10 @@ function Product() {
           </div>
         </Grid>
         <Grid item xs={9}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
             <Grid item xs={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>

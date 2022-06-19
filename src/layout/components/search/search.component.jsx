@@ -89,7 +89,7 @@ function Search() {
                     <input
                         ref={inputRef}
                         value={searchValue}
-                        placeholder="Search accounts and videos..."
+                        placeholder="Chúng tôi có thể giúp bạn tìm kiếm?"
                         spellCheck={false}
                         onChange={handleChange}
                         onFocus={() => {

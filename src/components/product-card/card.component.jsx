@@ -4,12 +4,12 @@ import {
     Card,
     CardActions,
     CardContent,
-    CardMedia,
+    // CardMedia,
     Typography,
 } from '@mui/material';
 import { useStyles } from './card.style';
 import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+// import StarBorderIcon from '@mui/icons-material/StarBorder';
 import cx from 'classnames';
 
 function ProductCard() {
@@ -76,9 +76,7 @@ function ProductCard() {
                             <div
                                 className={cx(classes.circleBox, 'mr-16px')}
                             ></div>
-                            <div
-                                className={cx(classes.circleBox, 'mr-16px')}
-                            ></div>
+                            <div className={cx(classes.circleBox)}></div>
                         </div>
                     </div>
                     <div className={cx('f-shrink-0', classes.wrapPrice)}>

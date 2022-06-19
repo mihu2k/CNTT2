@@ -12,11 +12,6 @@ const theme = createTheme({
                     color: 'var(--text-color)',
                     overflowY: 'overlay',
                     fontFamily: `'SamsungOne', sans-serif`,
-                    '& .MuiContainer-root': {
-                        maxWidth: '100%',
-                        padding: '0',
-                        overflowX: 'hidden',
-                    },
                 },
             },
         },

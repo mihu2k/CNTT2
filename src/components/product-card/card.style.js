@@ -5,16 +5,25 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         padding: '24px 24px 48px',
-        width: '330px',
+        margin: '2px 0',
+        width: '320px',
+        borderRadius: '1.38888889vw',
+        boxShadow: 'none',
+        border: '2px solid #f7f7f7',
         '& .MuiButton-root': {
             fontSize: '1.4rem',
             textTransform: 'initial',
-            fontFamily: "'SamsungOne'",
-            borderRadius: '999px',
+            fontFamily: 'var(--font-family-One)',
+            borderRadius: '20px',
             fontWeight: 600,
+            minWidth: '160px',
+            backgroundColor: '#000',
         },
         '& .MuiButton-root + .MuiButton-root': {
             margin: '12px 0 0 0',
+            border: '1px solid #000',
+            color: '#000',
+            backgroundColor: '#fff',
         },
     },
     imgProd: {
@@ -27,13 +36,14 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         padding: 0,
     },
-    prodName: {},
+    prodName: {
+        fontFamily: 'var(--font-family-Two)',
+    },
     wrapColor: {
         fontSize: '1.2rem',
         margin: '12px 0',
     },
     wrapChooseColor: {
-        display: 'flex',
         marginTop: '8px',
     },
     wrapPrice: {
@@ -42,6 +52,8 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: 600,
     },
     circleBox: {
+        display: 'inline-block',
+
         width: '18px',
         height: '18px',
         borderRadius: 999,

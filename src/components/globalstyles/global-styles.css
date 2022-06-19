@@ -29,6 +29,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 /* Scrollbar css */
 
 html *::-webkit-scrollbar {
@@ -118,19 +122,31 @@ body .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
 
 /* Custom slick slider */
 
-body .slick-slider {
+/* body .slick-slider {
+} */
+
+body .slick-dots {
+    bottom: 16px;
 }
 
 body .slick-next,
 body .slick-prev {
     position: absolute;
     margin: 0 50px;
-    z-index: 999;
+    z-index: 10;
 }
 
 body .slick-prev:before,
 body .slick-next:before {
-    color: #fff;
+    color: #ccc;
     font-size: 30px;
     font-weight: 500;
+}
+
+body .slick-dots li.slick-active button:before {
+    color: #fff;
+}
+
+body .slick-list {
+    margin-left: 68px;
 }

@@ -160,16 +160,8 @@ function Product() {
             </Accordion>
           </div>
         </Grid>
-<<<<<<< HEAD
-        <Grid item xs={9} style={{ backgroundColor: '#f7f7f7'}}>
+        <Grid item xs={9} style={{ backgroundColor: '#f7f7f7' }}>
           <Grid container spacing={0}>
-=======
-        <Grid item xs={9}>
-          <Grid container spacing={2}>
-            <Grid item xs={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
->>>>>>> main
             <Grid item xs={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>

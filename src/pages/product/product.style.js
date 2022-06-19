@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   wrapHeaderFilter: {
     paddingTop: '10px',
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',

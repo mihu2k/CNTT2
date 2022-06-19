@@ -67,12 +67,28 @@ a {
     margin-left: 2px;
 }
 
+.ml-4px {
+    margin-left: 4px;
+}
+
+.ml-8px {
+    margin-left: 8px;
+}
+
+.ml-16px {
+    margin-left: 16px;
+}
+
 .mr-16px {
     margin-right: 16px;
 }
 
 .pl-4px {
     padding-left: 4px;
+}
+
+.d-f {
+    display: flex;
 }
 
 .f-grow-1 {
@@ -118,8 +134,8 @@ body .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
 
 /* Custom slick slider */
 
-body .slick-slider {
-}
+/* body .slick-slider {
+} */
 
 body .slick-next,
 body .slick-prev {

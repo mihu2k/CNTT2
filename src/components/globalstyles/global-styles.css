@@ -2,138 +2,138 @@
 @import url('http://fonts.cdnfonts.com/css/samsungone');
 
 :root {
-    --primary: #fe2c55;
+  --primary: #fe2c55;
 
-    /* Default layout */
-    --default-layout-header-height: 60px;
-    --default-layout-width: 1150px;
-    --default-layout-horizontal-spacer: 24px;
+  /* Default layout */
+  --default-layout-header-height: 60px;
+  --default-layout-width: 1150px;
+  --default-layout-horizontal-spacer: 24px;
 
-    --white: #fff;
-    --black-color: #000;
-    --text-color: #333;
+  --white: #fff;
+  --black-color: #000;
+  --text-color: #333;
 
-    --font-family-One: 'SamsungOne', sans-serif;
-    --font-family-Two: 'Samsung Sharp Sans', sans-serif;
+  --font-family-One: 'SamsungOne', sans-serif;
+  --font-family-Two: 'Samsung Sharp Sans', sans-serif;
 }
 
 html {
-    font-size: 62.5%;
-    line-height: 1.5;
-    color: var(--text-color);
+  font-size: 62.5%;
+  line-height: 1.5;
+  color: var(--text-color);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 /* Scrollbar css */
 
 html *::-webkit-scrollbar {
-    border-radius: 0;
-    width: 8px;
+  border-radius: 0;
+  width: 8px;
 }
 
 html *::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 html *::-webkit-scrollbar-track {
-    border-radius: 0;
-    background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 button,
 input,
 [tabindex] {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
 
 a {
-    color: var(--text-color);
-    text-decoration: none;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 /* Common */
 .mt-20px {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .ml-2px {
-    margin-left: 2px;
+  margin-left: 2px;
 }
 
 .ml-4px {
-    margin-left: 4px;
+  margin-left: 4px;
 }
 
 .ml-8px {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .ml-16px {
-    margin-left: 16px;
+  margin-left: 16px;
 }
 
 .mr-16px {
-    margin-right: 16px;
+  margin-right: 16px;
 }
 
 .pl-4px {
-    padding-left: 4px;
+  padding-left: 4px;
 }
 
 .d-f {
-    display: flex;
+  display: flex;
 }
 
 .f-grow-1 {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .f-shrink-0 {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .mt-header {
-    margin-top: var(--default-layout-header-height, 60px);
+  margin-top: var(--default-layout-header-height, 60px);
 }
 /* Color */
 .gray {
-    color: #ccc;
+  color: #ccc;
 }
 
 /* Custom tippy tooltips */
 
 body .tippy-box {
-    text-align: left;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    background-color: rgba(84, 84, 84, 0.92);
-    color: rgb(255, 255, 255);
+  text-align: left;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  background-color: rgba(84, 84, 84, 0.92);
+  color: rgb(255, 255, 255);
 }
 
 body .tippy-arrow {
-    color: rgba(84, 84, 84, 0.92);
+  color: rgba(84, 84, 84, 0.92);
 }
 
 body .tippy-content {
-    padding: 6px 9px;
+  padding: 6px 9px;
 }
 
 body .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
-    top: -8px;
+  top: -8px;
 }
 
 /* Custom slick slider */
@@ -142,27 +142,27 @@ body .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
 } */
 
 body .slick-dots {
-    bottom: 16px;
+  bottom: 16px;
 }
 
 body .slick-next,
 body .slick-prev {
-    position: absolute;
-    margin: 0 50px;
-    z-index: 10;
+  position: absolute;
+  margin: 0 50px;
+  z-index: 10;
 }
 
 body .slick-prev:before,
 body .slick-next:before {
-    color: #ccc;
-    font-size: 30px;
-    font-weight: 500;
+  color: #ccc;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 body .slick-dots li.slick-active button:before {
-    color: #fff;
+  color: #fff;
 }
 
-body .slick-list {
-    margin-left: 68px;
-}
+/* body .slick-list {
+  margin-left: 68px;
+} */

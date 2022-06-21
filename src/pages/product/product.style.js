@@ -34,6 +34,7 @@ export const useStyles = makeStyles((theme) => ({
     fontFamily: "'SamsungOne', sans-serif",
   },
   wrapAccordion: {
+    boxShadow: 'unset',
     '& .MuiAccordionSummary-root': {
       minHeight: '48px',
       '& .MuiAccordionSummary-content': {
@@ -51,5 +52,10 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiAccordion-root.Mui-expanded': {
       margin: '0',
     },
+
+    '& .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.Mui-expanded.MuiAccordion-gutters':
+      {
+        boxShadow: 'none',
+      },
   },
 }));

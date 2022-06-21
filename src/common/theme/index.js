@@ -17,6 +17,9 @@ const theme = createTheme({
           //   padding: '0',
           //   overflowX: 'hidden',
           // },
+          '& .MuiPaper-root-MuiAccordion-root': {
+            boxShadow: 'none',
+          },
         },
       },
     },

@@ -8,9 +8,11 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import image from '~/assets/images';
 import { useStyles } from './home.style';
 import { Link } from 'react-router-dom';
+import config from '~/config';
 import ProductCard from '~/components/product-card';
 
 import cx from 'classnames';
@@ -41,7 +43,6 @@ function Home() {
     <div className={cx(classes.container)}>
       <div className={classes.wrapper}>
         <Slider
-          
           adaptiveHeight
           dots={true}
           slidesToShow={1}
@@ -51,6 +52,7 @@ function Home() {
           lazyLoad={true}
           infiniteScroll={true}
           pauseOnHover={false}
+          easing={'linear'}
         >
           {LIST_SLIDER.map((slider, index) => (
             <img
@@ -62,7 +64,7 @@ function Home() {
           ))}
         </Slider>
 
-        <Link to="./">
+        <Link to={config.routes.product}>
           <Button
             className={classes.sliderButton}
             variant="contained"

@@ -6,7 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     padding: '24px 24px 48px',
     margin: '2px 0',
-    width: '320px',
+    maxWidth: '320px',
     borderRadius: '1.38888889vw',
     boxShadow: 'none',
     border: '2px solid #f7f7f7',
@@ -26,6 +26,11 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#fff',
     },
   },
+
+  wrapAccordion: {
+    boxShadow: 'none',
+  },
+
   imgProd: {
     alignSelf: 'center',
     flexShrink: 0,

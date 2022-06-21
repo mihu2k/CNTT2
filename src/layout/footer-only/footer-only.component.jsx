@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import Header from '~/layout/components/header';
-import Footer from './footer';
+import Footer from '~/layout/defaultlayout/footer';
+
 import Container from '@mui/material/Container';
 
-function DefaultLayout({ children }) {
+function FooterOnly({ children }) {
   return (
     <div>
-      <Header />
       <Container className="mt-header" maxWidth="lg">
         {children}
       </Container>
@@ -15,8 +14,8 @@ function DefaultLayout({ children }) {
   );
 }
 
-DefaultLayout.propTypes = {
+FooterOnly.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default DefaultLayout;
+export default FooterOnly;

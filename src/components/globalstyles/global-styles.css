@@ -103,9 +103,14 @@ a {
   flex-shrink: 0;
 }
 
+button.fz-16px {
+  font-size: 16px;
+}
+
 .mt-header {
   margin-top: var(--default-layout-header-height, 60px);
 }
+
 /* Color */
 .gray {
   color: #ccc;

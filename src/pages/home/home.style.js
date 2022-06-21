@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
     minHeight: '80vh',
-    margin: '0 -160px',
+    margin: '0 -153px 0 -165px',
   },
 
   sliderImage: {
@@ -53,18 +53,18 @@ export const useStyles = makeStyles((theme) => ({
   sectionTitle: {
     textTransform: 'uppercase',
     textAlign: 'center',
-    margin: '32px 0 16px 0',
-    padding: '32px 0 0 0',
+    marginBottom: '16px',
+    paddingTop: '32px',
     fontSize: '2rem',
   },
 
   sectionBestSeller: {
-    padding: '0 0 32px 0',
+    paddingBottom: '32px',
   },
 
   sectionNewProducts: {
-    padding: '0 0 32px 0',
-    margin: '0 -70px',
+    paddingBottom: '32px',
+    margin: '0 -150px',
     backgroundColor: '#f7f7f7',
   },
   sectionProducts: {
@@ -88,7 +88,7 @@ export const useStyles = makeStyles((theme) => ({
     height: '450px',
     padding: '32px  0',
 
-    margin: '0 -156px 64px -155px',
+    margin: '0 -156px 0 -155px',
   },
 
   sectionBox: {
@@ -116,7 +116,6 @@ export const useStyles = makeStyles((theme) => ({
 
   sectionBoxTitle: {
     position: 'absolute',
-
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',

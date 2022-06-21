@@ -129,12 +129,14 @@ function Product() {
                     return (
                       <ListItem key={value} disablePadding>
                         <ListItemButton
+                          key={value}
                           role={undefined}
                           onClick={handleToggle(value)}
                           dense
                         >
                           <ListItemIcon>
                             <Checkbox
+                              key={value}
                               edge="start"
                               checked={checked.indexOf(value) !== -1}
                               tabIndex={-1}
@@ -145,6 +147,7 @@ function Product() {
                             />
                           </ListItemIcon>
                           <ListItemText
+                            key={value}
                             id={labelId}
                             primaryTypographyProps={{
                               fontSize: '1.4rem',
@@ -160,8 +163,21 @@ function Product() {
             </Accordion>
           </div>
         </Grid>
-        <Grid item xs={9} style={{ backgroundColor: '#f7f7f7' }}>
-          <Grid container spacing={0}>
+        <Grid
+          item
+          xs={9}
+          style={{ backgroundColor: '#f7f7f7', padding: '20px' }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
+            <Grid item xs={4} style={{ display: 'flex' }}>
+              <ProductCard />
+            </Grid>
             <Grid item xs={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>

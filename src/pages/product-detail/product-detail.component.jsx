@@ -31,6 +31,7 @@ import {
 import cx from 'classnames';
 import Slider from 'react-slick';
 import { renderStars } from '~/common/utils';
+import ReviewList from '~/components/product/review';
 
 function ProductDetail() {
   const classes = useStyles();
@@ -281,6 +282,21 @@ function ProductDetail() {
           </div>
         </div>
       </div>
+
+      <section>
+        <Typography
+          variant="h2"
+          component="h2"
+          fontSize={18}
+          fontWeight={600}
+          padding="16px"
+          bgcolor="#f1f1f1"
+          gutterBottom
+        >
+          Đánh giá sản phẩm
+        </Typography>
+        <ReviewList />
+      </section>
     </div>
   );
 }

@@ -1,12 +1,13 @@
 const routes = {
   default: '/',
   home: '/home',
-  profile: '/mypage',
+  profile: '/profile',
   login: '/login',
   product: '/product',
   productDetail: '/product/:slug',
-  profileSettings: '/mypage/settings',
+  profileSettings: '/profile/settings',
   checkoutShipmentInfo: '/checkout/multi/delivery-address',
+  cart: '/cart',
 };
 
 export default routes;

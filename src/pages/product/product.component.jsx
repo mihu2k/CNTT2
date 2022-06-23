@@ -23,7 +23,7 @@ import {
   Select,
   Typography,
 } from '@mui/material';
-import ProductCard from '~/components/product-card/card.component';
+import ProductCard from '~/components/product/card';
 
 function Product() {
   const classes = useStyles();

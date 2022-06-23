@@ -13,6 +13,7 @@ import SignIn from '~/pages/login-form/login-form.component';
 import Product from '~/pages/product/product.component';
 import ProductDetail from '~/pages/product-detail/product-detail.component';
 import CheckoutShipment from '~/pages/checkout/checkout.component';
+import { Cart } from '~/pages';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -25,6 +26,11 @@ const publicRoutes = [
   {
     path: config.routes.checkoutShipmentInfo,
     component: CheckoutShipment,
+    layout: FooterOnly,
+  },
+  {
+    path: config.routes.cart,
+    component: Cart,
     layout: FooterOnly,
   },
 ];

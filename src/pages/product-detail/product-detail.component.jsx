@@ -13,6 +13,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import PowerIcon from '@mui/icons-material/Power';
 import RemoveIcon from '@mui/icons-material/Remove';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 // Components
 import {
   Box,
@@ -31,12 +33,14 @@ import {
 import cx from 'classnames';
 import Slider from 'react-slick';
 import { renderStars } from '~/common/utils';
-import ReviewList from '~/components/product/review';
+import ReviewList, { ReviewForm } from '~/components/product/review';
+import Tippy from '@tippyjs/react';
 
 function ProductDetail() {
   const classes = useStyles();
 
   const [isShowMore, setIsShowMore] = React.useState(false);
+  const [isOpenFormRating, setIsOpenFormRating] = React.useState(false);
 
   const settings = {
     infinite: true,
@@ -49,6 +53,10 @@ function ProductDetail() {
 
   const handleClickShowMore = () => {
     setIsShowMore(!isShowMore);
+  };
+
+  const handleClickOpenFormRating = () => {
+    setIsOpenFormRating(!isOpenFormRating);
   };
 
   return (
@@ -289,12 +297,29 @@ function ProductDetail() {
           component="h2"
           fontSize={18}
           fontWeight={600}
-          padding="16px"
+          padding="10px 16px"
           bgcolor="#f1f1f1"
           gutterBottom
         >
           Đánh giá sản phẩm
+          <Tippy content={isOpenFormRating ? 'Thu gọn' : 'Thêm đánh giá'}>
+            <IconButton
+              aria-label="add-rating"
+              style={{ marginLeft: '8px' }}
+              onClick={handleClickOpenFormRating}
+            >
+              {isOpenFormRating ? (
+                <RemoveCircleOutlineIcon fontSize="large" />
+              ) : (
+                <AddCircleOutlineIcon fontSize="large" />
+              )}
+            </IconButton>
+          </Tippy>
         </Typography>
+
+        <Collapse in={isOpenFormRating}>
+          <ReviewForm />
+        </Collapse>
         <ReviewList />
       </section>
     </div>

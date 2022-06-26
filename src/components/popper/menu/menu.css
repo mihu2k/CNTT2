@@ -16,7 +16,7 @@
 }
 
 /* // Menu items */
-.menu-item {
+.menu-body .menu-item {
     width: 100%;
     justify-content: flex-start;
     border-radius: 0;

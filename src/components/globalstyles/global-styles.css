@@ -99,6 +99,10 @@ a {
   display: flex;
 }
 
+.d-f.j-c-between {
+  justify-content: space-between;
+}
+
 .f-grow-1 {
   flex-grow: 1;
 }

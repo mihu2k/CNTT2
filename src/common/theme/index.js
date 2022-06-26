@@ -10,13 +10,8 @@ const theme = createTheme({
           lineHeight: 1.5,
           textRendering: 'optimizeSpeed',
           color: 'var(--text-color)',
-          overflowY: 'overlay',
+          // overflowY: 'overlay',
           fontFamily: `'SamsungOne', sans-serif`,
-          // '& .MuiContainer-root': {
-          //   maxWidth: '100%',
-          //   padding: '0',
-          //   overflowX: 'hidden',
-          // },
           '& .MuiPaper-root-MuiAccordion-root': {
             boxShadow: 'none',
           },

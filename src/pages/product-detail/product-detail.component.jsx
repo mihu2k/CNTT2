@@ -35,6 +35,7 @@ import Slider from 'react-slick';
 import { renderStars } from '~/common/utils';
 import ReviewList, { ReviewForm } from '~/components/product/review';
 import Tippy from '@tippyjs/react';
+import { InputQuantity } from '~/components/input-quantity';
 
 function ProductDetail() {
   const classes = useStyles();
@@ -172,22 +173,8 @@ function ProductDetail() {
             </ul>
             <div className={cx('d-f', classes.wrapQuantity, 'mt-20px')}>
               <span>Số lượng</span>
-              <div className={cx('d-f', 'ml-16px')}>
-                <IconButton
-                  aria-label="delete"
-                  style={{ borderRadius: 0, border: '1px solid #ccc' }}
-                >
-                  <RemoveIcon />
-                </IconButton>
-                <div className={classes.wrapInputQuantity}>
-                  <OutlinedInput value={1} defaultValue={1} />
-                </div>
-                <IconButton
-                  aria-label="add"
-                  style={{ borderRadius: 0, border: '1px solid #ccc' }}
-                >
-                  <AddIcon />
-                </IconButton>
+              <div className={cx('ml-16px')}>
+                <InputQuantity />
               </div>
             </div>
             <Box

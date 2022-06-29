@@ -43,6 +43,7 @@ const publicRoutes = [
   {
     path: config.routes.cart,
     component: Cart,
+    layout: FooterOnly,
   },
 ];
 

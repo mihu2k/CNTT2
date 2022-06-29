@@ -6,18 +6,21 @@ import GlobalStyles from '~/components/globalstyles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './common/theme';
+import { Provider } from 'react-redux';
+import configureStore from './redux/config-store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = configureStore();
 
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStyles>
         <App />
       </GlobalStyles>
     </ThemeProvider>
-  </React.StrictMode>,
+  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

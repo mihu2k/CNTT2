@@ -5,8 +5,10 @@ const routes = {
   login: '/login',
   product: '/product',
   productDetail: '/product/:slug',
-  profileSettings: '/profile/settings',
-  checkoutShipmentInfo: '/checkout/multi/delivery-address',
+  profileSettings: '/mypage/settings',
+  checkoutShipment: '/checkout/multi/delivery-address',
+  checkoutPayment: '/checkout/multi/payment-method',
+  orderConfirmation: '/checkout/order-confirmation',
   cart: '/cart',
 };
 

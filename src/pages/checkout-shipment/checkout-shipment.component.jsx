@@ -5,9 +5,12 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
+  FormLabel,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
   Select,
   Step,
-  ColorlibConnector,
   Stepper,
   StepLabel,
   Grid,
@@ -35,11 +38,29 @@ function Checkout() {
     'Hoàn thành đặt hàng',
   ];
 
-  // select form
-  const [age, setAge] = React.useState('');
+  // select form address
+  const [city, setCity] = React.useState('');
+  const handleCity = (event) => {
+    setCity(event.target.value);
+  };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const [district, setDistrict] = React.useState('');
+  const handleDistrict = (event) => {
+    setDistrict(event.target.value);
+  };
+
+  const [ward, setWard] = React.useState('');
+  const handleWard = (event) => {
+    setWard(event.target.value);
+  };
+
+  //call API render address
+
+  // button radio take order by what
+  const [takeOrder, setTakeOrder] = React.useState(0);
+
+  const handleTakeOrder = (event) => {
+    setTakeOrder(event.target.value);
   };
   return (
     <div className={classes.wrapper}>
@@ -102,116 +123,158 @@ function Checkout() {
             variant="form"
             component="form"
           >
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={takeOrder}
+                onChange={handleTakeOrder}
+              >
+                <FormControlLabel
+                  value="0"
+                  control={<Radio />}
+                  label="GIAO HÀNG TẬN NƠI"
                 />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
+                <FormControlLabel
+                  value="1"
+                  control={<Radio />}
+                  label="NHẬN TẠI CỬA HÀNG"
                 />
-              </Grid>
-            </Grid>
-
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
-                />
-              </Grid>
-            </Grid>
-
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-            <Grid container spacing={4}>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  label="Tên"
-                  fullWidth
-                  type="text"
-                  variant="standard"
-                  required
-                />
-              </Grid>
-            </Grid>
+              </RadioGroup>
+            </FormControl>
 
             <TextField
-              label="Tên"
+              label="Họ tên người nhận"
               fullWidth
               type="text"
               variant="standard"
               required
             />
+
             <TextField
-              label="Tên"
+              label="Số điện thoại người nhận"
+              fullWidth
+              type="tel"
+              variant="standard"
+              required
+            />
+            {currentUser ? (
+              <>
+                <Typography
+                  fontSize="1.6rem"
+                  fontWeight="400"
+                  lineHeight="1.33"
+                  color="#8f8f8f"
+                  mt="40px"
+                  mb="16px"
+                  variant="div"
+                  component="div"
+                >
+                  <p>Địa chỉ đã lưu</p>
+
+                  <Typography
+                    fontSize="1.8rem"
+                    fontWeight="500"
+                    color="#000"
+                    mt="8px"
+                    variant="p"
+                    component="p"
+                  >
+                    200/12/6 Lê Văn Lương, Phường Tân Hưng, Quận 7
+                  </Typography>
+                </Typography>
+              </>
+            ) : (
+              <>
+                <Grid container spacing={4}>
+                  <Grid item xs={6}>
+                    <TextField
+                      label="Số nhà"
+                      fullWidth
+                      type="text"
+                      variant="standard"
+                      required
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      label="Đường/Phố"
+                      fullWidth
+                      type="tel"
+                      variant="standard"
+                      required
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container spacing={4}>
+                  <Grid item xs={6}>
+                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                      <InputLabel id="demo-simple-select-label-city">
+                        Chọn Tỉnh/Thành phố
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label-city"
+                        id="demo-simple-select-city"
+                        value={city}
+                        label="Chọn Tỉnh/ Thành phố"
+                        onChange={handleCity}
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                      <InputLabel id="demo-simple-select-label-district">
+                        Chọn Quận/Huyện
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label-district"
+                        id="demo-simple-select-district"
+                        value={district}
+                        label="Chọn Quận/Huyện"
+                        onChange={handleDistrict}
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                </Grid>
+                <Grid container spacing={4}>
+                  <Grid item xs={6}>
+                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                      <InputLabel id="demo-simple-select-label-ward">
+                        Chọn Phường
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label-ward"
+                        id="demo-simple-select-ward"
+                        value={ward}
+                        label="Chọn Phường"
+                        onChange={handleWard}
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      label="Làng/Khu phố - không bắt buộc"
+                      fullWidth
+                      type="text"
+                      variant="outlined"
+                      sx={{ marginTop: '32px' }}
+                    />
+                  </Grid>
+                </Grid>
+              </>
+            )}
+
+            <TextField
+              label="Lưu ý giao hàng - không bắt buộc"
               fullWidth
               type="text"
               variant="standard"
-              required
             />
           </Typography>
         </Grid>

@@ -10,6 +10,9 @@ const images = {
     homeBox3: require('~/assets/images/box-layout3.png'),
     homeBox4: require('~/assets/images/box-layout4.png'),
     homeBox5: require('~/assets/images/box-layout5.png'),
+    paymentCard1: require('~/assets/images/payment-card.png'),
+    paymentCard2: require('~/assets/images/payment-card2.png'),
+
 };
 
 export default images;

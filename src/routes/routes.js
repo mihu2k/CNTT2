@@ -12,7 +12,9 @@ import ProfileSettings from '~/pages/profile-settings/profile-settings.component
 import SignIn from '~/pages/login-form/login-form.component';
 import Product from '~/pages/product/product.component';
 import ProductDetail from '~/pages/product-detail/product-detail.component';
-import CheckoutShipment from '~/pages/checkout/checkout.component';
+import CheckoutShipment from '~/pages/checkout-shipment/checkout-shipment.component';
+import CheckoutPayment from '~/pages/checkout-payment/checkout-payment.component';
+import CheckoutConfirmation from '~/pages/checkout-success/checkout-success.component';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -23,8 +25,18 @@ const publicRoutes = [
   { path: config.routes.product, component: Product },
   { path: config.routes.productDetail, component: ProductDetail },
   {
-    path: config.routes.checkoutShipmentInfo,
+    path: config.routes.checkoutShipment,
     component: CheckoutShipment,
+    layout: FooterOnly,
+  },
+  {
+    path: config.routes.checkoutPayment,
+    component: CheckoutPayment,
+    layout: FooterOnly,
+  },
+  {
+    path: config.routes.orderConfirmation,
+    component: CheckoutConfirmation,
     layout: FooterOnly,
   },
 ];

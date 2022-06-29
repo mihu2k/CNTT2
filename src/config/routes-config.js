@@ -6,7 +6,9 @@ const routes = {
   product: '/product',
   productDetail: '/product/:slug',
   profileSettings: '/mypage/settings',
-  checkoutShipmentInfo: '/checkout/multi/delivery-address',
+  checkoutShipment: '/checkout/multi/delivery-address',
+  checkoutPayment: '/checkout/multi/payment-method',
+  orderConfirmation: '/checkout/order-confirmation',
 };
 
 export default routes;

@@ -153,7 +153,7 @@ function Home() {
           <h2>Sản phẩm mới</h2>
         </div>
         <Slider
-          className={cx(classes.sectionProducts, 'grid wide')}
+          className={cx(classes.sectionProducts)}
           dots={false}
           slidesToShow={3}
           slidesToScroll={2}

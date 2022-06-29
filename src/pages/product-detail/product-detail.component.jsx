@@ -13,6 +13,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import PowerIcon from '@mui/icons-material/Power';
 import RemoveIcon from '@mui/icons-material/Remove';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 // Components
 import {
   Box,
@@ -31,11 +33,15 @@ import {
 import cx from 'classnames';
 import Slider from 'react-slick';
 import { renderStars } from '~/common/utils';
+import ReviewList, { ReviewForm } from '~/components/product/review';
+import Tippy from '@tippyjs/react';
+import { InputQuantity } from '~/components/input-quantity';
 
 function ProductDetail() {
   const classes = useStyles();
 
   const [isShowMore, setIsShowMore] = React.useState(false);
+  const [isOpenFormRating, setIsOpenFormRating] = React.useState(false);
 
   const settings = {
     infinite: true,
@@ -48,6 +54,10 @@ function ProductDetail() {
 
   const handleClickShowMore = () => {
     setIsShowMore(!isShowMore);
+  };
+
+  const handleClickOpenFormRating = () => {
+    setIsOpenFormRating(!isOpenFormRating);
   };
 
   return (
@@ -163,22 +173,8 @@ function ProductDetail() {
             </ul>
             <div className={cx('d-f', classes.wrapQuantity, 'mt-20px')}>
               <span>Số lượng</span>
-              <div className={cx('d-f', 'ml-16px')}>
-                <IconButton
-                  aria-label="delete"
-                  style={{ borderRadius: 0, border: '1px solid #ccc' }}
-                >
-                  <RemoveIcon />
-                </IconButton>
-                <div className={classes.wrapInputQuantity}>
-                  <OutlinedInput value={1} defaultValue={1} />
-                </div>
-                <IconButton
-                  aria-label="add"
-                  style={{ borderRadius: 0, border: '1px solid #ccc' }}
-                >
-                  <AddIcon />
-                </IconButton>
+              <div className={cx('ml-16px')}>
+                <InputQuantity />
               </div>
             </div>
             <Box
@@ -281,6 +277,38 @@ function ProductDetail() {
           </div>
         </div>
       </div>
+
+      <section>
+        <Typography
+          variant="h2"
+          component="h2"
+          fontSize={18}
+          fontWeight={600}
+          padding="10px 16px"
+          bgcolor="#f1f1f1"
+          gutterBottom
+        >
+          Đánh giá sản phẩm
+          <Tippy content={isOpenFormRating ? 'Thu gọn' : 'Thêm đánh giá'}>
+            <IconButton
+              aria-label="add-rating"
+              style={{ marginLeft: '8px' }}
+              onClick={handleClickOpenFormRating}
+            >
+              {isOpenFormRating ? (
+                <RemoveCircleOutlineIcon fontSize="large" />
+              ) : (
+                <AddCircleOutlineIcon fontSize="large" />
+              )}
+            </IconButton>
+          </Tippy>
+        </Typography>
+
+        <Collapse in={isOpenFormRating}>
+          <ReviewForm />
+        </Collapse>
+        <ReviewList />
+      </section>
     </div>
   );
 }

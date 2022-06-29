@@ -13,7 +13,7 @@ import image from '~/assets/images';
 import { useStyles } from './home.style';
 import { Link } from 'react-router-dom';
 import config from '~/config';
-import ProductCard from '~/components/product-card';
+import ProductCard from '~/components/product/card';
 
 import cx from 'classnames';
 

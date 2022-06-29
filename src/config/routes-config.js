@@ -1,7 +1,7 @@
 const routes = {
   default: '/',
   home: '/home',
-  profile: '/mypage',
+  profile: '/profile',
   login: '/login',
   product: '/product',
   productDetail: '/product/:slug',
@@ -9,6 +9,7 @@ const routes = {
   checkoutShipment: '/checkout/multi/delivery-address',
   checkoutPayment: '/checkout/multi/payment-method',
   orderConfirmation: '/checkout/order-confirmation',
+  cart: '/cart',
 };
 
 export default routes;

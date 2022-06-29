@@ -14,7 +14,7 @@ function HeaderSimple() {
 
   return (
     <header className={cx(classes.header, 'grid wide')}>
-      <Link to="./">
+      <Link to={config.routes.product}>
         <Typography
           display={'flex'}
           alignItems={'center'}

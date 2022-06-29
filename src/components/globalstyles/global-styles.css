@@ -79,6 +79,10 @@ a {
   margin-left: 8px;
 }
 
+.ml-12px {
+  margin-left: 12px;
+}
+
 .ml-16px {
   margin-left: 16px;
 }
@@ -93,6 +97,10 @@ a {
 
 .d-f {
   display: flex;
+}
+
+.d-f.j-c-between {
+  justify-content: space-between;
 }
 
 .f-grow-1 {

@@ -15,9 +15,9 @@
     user-select: none;
 }
 
-.button-wrapper + .button-wrapper {
+/* .button-wrapper + .button-wrapper {
     margin-left: 8px;
-}
+} */
 
 .button-wrapper.disabled {
     pointer-events: none;

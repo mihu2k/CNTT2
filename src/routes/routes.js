@@ -15,6 +15,7 @@ import ProductDetail from '~/pages/product-detail/product-detail.component';
 import CheckoutShipment from '~/pages/checkout-shipment/checkout-shipment.component';
 import CheckoutPayment from '~/pages/checkout-payment/checkout-payment.component';
 import CheckoutConfirmation from '~/pages/checkout-success/checkout-success.component';
+import Cart from '~/pages/cart/cart.component';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -38,6 +39,10 @@ const publicRoutes = [
     path: config.routes.orderConfirmation,
     component: CheckoutConfirmation,
     layout: FooterOnly,
+  },
+  {
+    path: config.routes.cart,
+    component: Cart,
   },
 ];
 

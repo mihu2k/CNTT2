@@ -64,8 +64,8 @@ export const useStyles = makeStyles((theme) => ({
 
   sectionNewProducts: {
     paddingBottom: '32px',
-    margin: '0 -150px',
     backgroundColor: '#f7f7f7',
+    borderRadius: '1.38888889vw',
   },
   sectionProducts: {
     paddingTop: '32px',

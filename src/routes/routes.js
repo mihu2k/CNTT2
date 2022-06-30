@@ -16,6 +16,7 @@ import CheckoutShipment from '~/pages/checkout-shipment/checkout-shipment.compon
 import CheckoutPayment from '~/pages/checkout-payment/checkout-payment.component';
 import CheckoutConfirmation from '~/pages/checkout-success/checkout-success.component';
 import { Cart } from '~/pages/cart';
+import Order from '~/pages/orders/orders.component';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -45,6 +46,7 @@ const publicRoutes = [
     component: Cart,
     layout: FooterOnly,
   },
+  { path: config.routes.order, component: Order },
 ];
 
 const privateRoutes = [];

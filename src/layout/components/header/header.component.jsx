@@ -14,10 +14,10 @@ import config from '~/config';
 
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import images from '~/assets/images';
-import styles from './header.css';
 import Image from '~/components/image';
-import Search from '../search';
 import Menu from '~/components/popper/menu';
+import Search from '../search';
+import styles from './header.css';
 
 const cx = classNames.bind(styles);
 
@@ -59,7 +59,7 @@ const generalIconStyle = {
 };
 
 function Header() {
-  const currentUser = !true;
+  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
 
   // handle logic
   const handleMenuChange = (menuItem) => {
@@ -71,13 +71,15 @@ function Header() {
     }
   };
 
+  const menu = [...MENU_ITEMS];
+  if (currentUser) menu.shift();
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: 'View profile',
       to: '/profile',
     },
-    ...MENU_ITEMS,
+    ...menu,
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: 'Log out',
@@ -106,14 +108,14 @@ function Header() {
           </Tippy>
 
           <Menu
-            items={currentUser ? userMenu : MENU_ITEMS}
+            items={!!currentUser ? userMenu : MENU_ITEMS}
             onChange={handleMenuChange}
           >
-            {currentUser ? (
+            {!!currentUser ? (
               <Image
                 className={cx('header-user-avatar')}
-                src="https://scontent.fpnh22-4.fna.fbcdn.net/v/t39.30808-6/283042525_3127793060792907_687868091453720612_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Rb-K6yhJPTgAX-O616B&_nc_oc=AQmcUy4w4YvlLxjDH5ajep8PoX6v2GsNS9uXyXlAX1ALurHcBcTcBm_AdSts2COJt3Q&_nc_ht=scontent.fpnh22-4.fna&oh=00_AT_SOZqoutbFDRP5izSTy3MyoVrEJuzuoYu7EWIbew2ZTQ&oe=62B1C800"
-                alt="Pham Quoc Vuong"
+                src={`${process.env.REACT_APP_API_BASE_URL}${currentUser.avatar}`}
+                alt={currentUser.full_name ?? 'Avatar'}
               />
             ) : (
               // <div className={cx('header-more-btn')}>

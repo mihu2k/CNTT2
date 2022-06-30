@@ -99,18 +99,22 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '2.7rem',
     margin: '12px 0 32px',
     color: '#252525',
-    fontWeight: '500',
+    fontWeight: '600',
     lineHeight: 'normal',
   },
 
   form: {
     margin: '0 68px',
     minWidth: '236px',
+    '& .MuiFormHelperText-root': {
+      margin: '0 0 18px',
+      fontSize: '1.2rem',
+    },
   },
 
   paper: {
     position: 'absolute',
-    
+
     left: '0',
     right: '0',
     padding: '60px 72px 60px 72px',

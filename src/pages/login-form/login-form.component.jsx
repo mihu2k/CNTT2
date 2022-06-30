@@ -39,16 +39,16 @@ function LoginForm() {
     <div className={classes.wrapper}>
       <Header />
 
-      <Tabs value={value} onChange={handleChange}>
-        <Tab label="Đăng Nhập" />
+      <Tabs value={value} onChange={handleChange} sx={{ position: 'relative' }}>
+        <Tab label="Đăng Nhập" sx={{ fontWeight: 'bold' }} />
 
-        <Tab label="Đăng ký" />
+        <Tab label="Đăng ký" sx={{ fontWeight: 'bold' }} />
       </Tabs>
 
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} sx={{ position: 'absolute' }}>
         <SignIn />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} sx={{ position: 'absolute' }}>
         <SignUp />
       </TabPanel>
     </div>

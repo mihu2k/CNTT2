@@ -92,6 +92,10 @@ export const useStyles = makeStyles((theme) => ({
   form: {
     margin: '0 68px',
     minWidth: '236px',
+    '& .MuiFormHelperText-root': {
+      margin: '0 0 18px',
+      fontSize: '1.2rem',
+    },
   },
 
   paper: {

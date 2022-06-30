@@ -52,103 +52,99 @@ function SignIn() {
         <Loading />
       ) : (
         <div className={classes.wrapper}>
-          <Grid>
-            <Paper elevation={0} className={classes.paper}>
-              <Grid align="center">
-                <h1 className={classes.title}>
-                  Đăng nhập René account của bạn
-                </h1>
-              </Grid>
-              <Grid>
-                <form
-                  className={classes.form}
-                  onSubmit={handleSubmit(onSubmit)}
-                  noValidate
-                  autoComplete="off"
+          <Paper elevation={0} className={classes.paper}>
+            <Grid align="center">
+              <h1 className={classes.title}>Đăng nhập René account của bạn</h1>
+            </Grid>
+            <Grid>
+              <form
+                className={classes.form}
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField
+                  className={classes.input}
+                  label="Username/Email"
+                  fullWidth
+                  variant="standard"
+                  {...register('email')}
+                  error={!!errors?.email?.message}
+                  helperText={errors?.email?.message}
+                />
+                <TextField
+                  className={classes.input}
+                  label="Mật khẩu"
+                  fullWidth
+                  type="password"
+                  variant="standard"
+                  {...register('password')}
+                  error={!!errors?.password?.message}
+                  helperText={errors?.password?.message}
+                />
+                <Typography
+                  fontWeight="600"
+                  fontSize={16}
+                  gutterBottom
+                  component="span"
+                  className={classes.forgetPassword}
                 >
-                  <TextField
-                    className={classes.input}
-                    label="Username/Email"
-                    fullWidth
-                    variant="standard"
-                    {...register('email')}
-                    error={!!errors?.email?.message}
-                    helperText={errors?.email?.message}
-                  />
-                  <TextField
-                    className={classes.input}
-                    label="Mật khẩu"
-                    fullWidth
-                    type="password"
-                    variant="standard"
-                    {...register('password')}
-                    error={!!errors?.password?.message}
-                    helperText={errors?.password?.message}
-                  />
-                  <Typography
-                    fontWeight="600"
-                    fontSize={16}
-                    gutterBottom
-                    component="span"
+                  <Link
+                    to={'./forgetPassword'}
                     className={classes.forgetPassword}
                   >
-                    <Link
-                      to={'./forgetPassword'}
-                      className={classes.forgetPassword}
-                    >
-                      Quên mật khẩu?
-                    </Link>
-                  </Typography>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      color: '#fff',
-                      backgroundColor: '#0381fe',
-                      border: '1px solid #0381fe',
-                      margin: '27px 0 20px 0',
+                    Quên mật khẩu?
+                  </Link>
+                </Typography>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    color: '#fff',
+                    backgroundColor: '#0381fe',
+                    border: '1px solid #0381fe',
+                    margin: '27px 0 20px 0',
+                    boxShadow: 'none',
+                    '&:hover': {
                       boxShadow: 'none',
-                      '&:hover': {
-                        boxShadow: 'none',
-                      },
-                    }}
-                  >
-                    Đăng nhập
-                  </Button>
+                    },
+                  }}
+                >
+                  Đăng nhập
+                </Button>
 
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    startIcon={
-                      <GoogleIcon
-                        sx={{
-                          color: '#DB4437',
-                          fontSize: '24px',
-                        }}
-                      />
-                    }
-                    sx={{
-                      color: '#252525',
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  startIcon={
+                    <GoogleIcon
+                      sx={{
+                        color: '#DB4437',
+                        fontSize: '24px',
+                      }}
+                    />
+                  }
+                  sx={{
+                    color: '#252525',
+                    borderColor: '#fff',
+
+                    '&:hover': {
+                      borderColor: '#e8e8e8',
+                      backgroundColor: '#fff',
+                    },
+
+                    '&:focus': {
                       borderColor: '#fff',
-
-                      '&:hover': {
-                        borderColor: '#e8e8e8',
-                        backgroundColor: '#fff',
-                      },
-
-                      '&:focus': {
-                        borderColor: '#fff',
-                        backgroundColor: '#fff',
-                      },
-                    }}
-                  >
-                    Đăng nhập bằng Google
-                  </Button>
-                </form>
-              </Grid>
-            </Paper>
-          </Grid>
+                      backgroundColor: '#fff',
+                    },
+                  }}
+                >
+                  Đăng nhập bằng Google
+                </Button>
+              </form>
+            </Grid>
+          </Paper>
         </div>
       )}
     </>

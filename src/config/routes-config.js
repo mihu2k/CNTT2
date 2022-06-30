@@ -10,6 +10,7 @@ const routes = {
   checkoutPayment: '/checkout/multi/payment-method',
   orderConfirmation: '/checkout/order-confirmation',
   cart: '/cart',
+  order: '/order',
 };
 
 export default routes;

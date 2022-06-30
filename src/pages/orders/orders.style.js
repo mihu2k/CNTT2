@@ -2,8 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
-    backgroundColor: '#f2f2f2',
-    minHeight: '100vh',
+    marginBottom: '32px',
     '& .MuiPaper-root': {
       height: 'fit-content',
       borderRadius: '0',
@@ -29,8 +28,8 @@ export const useStyles = makeStyles((theme) => ({
       minHeight: '36px',
       padding: '8px 20px 8px 20px',
       borderRadius: '22px',
-      fontSize: '17px',
-      lineHeight: '1.6',
+      fontSize: '1.8rem',
+      lineHeight: '1.5',
       fontFamily: "'SamsungOne'",
       fontWeight: 'bold',
       textTransform: 'unset',
@@ -51,41 +50,9 @@ export const useStyles = makeStyles((theme) => ({
       borderBottom: '2px solid #000',
     },
 
-    '& .MuiFormControlLabel-root .MuiFormControlLabel-label': {
-      fontSize: '1.5rem',
-      fontWeight: '600',
-    },
-  },
-
-  title: {
-    fontSize: '2.7rem',
-    margin: '12px 0 32px',
-    color: '#252525',
-    fontWeight: '500',
-    lineHeight: 'normal',
-  },
-
-  form: {
-    margin: '0 68px',
-    minWidth: '236px',
-
-    '& .MuiInputBase-root-MuiInput-root:before': {
-      borderBottom: '2px solid #000',
-    },
-    '& .MuiInputBase-root-MuiInput-root:after': {
-      borderBottom: '2px solid #000',
-    },
-  },
-
-  paper: {
-    position: 'absolute',
-
-    left: '0',
-    right: '0',
-    padding: '60px 72px 60px 72px',
-    height: '70vh',
-    maxWidth: '640px',
-    margin: '0 auto',
-    backgroundColor: '#fcfcfc',
+    '& .MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-6talhg-MuiButtonBase-root-MuiMenuItem-root':
+      {
+        fontSize: '1.6rem',
+      },
   },
 }));

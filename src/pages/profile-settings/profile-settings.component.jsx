@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { useStyles } from './profile-settings.style';
-import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import {
+  Modal,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  InputLabel,
+} from '@mui/material';
 
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -8,7 +15,7 @@ import CreditScoreIcon from '@mui/icons-material/CreditScore';
 
 // import cx from 'classnames';
 
-function Profile() {
+function ProfileSettings() {
   const classes = useStyles();
   const style = {
     position: 'absolute',
@@ -47,7 +54,7 @@ function Profile() {
         <div className={classes.infoDashboardAddress}>
           <div className={classes.dashboardHeader}>
             <span className={classes.dashboardAddressTitle}>
-              Thông tin mua hàng
+              Thông tin của tôi
             </span>
 
             <Typography
@@ -130,51 +137,30 @@ function Profile() {
               component="form"
               sx={{ mt: 2 }}
             >
-              <TextField label="Email" fullWidth variant="standard" required />
               <TextField
-                label="Mật khẩu"
+                label="Họ tên"
                 fullWidth
-                type="password"
+                type="text"
                 variant="standard"
                 required
               />
+
               <TextField
-                label="Xác nhận mật khẩu"
-                fullWidth
-                type="password"
-                variant="standard"
-                required
-              />
-              <TextField
-                label="Họ"
+                label="Địa chỉ"
                 fullWidth
                 type="text"
                 variant="standard"
                 required
               />
               <TextField
-                label="Tên"
+                label="Số điện thoại"
                 fullWidth
-                type="text"
+                type="tel"
                 variant="standard"
                 required
               />
               <TextField
-                label="Tên"
-                fullWidth
-                type="text"
-                variant="standard"
-                required
-              />
-              <TextField
-                label="Tên"
-                fullWidth
-                type="text"
-                variant="standard"
-                required
-              />
-              <TextField
-                label="Tên"
+                label=""
                 fullWidth
                 type="text"
                 variant="standard"
@@ -251,36 +237,48 @@ function Profile() {
               component="form"
               sx={{ mt: 2 }}
             >
-              <TextField label="Email" fullWidth variant="standard" required />
               <TextField
-                label="Mật khẩu"
-                fullWidth
-                type="password"
-                variant="standard"
-                required
-              />
-              <TextField
-                label="Xác nhận mật khẩu"
-                fullWidth
-                type="password"
-                variant="standard"
-                required
-              />
-              <TextField
-                label="Họ"
+                label="Loại thẻ Visa/MasterCard/JCB"
                 fullWidth
                 type="text"
                 variant="standard"
                 required
               />
               <TextField
-                label="Tên"
+                label="Tên chủ thẻ"
                 fullWidth
                 type="text"
                 variant="standard"
                 required
               />
-
+              <TextField
+                label="Số thẻ"
+                fullWidth
+                type="number"
+                variant="standard"
+                required
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 16);
+                }}
+              />
+              <InputLabel id="demo-simple-select-label">
+                Ngày hết hạn
+              </InputLabel>
+              <TextField fullWidth type="month" variant="standard" required />
+              <TextField
+                label="Mã bảo mật"
+                fullWidth
+                type="number"
+                variant="standard"
+                required
+                onInput={(e) => {
+                  e.target.value = Math.max(0, parseInt(e.target.value))
+                    .toString()
+                    .slice(0, 3);
+                }}
+              />
               <Typography
                 id="modal-modal-btn"
                 variant="div"
@@ -325,4 +323,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfileSettings;

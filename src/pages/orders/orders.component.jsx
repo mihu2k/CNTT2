@@ -10,19 +10,7 @@ function Order() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
-      <Typography
-        variant="h2"
-        component="h2"
-        sx={{
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          margin: '108px 0 32px 0',
-          color: '#212738',
-        }}
-      >
-        Mã đơn hàng
-      </Typography>
+      <h1 className={classes.heading}>Mã đơn hàng</h1>
 
       <Typography
         fontSize="1.5rem"
@@ -36,16 +24,7 @@ function Order() {
         cứu.
       </Typography>
 
-      <Typography
-        variant="div"
-        component="div"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '12px',
-        }}
-      >
+      <Typography variant="div" component="div" className={classes.searchOrder}>
         <TextField
           id="standard-basic"
           label="Mã đơn hàng"
@@ -53,16 +32,7 @@ function Order() {
           fontSize="1.8rem"
           required
         />
-        <Button
-          variant="contained"
-          sx={{
-            color: '#fff',
-            backgroundColor: '#2189ff',
-            margin: '32px 0',
-          }}
-        >
-          Tra cứu đơn hàng
-        </Button>
+        <Button variant="contained">Tra cứu đơn hàng</Button>
       </Typography>
       <OrderItem />
       <OrderItem />

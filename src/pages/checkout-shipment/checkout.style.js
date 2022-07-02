@@ -70,17 +70,6 @@ export const useStyles = makeStyles((theme) => ({
       outLine: 'unset',
     },
 
-    '& .MuiButtonBase-root': {
-      minHeight: '36px',
-      padding: '8px 20px 8px 20px',
-      borderRadius: '22px',
-      fontSize: '17px',
-      lineHeight: '1.6',
-      fontFamily: "'SamsungOne'",
-      fontWeight: '500',
-      textTransform: 'unset',
-    },
-
     '& .MuiButton-startIcon>*:nth-of-type(1)': {
       fontSize: '2.2rem',
     },
@@ -101,104 +90,28 @@ export const useStyles = makeStyles((theme) => ({
       fontWeight: '600',
     },
   },
-
-  //Invoive
-
-  invoiceWrapper: {
-    backgroundColor: '#f4f4f4',
-    padding: '30px',
-    height: '100%',
-    borderRadius: '20px',
-  },
-
-  invoiceHeader: {
+  shipmentFormBtn: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
-  invoiceHeaderTitle: {
-    fontWeight: 'bold',
-    fontSize: '1.8rem',
-  },
-
-  invoiceBody: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  invoiceProductInfo: {
-    display: 'flex',
+    justifyContent: 'flex-start',
+    minHeight: '45px',
     width: '100%',
-    justifyContent: 'space-between',
-    gap: '30px',
     margin: '32px 0',
-  },
-
-  invoiceImg: {
-    maxWidth: '113px',
-    maxHeight: '113px',
-  },
-
-  invoiceInfo: {
-    maxWidth: '245px',
-    flex: '1',
-  },
-  invoiceInfoName: {
-    fontFamily: 'var(--font-family-Two)',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  invoiceInfoDesc: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '40px',
-    padding: '4px 0',
-    whiteSpace: 'nowrap',
-    overFlow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-
-  cicle: {
-    display: 'inline-block',
-    width: '12px',
-    height: '12px',
-    backgroundColor: '#000',
-    borderRadius: '50%',
-  },
-
-  invoiceInfoPrice: {
-    fontWeight: 'bold',
-    maxWidth: '100%',
-  },
-
-  moneyInfoList: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: '1.8rem',
-    marginBottom: '20px',
-    listStyleType: 'none',
-    '&.detail': {
-      paddingTop: '20px',
-      borderTop: '1px solid #ddd',
-    },
-  },
-
-  moneyInfo: {
-    '&.lastDetail': {
-      fontSize: '2.2rem',
+    textDecoration: 'uppercase',
+    paddingTop: '12px',
+    '& .MuiButtonBase-root': {
+      color: '#fff',
+      backgroundColor: '#2189ff',
+      maxWidth: '30%',
+      height: '100%',
+      padding: '10px 0',
+      borderRadius: '24px',
+      fontSize: '1.4rem',
       fontWeight: 'bold',
+      textDecoration: 'uppercase',
+      '&:hover': {
+        borderColor: '#2189ff',
+        backgroundColor: '#2189ff',
+      },
     },
   },
-
-  moneyDetail: {
-    color: '#000',
-    fontSize: '2rem',
-
-    fontWeight: 'bold',
-  },
-
-  moneyInfoDetailList: {},
 }));

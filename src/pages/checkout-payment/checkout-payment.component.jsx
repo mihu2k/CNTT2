@@ -22,10 +22,11 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 // import image from '~/assets/images';
-import { Link } from 'react-router-dom';
-import config from '~/config';
-import cx from 'classnames';
+// import { Link } from 'react-router-dom';
+// import config from '~/config';
+// import cx from 'classnames';
 import images from '~/assets/images';
+import Invoice from '~/components/invoices';
 
 function Checkout() {
   const classes = useStyles();
@@ -99,27 +100,10 @@ function Checkout() {
             fontSize={'1.8rem'}
             className={classes.paymentFormHeader}
           >
-            <Typography
-              variant="div"
-              sx={{
-                display: 'flex',
-                alignItem: 'center',
-                gap: '8px',
-                fontWeight: 'bold',
-              }}
-            >
+            <Typography variant="div" className={classes.accordionHeader}>
               <CheckCircleOutlineIcon sx={{ fontSize: '2.6rem' }} />
-              <span>Vui lòng kiểm tra đơn hàng</span>
+              <span>Vui lòng chọn phương thức thanh toán</span>
             </Typography>
-            {/* Back to shipment info checkout page */}
-            <Link to={'./'}>
-              <Button
-                variant="text"
-                sx={{ color: '#000', fontSize: '1.5rem', fontWeight: 'bold' }}
-              >
-                Chỉnh sửa
-              </Button>
-            </Link>
           </Typography>
           {/* end accordion header */}
 
@@ -135,16 +119,7 @@ function Checkout() {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
-                <Typography
-                  variant="div"
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    fontSize: '1.8rem',
-                  }}
-                >
+                <Typography variant="div" className={classes.accordionTitle}>
                   <Typography variant="span" fontWeight="bold">
                     Thanh toán bằng thẻ quốc tế
                   </Typography>
@@ -207,7 +182,7 @@ function Checkout() {
                   <InputLabel id="demo-simple-select-label1">
                     Hết hạn
                   </InputLabel>
-                  <Grid container spacing={4}>
+                  <Grid container spacing={4} mb={'12px'}>
                     <Grid item xs={4}>
                       <FormControl fullWidth>
                         <Select
@@ -272,6 +247,15 @@ function Checkout() {
                       </FormControl>
                     </Grid>
                   </Grid>
+                  <Typography variant="div">
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      className={classes.accordionBtn}
+                    >
+                      Tiếp Tục
+                    </Button>
+                  </Typography>
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -288,16 +272,7 @@ function Checkout() {
                 aria-controls="panel2bh-content"
                 id="panel2bh-header"
               >
-                <Typography
-                  variant="div"
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    fontSize: '1.8rem',
-                  }}
-                >
+                <Typography variant="div" className={classes.accordionTitle}>
                   <Typography variant="span" fontWeight="bold">
                     Thanh toán bằng ATM/Mã QR/Ví điện tử
                   </Typography>
@@ -310,13 +285,9 @@ function Checkout() {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    fontSize: '1.6rem',
-                    gap: '20px',
-                    color: '#000',
-                  }}
+                  variant="div"
+                  component="div"
+                  className={classes.accordionContent}
                 >
                   <Typography variant="div">
                     Sau khi đọc và chấp thuận Điều khoản và Điều kiện mua hàng,
@@ -327,24 +298,8 @@ function Checkout() {
                   <Typography variant="div" fontWeight="bold">
                     Tổng cộng: <span>1.390.000 &#8363;</span>
                   </Typography>
-                  <Typography variant="div">
-                    <Button
-                      variant="contained"
-                      sx={{
-                        height: '40px',
-                        minWidth: '153px',
-                        backgroundColor: '#2189ff',
-                        color: '#fff',
-                        fontSize: '1.4rem',
-                        lineHeight: '1.33',
-                        border: '0',
-                        padding: '10px 0',
-                        borderRadius: '24px',
-                        fontWeight: '700',
-                      }}
-                    >
-                      Tiếp Tục
-                    </Button>
+                  <Typography variant="div" className={classes.accordionBtn}>
+                    <Button variant="contained">Tiếp Tục</Button>
                   </Typography>
                 </Typography>
               </AccordionDetails>
@@ -362,16 +317,7 @@ function Checkout() {
                 aria-controls="panel3bh-content"
                 id="panel3bh-header"
               >
-                <Typography
-                  variant="div"
-                  sx={{
-                    width: '100%',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    fontSize: '1.8rem',
-                  }}
-                >
+                <Typography variant="div" className={classes.accordionTitle}>
                   <Typography variant="span" fontWeight="bold">
                     Thanh toán tiền mặt
                   </Typography>
@@ -384,13 +330,9 @@ function Checkout() {
               </AccordionSummary>
               <AccordionDetails>
                 <Typography
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    fontSize: '1.6rem',
-                    gap: '20px',
-                    color: '#000',
-                  }}
+                  variant="div"
+                  component="div"
+                  className={classes.accordionContent}
                 >
                   <Typography variant="div">
                     Sau khi đọc và chấp thuận Điều khoản và Điều kiện mua hàng,
@@ -410,24 +352,8 @@ function Checkout() {
                   >
                     Tổng cộng: <span>1.390.000 &#8363;</span>
                   </Typography>
-                  <Typography variant="div">
-                    <Button
-                      variant="contained"
-                      sx={{
-                        height: '40px',
-                        minWidth: '153px',
-                        backgroundColor: '#2189ff',
-                        color: '#fff',
-                        fontSize: '1.4rem',
-                        lineHeight: '1.33',
-                        border: '0',
-                        padding: '10px 0',
-                        borderRadius: '24px',
-                        fontWeight: '700',
-                      }}
-                    >
-                      Tiếp Tục
-                    </Button>
+                  <Typography variant="div" className={classes.accordionBtn}>
+                    <Button variant="contained">Tiếp Tục</Button>
                   </Typography>
                 </Typography>
               </AccordionDetails>
@@ -436,111 +362,7 @@ function Checkout() {
           </Typography>
         </Grid>
         <Grid item xs={5}>
-          <div className={classes.invoiceWrapper}>
-            <div className={classes.invoiceHeader}>
-              <div className={classes.invoiceHeaderTitle}>
-                Đơn hàng (<span className={classes.quatityProduct}>1</span> sản
-                phẩm)
-              </div>
-
-              {/* chuyển trang về giỏi hàng */}
-              <Link to={'./'}>
-                <Button
-                  variant="text"
-                  sx={{ color: '#000', fontSize: '1.5rem', fontWeight: 'bold' }}
-                >
-                  Chỉnh sửa
-                </Button>
-              </Link>
-            </div>
-            <div className={classes.invoiceBody}>
-              <div className={classes.invoiceProductInfo}>
-                <img
-                  className={classes.invoiceImg}
-                  src="https://cdn.jblstore.com.vn/UploadTemp/7960173a-1c8a-4c13-b761-f6d49a9713df.jpg"
-                  alt="img-product-checkout-invoice"
-                />
-                <div className={classes.invoiceInfo}>
-                  <h3 className={classes.invoiceInfoName}>JBL TUNE110</h3>
-                  <div className={cx(classes.invoiceInfoDesc, 'colorInfo')}>
-                    <span>Màu sắc</span>
-                    <span className={classes.cicle}></span>
-                  </div>
-                  <div className={classes.invoiceInfoDesc}>
-                    <span>Số lượng</span>
-                    <span>1</span>
-                  </div>
-                  <div className={classes.invoiceInfoDesc}>
-                    <span>Thương hiệu</span>
-                    <span className={classes.invoiceInfoBrand}>JBL</span>
-                  </div>
-                </div>
-                <div className={classes.invoiceInfoDesc}>
-                  <span className={classes.invoiceInfoPrice}>
-                    1.390.000 &#8363;
-                  </span>
-                </div>
-              </div>
-
-              <ul>
-                <li className={classes.moneyInfoList}>
-                  <span className={classes.moneyInfo}>Tạm tính</span>
-                  <span className={classes.moneyDetail}>1.390.000 &#8363;</span>
-                </li>
-                <li className={classes.moneyInfoList}>
-                  <span className={classes.moneyInfo}>Mã giảm giá</span>
-                  <span className={classes.moneyDetail}>0 &#8363;</span>
-                </li>
-                <li className={classes.moneyInfoList}>
-                  <span className={classes.moneyInfo}>Phí vận chuyển</span>
-                  <span className={classes.moneyDetail}>0 &#8363;</span>
-                </li>
-              </ul>
-
-              <ul>
-                <li className={cx(classes.moneyInfoList, 'detail')}>
-                  <span className={cx(classes.moneyInfo, 'lastDetail')}>
-                    Tổng giá
-                  </span>
-                  <span className={cx(classes.moneyDetail, 'lastDetail')}>
-                    1.390.000 &#8363;
-                  </span>
-                </li>
-              </ul>
-              <span>(Đã bao gồm VAT nếu có)</span>
-            </div>
-            <Typography
-              variant="div"
-              component="div"
-              sx={{
-                display: 'block',
-                minHeight: '45px',
-                margin: '32px 0',
-              }}
-            >
-              <Button
-                type="submit"
-                fullWidth
-                variant="text"
-                sx={{
-                  color: '#fff',
-                  backgroundColor: '#2189ff',
-                  minWidth: '100%',
-                  height: '100%',
-                  padding: '10px 0',
-                  borderRadius: '24px',
-                  fontSize: '1.4rem',
-                  fontWeight: 'bold',
-                  '&:hover': {
-                    borderColor: '#2189ff',
-                    backgroundColor: '#2189ff',
-                  },
-                }}
-              >
-                Tiếp tục
-              </Button>
-            </Typography>
-          </div>
+          <Invoice />
         </Grid>
       </Grid>
     </div>

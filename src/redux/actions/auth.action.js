@@ -48,3 +48,7 @@ export const registerRequest = (formData) => async (dispatch) => {
     showToastMsg('error', msg, { toastId: error.message });
   }
 };
+
+export const logoutRequest = () => (dispatch) => {
+  dispatch({ type: types.LOGOUT });
+};

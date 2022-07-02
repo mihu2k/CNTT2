@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 import config from '~/config';
 
@@ -18,6 +18,9 @@ import Image from '~/components/image';
 import Menu from '~/components/popper/menu';
 import Search from '../search';
 import styles from './header.css';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutRequest } from '~/redux/actions/auth.action';
 
 const cx = classNames.bind(styles);
 
@@ -59,7 +62,11 @@ const generalIconStyle = {
 };
 
 function Header() {
-  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = React.useState(
+    JSON.parse(localStorage.getItem('profile')),
+  );
 
   // handle logic
   const handleMenuChange = (menuItem) => {
@@ -67,12 +74,21 @@ function Header() {
       case 'language':
         //handle change language
         break;
+      case 'logout':
+        handleLogout();
+        break;
       default:
     }
   };
 
+  const handleLogout = () => {
+    dispatch(logoutRequest());
+    navigate(config.routes.home);
+    setCurrentUser(null);
+  };
+
   const menu = [...MENU_ITEMS];
-  if (currentUser) menu.shift();
+  if (currentUser?.data) menu.shift();
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
@@ -83,10 +99,14 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
       title: 'Log out',
-      to: '/logout',
+      type: 'logout',
       separate: true,
     },
   ];
+
+  React.useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage.getItem('profile')));
+  }, []);
 
   return (
     <header className={cx('header-wrapper')}>
@@ -108,18 +128,18 @@ function Header() {
           </Tippy>
 
           <Menu
-            items={!!currentUser ? userMenu : MENU_ITEMS}
+            items={!!currentUser?.data ? userMenu : MENU_ITEMS}
             onChange={handleMenuChange}
           >
-            {!!currentUser ? (
+            {!!currentUser?.data ? (
               <Image
                 className={cx('header-user-avatar')}
                 src={
-                  currentUser.media.google?.picture
-                    ? currentUser.media.google?.picture
-                    : `${process.env.REACT_APP_API_BASE_URL}${currentUser.avatar}`
+                  currentUser.data?.media?.google?.picture
+                    ? currentUser.data?.media?.google?.picture
+                    : `${process.env.REACT_APP_API_BASE_URL}${currentUser.data.avatar}`
                 }
-                alt={currentUser.full_name ?? 'Avatar'}
+                alt={currentUser.data.full_name ?? 'Avatar'}
               />
             ) : (
               // <div className={cx('header-more-btn')}>

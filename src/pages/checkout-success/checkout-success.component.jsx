@@ -59,28 +59,9 @@ function Checkout() {
                 marginTop: '25px',
               }}
             />
-            <Typography variant="div" component="div">
-              <Typography
-                variant="div"
-                component="div"
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '10px',
-                  fontSize: '1.8rem',
-                }}
-              >
-                <Typography
-                  variant="p"
-                  component="p"
-                  sx={{
-                    fontSize: '3rem',
-                    color: '#333',
-                    fontWeight: '700',
-                  }}
-                >
-                  RENÉ
-                </Typography>
+            <div>
+              <div className={classes.headingInfo}>
+                <p className={classes.headingStoreName}>RENÉ</p>
                 <p>Đơn đặt hàng đã được xác nhận</p>
                 <p>
                   Mã Đơn hàng: <span>#Rene001</span>
@@ -88,32 +69,11 @@ function Checkout() {
                 <p>
                   Cám ơn bạn vì đã xác nhận đơn hàng, theo đõi đơn hàng của bạn{' '}
                   <Link to={'./'}>
-                    <Typography
-                      variant="span"
-                      component="span"
-                      sx={{
-                        display: 'inline-block',
-                        color: '#333',
-                        fontWeight: '700',
-                        textDecoration: 'underline',
-                      }}
-                    >
-                      tại đây!
-                    </Typography>
+                    <span className={classes.orderInfoLink}>tại đây!</span>
                   </Link>
                 </p>
-              </Typography>
-              <Typography
-                variant="div"
-                component="div"
-                sx={{
-                  width: '100%',
-                  border: '1px solid #e4e4e4',
-                  borderRadius: '20px',
-                  padding: '30px',
-                  margin: '32px 0',
-                }}
-              >
+              </div>
+              <div className={classes.orderInfoTable}>
                 <Typography
                   variant="p"
                   component="p"
@@ -154,8 +114,8 @@ function Checkout() {
                   Phương thức thanh toán
                 </Typography>
                 <p>Thanh toán tiền mặt</p>
-              </Typography>
-            </Typography>
+              </div>
+            </div>
           </Typography>
         </Grid>
         <Grid item xs={5}>
@@ -225,32 +185,11 @@ function Checkout() {
             <Typography
               variant="div"
               component="div"
-              sx={{
-                display: 'block',
-                minHeight: '45px',
-                margin: '32px 0',
-              }}
+              className={classes.backToShopBtn}
             >
+              {/* back to product page */}
               <Link to={'./'}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="text"
-                  sx={{
-                    color: '#fff',
-                    backgroundColor: '#2189ff',
-                    minWidth: '100%',
-                    height: '100%',
-                    padding: '10px 0',
-                    borderRadius: '24px',
-                    fontSize: '1.4rem',
-                    fontWeight: 'bold',
-                    '&:hover': {
-                      borderColor: '#2189ff',
-                      backgroundColor: '#2189ff',
-                    },
-                  }}
-                >
+                <Button type="submit" fullWidth variant="text">
                   Tiếp tục mua hàng
                 </Button>
               </Link>

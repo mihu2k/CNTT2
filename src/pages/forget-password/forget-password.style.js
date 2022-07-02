@@ -3,12 +3,11 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: '#f2f2f2',
-    minHeight: '100vh',
+    minHeight: '120vh',
     '& .MuiPaper-root': {
+      marginTop: 'var(--default-layout-header-height)',
       height: 'fit-content',
-      borderRadius: '0',
-      borderBottomRightRadius: '26px',
-      borderBottomLeftRadius: '26px',
+      borderRadius: '26px',
     },
 
     '& .MuiInputLabel-root': {
@@ -19,7 +18,6 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiInputBase-root': {
       fontSize: '1.8rem',
       marginBottom: '10px',
-
       display: 'block',
       width: '100%',
       outLine: 'unset',
@@ -61,15 +59,12 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
-  title: {
-    '&.MuiTypography-root': {
-      display: 'inline-block',
-      fontSize: '2.7rem',
-      marginBottom: '16px',
-      color: '#252525',
-      fontWeight: 'bold',
-      lineHeight: 'normal',
-    },
+  heading: {
+    fontSize: '3rem',
+    marginBottom: '32px',
+    color: '#252525',
+    fontWeight: 'bold',
+    lineHeight: 'normal',
   },
 
   form: {
@@ -79,17 +74,40 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiInputBase-root-MuiInput-root:after': {
       borderBottom: '2px solid #000',
     },
-    '& .MuiFormHelperText-root': {
-      margin: '0 0 18px',
-      fontSize: '1.2rem',
-    },
   },
 
+  mainButton: {
+    '&.MuiButtonBase-root': {
+      color: '#fff',
+      backgroundColor: '#0381fe',
+      border: '1px solid #0381fe',
+      margin: '27px 0 0 0',
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
+      },
+    },
+  },
+  backButton: {
+    '&.MuiButtonBase-root': {
+      color: '#0381fe',
+      backgroundColor: 'fff',
+      border: '1px solid #0381fe',
+      margin: '27px 0 0 0',
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
+      },
+    },
+  },
   paper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
     position: 'absolute',
     left: '0',
     right: '0',
-    padding: '32px 32px',
+    padding: '64px 0',
     height: '70vh',
     maxWidth: '580px',
     margin: '0 auto',

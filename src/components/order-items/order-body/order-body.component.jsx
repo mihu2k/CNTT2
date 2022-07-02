@@ -7,15 +7,7 @@ function OrderBody(props) {
   const classes = useStyles();
   return (
     <div className={cx(classes.wrapper, props)}>
-      <Typography
-        variant="div"
-        component="div"
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          margin: '16px 0',
-        }}
-      >
+      <Typography variant="div" component="div" className={classes.orderBody}>
         <img
           className={classes.orderProductImg}
           src="https://cdn.jblstore.com.vn/UploadTemp/7960173a-1c8a-4c13-b761-f6d49a9713df.jpg"
@@ -25,21 +17,12 @@ function OrderBody(props) {
         <Typography
           variant="div"
           component="div"
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            fontSize: '1.4rem',
-          }}
+          className={classes.orderProductInfo}
         >
           <Typography
             variant="span"
             component="span"
-            sx={{
-              fontSize: '2.4rem',
-              color: '#212738',
-              fontFamily: 'var(--font-family-Two)',
-            }}
+            className={classes.orderProductName}
           >
             Galaxy s22+
           </Typography>
@@ -57,22 +40,14 @@ function OrderBody(props) {
           <Typography
             variant="span"
             component="span"
-            sx={{
-              color: '#006ff2',
-              marginTop: '10px',
-              fontWeight: 'bold',
-              fontSize: '1.6rem',
-            }}
+            className={classes.orderProductStatus}
           >
             Đang xử lý
           </Typography>
           <Typography
             variant="span"
             component="span"
-            sx={{
-              marginTop: '10px',
-              fontWeight: 'bold',
-            }}
+            className={classes.orderProductShipmentInfo}
           >
             <p>
               Ship từ: <span>20/06/2022</span> <span>Giao hàng nhanh</span>
@@ -83,15 +58,15 @@ function OrderBody(props) {
           </Typography>
         </Typography>
         <Typography variant="div" component="div">
-          <Typography variant="div" component="div" sx={{}}>
+          <Typography
+            variant="div"
+            component="div"
+            className={classes.orderShipmentInfo}
+          >
             <Typography
               variant="p"
               component="p"
-              sx={{
-                fontSize: '1.4rem',
-                fontWeight: 'bold',
-                margin: '20px 0 0 0',
-              }}
+              className={classes.orderShipmentInfoTitle}
             >
               <Typography
                 variant="span"
@@ -113,11 +88,7 @@ function OrderBody(props) {
             <Typography
               variant="p"
               component="p"
-              sx={{
-                fontSize: '1.4rem',
-                fontWeight: 'bold',
-                margin: '20px 0 0 0',
-              }}
+              className={classes.orderShipmentInfoTitle}
             >
               <Typography
                 variant="span"

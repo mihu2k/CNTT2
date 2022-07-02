@@ -11,6 +11,7 @@ const routes = {
   orderConfirmation: '/checkout/order-confirmation',
   cart: '/cart',
   order: '/order',
+  forgetPassword: '/login/forget-password',
 };
 
 export default routes;

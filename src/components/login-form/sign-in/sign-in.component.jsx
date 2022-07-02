@@ -97,7 +97,7 @@ function SignIn() {
                   className={classes.forgetPassword}
                 >
                   <Link
-                    to={'./forgetPassword'}
+                    to={config.routes.forgetPassword}
                     className={classes.forgetPassword}
                   >
                     Quên mật khẩu?
@@ -107,16 +107,7 @@ function SignIn() {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{
-                    color: '#fff',
-                    backgroundColor: '#0381fe',
-                    border: '1px solid #0381fe',
-                    margin: '27px 0 20px 0',
-                    boxShadow: 'none',
-                    '&:hover': {
-                      boxShadow: 'none',
-                    },
-                  }}
+                  className={classes.mainButton}
                 >
                   Đăng nhập
                 </Button>
@@ -132,18 +123,7 @@ function SignIn() {
                       }}
                     />
                   }
-                  sx={{
-                    color: '#252525',
-                    borderColor: '#fff',
-                    '&:hover': {
-                      borderColor: '#e8e8e8',
-                      backgroundColor: '#fff',
-                    },
-                    '&:focus': {
-                      borderColor: '#fff',
-                      backgroundColor: '#fff',
-                    },
-                  }}
+                  className={classes.extraButton}
                 >
                   Đăng nhập bằng Google
                 </Button>

@@ -79,6 +79,19 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     paddingTop: '32px',
+
+    '& .MuiButtonBase-root': {
+      display: 'block',
+      minWidth: '113px',
+      height: '40px',
+      borderRadius: '20px',
+      backgroundColor: 'transparent!important',
+      color: '#000',
+      fontSize: '16px',
+      border: '1px solid #000',
+      textTransform: 'inherit',
+      fontWeight: '500',
+    },
   },
 
   sectionHomeBoxs: {

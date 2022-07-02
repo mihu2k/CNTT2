@@ -79,13 +79,7 @@ function SignUp() {
               <Typography
                 component="span"
                 variant="h3"
-                sx={{
-                  margin: '12px 0 32px',
-                  color: '#252525',
-                  fontSize: '2.7rem',
-                  lineHeight: 'normal',
-                  fontWeight: 'bold',
-                }}
+                className={classes.title}
               >
                 Tạo René account của bạn
               </Typography>

@@ -5,6 +5,33 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '32px',
   },
 
+  headingInfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    fontSize: '1.8rem',
+  },
+  headingStoreName: {
+    fontSize: '3rem',
+    color: '#333',
+    fontWeight: '700',
+  },
+
+  orderInfoLink: {
+    display: 'inline-block',
+    color: '#333',
+    fontWeight: '700',
+    textDecoration: 'underline',
+  },
+
+  orderInfoTable: {
+    width: '100%',
+    border: '1px solid #e4e4e4',
+    borderRadius: '20px',
+    padding: '30px',
+    margin: '32px 0',
+  },
+
   stepsContainer: {
     display: 'flex',
     flex: '1',
@@ -196,4 +223,23 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   moneyInfoDetailList: {},
+  backToShopBtn: {
+    display: 'block',
+    minHeight: '45px',
+    padding: '32px 0',
+    '& .MuiButtonBase-root': {
+      color: '#fff',
+      backgroundColor: '#2189ff',
+      minWidth: '100%',
+      height: '100%',
+      padding: '10px 0',
+      borderRadius: '24px',
+      fontSize: '1.4rem',
+      fontWeight: 'bold',
+      '&:hover': {
+        borderColor: '#2189ff',
+        backgroundColor: '#2189ff',
+      },
+    },
+  },
 }));

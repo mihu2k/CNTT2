@@ -20,6 +20,8 @@ function App() {
     }
   }, []);
 
+  console.log('HEADER');
+
   return (
     <Router>
       <div className="App">

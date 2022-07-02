@@ -5,7 +5,7 @@ import styles from './menu.css';
 import { Wrapper as PopperWrapper } from '~/components/popper';
 import MenuItem from './menu-item.component';
 import Header from './header.component';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const cx = classNames.bind(styles);
 const defaultFunction = () => {};
@@ -58,6 +58,10 @@ function Menu({
   const handleReset = () => {
     setHistory((prev) => prev.slice(0, 1));
   };
+
+  React.useEffect(() => {
+    setHistory([{ data: items }]);
+  }, [items.length]);
 
   return (
     <Tippy

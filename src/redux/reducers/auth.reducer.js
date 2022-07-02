@@ -41,6 +41,13 @@ export default function authReducer(state = initialState, action) {
         status: 'failure',
         profile: null,
       };
+    case types.LOGOUT:
+      localStorage.clear();
+      return {
+        ...state,
+        status: null,
+        profile: null,
+      };
 
     default:
       return { ...state };

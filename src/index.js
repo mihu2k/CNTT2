@@ -8,19 +8,22 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from './common/theme';
 import { Provider } from 'react-redux';
 import configureStore from './redux/config-store';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
 
 root.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalStyles>
-        <App />
-      </GlobalStyles>
-    </ThemeProvider>
-  </Provider>,
+  <GoogleOAuthProvider clientId={process.env.REACT_APP_GG_CLIENT_ID}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyles>
+          <App />
+        </GlobalStyles>
+      </ThemeProvider>
+    </Provider>
+  </GoogleOAuthProvider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

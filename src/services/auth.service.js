@@ -10,7 +10,6 @@ class AuthService {
     if (data.access_token) {
       localStorage.setItem('profile', JSON.stringify(data));
     }
-
     return data;
   }
 }

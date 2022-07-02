@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import GoogleIcon from '@mui/icons-material/Google';
 import { Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import { useGoogleLogin } from '@react-oauth/google';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Loading from '~/components/loading/loading.component';
 import config from '~/config';
-import { loginRequest } from '~/redux/actions/auth.action';
+import { loginRequest, loginWithGGRequest } from '~/redux/actions/auth.action';
 import { useStyles } from '../login-form-common.style';
 
 const schema = yup.object().shape({
@@ -37,6 +38,12 @@ function SignIn() {
   const onSubmit = (data) => {
     dispatch(loginRequest(data));
   };
+
+  const handleLoginWithGG = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      dispatch(loginWithGGRequest(tokenResponse.access_token));
+    },
+  });
 
   React.useEffect(() => {
     (() => {
@@ -104,8 +111,8 @@ function SignIn() {
                 >
                   Đăng nhập
                 </Button>
-
                 <Button
+                  onClick={handleLoginWithGG}
                   fullWidth
                   variant="outlined"
                   startIcon={

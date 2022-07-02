@@ -13,13 +13,7 @@ function SignUp() {
           <Typography
             component="span"
             variant="h3"
-            sx={{
-              margin: '12px 0 32px',
-              color: '#252525',
-
-              lineHeight: 'normal',
-              fontWeight: 'bold',
-            }}
+            className={classes.title}
           >
             Tạo René account của bạn
           </Typography>
@@ -51,20 +45,13 @@ function SignUp() {
             />
             <TextField
               className={classes.input}
-              label="Họ"
+              label="Họ tên"
               fullWidth
               type="text"
               variant="standard"
               required
             />
-            <TextField
-              className={classes.input}
-              label="Tên"
-              fullWidth
-              type="text"
-              variant="standard"
-              required
-            />
+            
 
             <Button
               fullWidth

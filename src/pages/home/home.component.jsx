@@ -128,23 +128,7 @@ function Home() {
           </Grid>
         </Grid>
         <Link to={'./'} className={classes.sectionDetails}>
-          <Button
-            variant="text"
-            sx={{
-              display: 'block',
-              minWidth: '113px',
-              height: '40px',
-              borderRadius: '20px',
-              backgroundColor: 'transparent!important',
-              color: '#000',
-              fontSize: '16px',
-              border: '1px solid #000',
-              textTransform: 'inherit',
-              fontWeight: '500',
-            }}
-          >
-            Xem tất cả
-          </Button>
+          <Button variant="text">Xem tất cả</Button>
         </Link>
       </div>
 

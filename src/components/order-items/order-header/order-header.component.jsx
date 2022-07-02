@@ -12,23 +12,12 @@ function OrderHeader() {
       <Typography
         variant="div"
         component="div"
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          fontSize: '1.2rem',
-          color: '#212738',
-        }}
+        className={classes.orderHeaderitems}
       >
         <Typography
           variant="div"
           component="div"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px',
-            maxHeight: '15px',
-          }}
+          className={classes.orderHeaderitem}
         >
           <span className={classes.orderHeaderInfo}>
             Mã đơn hàng: <span>Rene001</span>
@@ -40,19 +29,6 @@ function OrderHeader() {
             Tổng số lượng sản phẩm của đơn hàng <span>2</span>
           </span>
         </Typography>
-        {/* <Button
-          variant="outlined"
-          sx={{
-            color: '#000',
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            backgroundColor: '#fff',
-            borderColor: '#000',
-            outline: 'none',
-          }}
-        >
-          Hủy đơn hàng
-        </Button> */}
       </Typography>
     </div>
   );

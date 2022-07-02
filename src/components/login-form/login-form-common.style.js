@@ -67,7 +67,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    height: '90px',
+    height: 'var(--default-layout-header-height, 60px)',
     backgroundColor: 'var(--white)',
   },
 
@@ -97,9 +97,9 @@ export const useStyles = makeStyles((theme) => ({
 
   title: {
     fontSize: '2.7rem',
-    margin: '12px 0 32px',
+    marginBottom: '16px',
     color: '#252525',
-    fontWeight: '600',
+    fontWeight: 'bold',
     lineHeight: 'normal',
   },
 
@@ -112,14 +112,43 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
+  mainButton: {
+    '&.MuiButtonBase-root': {
+      color: '#fff',
+      backgroundColor: '#0381fe',
+      border: '1px solid #0381fe',
+      margin: '27px 0 20px 0',
+      boxShadow: 'none',
+      '&:hover': {
+        boxShadow: 'none',
+      },
+    },
+  },
+
+  extraButton: {
+    '&.MuiButtonBase-root': {
+      color: '#252525',
+      borderColor: '#fff',
+
+      '&:hover': {
+        borderColor: '#fff',
+        backgroundColor: '#fff',
+      },
+
+      '&:focus': {
+        borderColor: '#fff',
+        backgroundColor: '#fff',
+      },
+    },
+  },
+
   paper: {
     position: 'absolute',
-
     left: '0',
     right: '0',
-    padding: '60px 72px 60px 72px',
+    padding: '32px 32px',
     height: '70vh',
-    maxWidth: '640px',
+    maxWidth: '580px',
     margin: '0 auto',
     backgroundColor: '#fcfcfc',
   },

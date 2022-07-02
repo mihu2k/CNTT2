@@ -55,4 +55,24 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.6rem',
       },
   },
+  heading: {
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: '108px 0 32px 0',
+    color: '#212738',
+  },
+
+  searchOrder: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '12px',
+
+    '& .MuiButtonBase-root': {
+      color: '#fff',
+      backgroundColor: '#2189ff',
+      margin: '32px 0',
+    },
+  },
 }));

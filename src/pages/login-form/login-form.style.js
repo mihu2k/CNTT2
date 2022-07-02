@@ -4,9 +4,9 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: '#f2f2f2',
     '& .MuiTabs-flexContainer': {
-      maxWidth: '640px',
+      maxWidth: '580px',
       minHeight: '80px',
-      paddingTop: '50px',
+      paddingTop: '30px',
       margin: '48px auto 0 auto',
       backgroundColor: '#fff',
       borderTopRightRadius: '26px',

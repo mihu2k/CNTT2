@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   dashboardEdit: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 
   infoDashboardAddress: {
@@ -109,6 +109,10 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: '0',
       borderBottomRightRadius: '26px',
       borderBottomLeftRadius: '26px',
+    },
+
+    '& label#demo-simple-select-label': {
+      marginBottom: '-20px',
     },
 
     '& .MuiInputLabel-root': {

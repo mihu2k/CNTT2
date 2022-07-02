@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import cx from 'classnames';
 import { IconButton, Typography } from '@mui/material';
 import { useStyles } from './card-horizontal.style';

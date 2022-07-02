@@ -24,6 +24,23 @@ export default function authReducer(state = initialState, action) {
         status: 'failure',
         profile: null,
       };
+    case types.REGISTER_REQUEST:
+      return {
+        ...state,
+        status: 'pending',
+      };
+    case types.REGISTER_SUCCESS:
+      return {
+        ...state,
+        status: 'success',
+        profile: action.payload.data,
+      };
+    case types.REGISTER_FAILURE:
+      return {
+        ...state,
+        status: 'failure',
+        profile: null,
+      };
 
     default:
       return { ...state };

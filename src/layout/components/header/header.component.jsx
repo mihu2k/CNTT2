@@ -114,7 +114,11 @@ function Header() {
             {!!currentUser ? (
               <Image
                 className={cx('header-user-avatar')}
-                src={`${process.env.REACT_APP_API_BASE_URL}${currentUser.avatar}`}
+                src={
+                  currentUser.media.google?.picture
+                    ? currentUser.media.google?.picture
+                    : `${process.env.REACT_APP_API_BASE_URL}${currentUser.avatar}`
+                }
                 alt={currentUser.full_name ?? 'Avatar'}
               />
             ) : (

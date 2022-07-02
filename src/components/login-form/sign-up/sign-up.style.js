@@ -75,6 +75,10 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiInputBase-root-MuiInput-root:after': {
       borderBottom: '2px solid #000',
     },
+    '& .MuiFormHelperText-root': {
+      margin: '0 0 18px',
+      fontSize: '1.2rem',
+    },
   },
 
   paper: {

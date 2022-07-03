@@ -1,29 +1,37 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
 
-import { useStyles } from './forget-password.style';
+import { useStyles } from './reset-password.style';
 import Header from '~/components/login-form/header-login';
 
 // import cx from 'classnames';
 
-function ForgetPassword() {
+function ResetPassword() {
   const classes = useStyles();
   return (
     <div className={classes.wrapper}>
       <Header />
       <Paper elevation={0} className={classes.paper}>
         <Grid align="left">
-          <h1 className={classes.heading}>Quên mật khẩu?</h1>
+          <h1 className={classes.heading}>Đặt lại mật khẩu mới</h1>
           <span className={classes.subHeading}>
-            Nhập email đăng ký tài khoản RENÉ của bạn, chúng tôi sẽ gửi cho bạn
-            một email để thực hiện đặt lại mật khẩu cho tài khoản!
+            Vui lòng thực hiện đổi mật khẩu mới của bạn bên dưới
           </span>
         </Grid>
         <Grid>
           <form type="submit" className={classes.form}>
             <TextField
               className={classes.input}
-              label="Email"
+              label="Mật khẩu mới"
               fullWidth
+              type="password"
+              variant="standard"
+              required
+            />
+            <TextField
+              className={classes.input}
+              label="Xác nhận mật khẩu mới"
+              fullWidth
+              type="password"
               variant="standard"
               required
             />
@@ -33,8 +41,9 @@ function ForgetPassword() {
               variant="contained"
               className={classes.mainButton}
             >
-              Tiếp tục
+              Lưu mật khẩu
             </Button>
+
             <Button
               fullWidth
               type="submit"
@@ -50,4 +59,4 @@ function ForgetPassword() {
   );
 }
 
-export default ForgetPassword;
+export default ResetPassword;

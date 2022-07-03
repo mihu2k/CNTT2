@@ -18,6 +18,7 @@ import CheckoutConfirmation from '~/pages/checkout-success/checkout-success.comp
 import { Cart } from '~/pages';
 import Order from '~/pages/orders/orders.component';
 import ForgetPassword from '~/pages/forget-password/forget-password.component';
+import ResetPassword from '~/pages/reset-password/reset-password.component';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -28,6 +29,11 @@ const publicRoutes = [
   {
     path: config.routes.forgetPassword,
     component: ForgetPassword,
+    layout: null,
+  },
+  {
+    path: config.routes.resetPassword,
+    component: ResetPassword,
     layout: null,
   },
 

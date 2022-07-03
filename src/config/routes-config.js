@@ -12,6 +12,7 @@ const routes = {
   cart: '/cart',
   order: '/order',
   forgetPassword: '/login/forget-password',
+  resetPassword: '/login/forget-password/reset-password',
 };
 
 export default routes;

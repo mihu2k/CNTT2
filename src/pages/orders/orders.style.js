@@ -74,5 +74,9 @@ export const useStyles = makeStyles((theme) => ({
       backgroundColor: '#2189ff',
       margin: '32px 0',
     },
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
   },
 }));

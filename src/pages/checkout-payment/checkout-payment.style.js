@@ -3,8 +3,14 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginBottom: '32px',
-  },
 
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4.css-480o17-MuiGrid-root':
+      {
+        [theme.breakpoints.down('md')]: {
+          flexDirection: 'column-reverse',
+        },
+      },
+  },
   stepsContainer: {
     display: 'flex',
     flex: '1',
@@ -13,6 +19,10 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.css-10mg1vw-MuiStepper-root':
       {
         height: '76px',
+        [theme.breakpoints.down('sm')]: {
+          height: 'auto',
+          flexDirection: 'column',
+        },
       },
     '& .MuiStep-root': {
       minWidth: '180px',
@@ -46,8 +56,13 @@ export const useStyles = makeStyles((theme) => ({
       {
         fontWeight: '700',
       },
-  },
 
+    '& .css-z7uhs0-MuiStepConnector-line': {
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+  },
   checkoutInfoForm: {
     '& .MuiPaper-root': {
       height: 'fit-content',
@@ -70,6 +85,22 @@ export const useStyles = makeStyles((theme) => ({
       outLine: 'unset',
     },
 
+    '& .MuiButtonBase-root': {
+      height: '40px',
+      minWidth: '153px',
+      backgroundColor: '#2189ff',
+      color: '#fff',
+      fontSize: '1.4rem',
+      lineHeight: '1.33',
+      border: '0',
+      padding: '10px 0',
+      borderRadius: '24px',
+      fontWeight: '700',
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '100%',
+      },
+    },
+
     '& .MuiButton-startIcon>*:nth-of-type(1)': {
       fontSize: '2.2rem',
     },
@@ -85,33 +116,68 @@ export const useStyles = makeStyles((theme) => ({
       borderBottom: '2px solid #000',
     },
 
-    '& .MuiFormControlLabel-root .MuiFormControlLabel-label': {
-      fontSize: '1.5rem',
-      fontWeight: '600',
-    },
+    '& .MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-6talhg-MuiButtonBase-root-MuiMenuItem-root':
+      {
+        fontSize: '1.6rem',
+      },
   },
-  shipmentFormBtn: {
+
+  //Accordion
+  paymentFormHeader: {
     display: 'flex',
-    justifyContent: 'flex-start',
-    minHeight: '45px',
-    width: '100%',
-    margin: '32px 0',
-    textDecoration: 'uppercase',
-    paddingTop: '12px',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  accordionWrapper: {
+    padding: '26px 24px 27px',
+    marginBottom: '20px',
+  },
+
+  accordionBtn: {
     '& .MuiButtonBase-root': {
-      color: '#fff',
+      height: '40px',
+      minWidth: '153px',
       backgroundColor: '#2189ff',
-      maxWidth: '30%',
-      height: '100%',
+      color: '#fff',
+      fontSize: '1.4rem',
+      lineHeight: '1.33',
+      border: '0',
       padding: '10px 0',
       borderRadius: '24px',
-      fontSize: '1.4rem',
-      fontWeight: 'bold',
-      textDecoration: 'uppercase',
-      '&:hover': {
-        borderColor: '#2189ff',
-        backgroundColor: '#2189ff',
+      fontWeight: '700',
+      [theme.breakpoints.down('sm')]: {
+        minWidth: '100%',
       },
     },
+  },
+
+  accordionHeader: {
+    display: 'flex',
+    alignItem: 'center',
+    gap: '8px',
+    fontWeight: 'bold',
+  },
+
+  accordionTitle: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: '1.8rem',
+  },
+
+  accordionContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '1.6rem',
+    gap: '20px',
+    color: '#000',
+  },
+
+  paymentImgCard: {
+    maxWidth: '120px',
+    maxHeight: '32px',
+    marginRight: '6px',
   },
 }));

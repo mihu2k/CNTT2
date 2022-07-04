@@ -22,24 +22,17 @@ function HeaderSimple() {
           variant="span"
           component="span"
         >
-          <ArrowBackIosIcon />
-          Tiếp tục mua hàng
+          <ArrowBackIosIcon sx={{ fontSize: '2rem' }} />
+          <span className={classes.backText}>Tiếp tục mua hàng</span>
         </Typography>
       </Link>
       <Link to={config.routes.home}>
         <img className={classes.headerLogo} src={images.logo} alt="logo" />
       </Link>
-      <Typography
-        display={'flex'}
-        alignItems={'center'}
-        fontWeight={'bold'}
-        gap={'5px'}
-        variant="div"
-        component="div"
-      >
+      <div className={classes.headerText}>
         <LocalPhoneIcon />
         Hỗ trợ: 19006017
-      </Typography>
+      </div>
     </header>
   );
 }

@@ -2,7 +2,7 @@
 @import url('http://fonts.cdnfonts.com/css/samsungone');
 
 :root {
-  --primary: #fe2c55;
+  --primary-color: #2189ff;
 
   /* Default layout */
   --default-layout-header-height: 60px;
@@ -10,7 +10,6 @@
   --default-layout-horizontal-spacer: 24px;
 
   --white: #fff;
-  --black-color: #000;
   --text-color: #333;
 
   --font-family-One: 'SamsungOne', sans-serif;
@@ -21,6 +20,7 @@ html {
   font-size: 62.5%;
   line-height: 1.5;
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 * {

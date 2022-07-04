@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: '24px 24px 36px',
     margin: '2px 0',
     maxWidth: '320px',
-    borderRadius: '1.38888889vw',
+    borderRadius: '20px',
     boxShadow: 'none',
     border: '2px solid #f7f7f7',
     '& .MuiButton-root': {
@@ -18,13 +18,17 @@ export const useStyles = makeStyles((theme) => ({
       borderRadius: '20px',
       fontWeight: 600,
       minWidth: '160px',
-      backgroundColor: '#000',
+      backgroundColor: 'var(--primary-color)',
     },
     '& .MuiButton-root + .MuiButton-root': {
       margin: '12px 0 0 0',
-      border: '1px solid #000',
-      color: '#000',
+      border: '1px solid var(--primary-color)',
+      color: 'var(--primary-color)',
       backgroundColor: '#fff',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      border: '1px solid #ddd',
     },
   },
 

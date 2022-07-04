@@ -4,12 +4,20 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     minHeight: '80vh',
     margin: '0 -153px 0 -165px',
+
+    [theme.breakpoints.down('lg')]: {
+      minHeight: '40vh',
+      margin: '0 -153px',
+    },
   },
 
   sliderImage: {
     height: '80vh',
     width: '100%',
     objectFit: 'cover',
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '40vh',
+    },
   },
 
   sliderButton: {
@@ -22,6 +30,9 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1.4rem',
     zIndex: '10',
     backgroundColor: 'transparent',
+    [theme.breakpoints.down('lg')]: {
+      display: 'none',
+    },
   },
 
   sectionBanner: {
@@ -30,6 +41,13 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     gap: '20px',
     margin: '28px 0',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'flex-start',
+    },
   },
 
   bannerItem: {
@@ -44,6 +62,21 @@ export const useStyles = makeStyles((theme) => ({
 
     '&.separate': {
       borderRight: '1px solid #7b7b7b',
+      [theme.breakpoints.down('md')]: {
+        borderRight: 'none',
+      },
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      justifyContent: 'center',
     },
   },
 
@@ -58,6 +91,15 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
   },
 
+  bannerText: {
+    [theme.breakpoints.down('md')]: {
+      display: 'inline-block',
+      textAlign: 'center',
+      fontSize: '1.8rem',
+      width: '100%',
+    },
+  },
+
   sectionBestSeller: {
     paddingBottom: '32px',
   },
@@ -66,12 +108,25 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: '32px',
     backgroundColor: '#f7f7f7',
     borderRadius: '1.38888889vw',
+    [theme.breakpoints.down('lg')]: {
+      backgroundColor: '#fff',
+    },
   },
+
   sectionProducts: {
     paddingTop: '32px',
     textAlign: 'center',
     '& .slick-list': {
       marginLeft: '68px',
+      [theme.breakpoints.down('lg')]: {
+        marginLeft: '0',
+      },
+    },
+
+    '& .MuiGrid-root>.MuiGrid-item': {
+      [theme.breakpoints.down('md')]: {
+        justifyContent: 'center',
+      },
     },
   },
 
@@ -86,9 +141,9 @@ export const useStyles = makeStyles((theme) => ({
       height: '40px',
       borderRadius: '20px',
       backgroundColor: 'transparent!important',
-      color: '#000',
+      color: 'var(--primary-color)',
       fontSize: '16px',
-      border: '1px solid #000',
+      border: '1px solid var(--primary-color)',
       textTransform: 'inherit',
       fontWeight: '500',
     },
@@ -100,8 +155,20 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     height: '450px',
     padding: '32px  0',
-
     margin: '0 -156px 0 -155px',
+    [theme.breakpoints.down('lg')]: {
+      margin: '0',
+      height: '308px',
+      width: '100%',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      height: '244px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      height: 'auto',
+    },
   },
 
   sectionBox: {
@@ -125,6 +192,11 @@ export const useStyles = makeStyles((theme) => ({
       transform: 'scale(1.1)',
       overflow: 'hidden',
     },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      height: '100%',
+    },
   },
 
   sectionBoxTitle: {
@@ -144,6 +216,18 @@ export const useStyles = makeStyles((theme) => ({
       filter: 'brightness(100%)',
       transform: 'scale(1.1)',
       overflow: 'hidden',
+    },
+
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '1.8rem',
+    },
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1.3rem',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
     },
   },
 }));

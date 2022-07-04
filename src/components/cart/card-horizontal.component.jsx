@@ -26,7 +26,11 @@ export function CardHorizontal() {
               Tab S7 FE LTE Galaxy Tab S7 FE LTE
             </Truncate>
           </div>
-          <Typography variant="p" component="p">
+          <Typography
+            variant="p"
+            component="p"
+            style={{ fontWeight: 'bold', fontSize: '1.8rem' }}
+          >
             9.595.932 ₫
           </Typography>
         </div>
@@ -39,7 +43,7 @@ export function CardHorizontal() {
               aria-label="delete product"
               style={{ marginLeft: '8px' }}
             >
-              <DeleteIcon style={{ fontSize: '22px', color: '#dd1313' }} />
+              <DeleteIcon style={{ fontSize: '22px', color: '#000' }} />
             </IconButton>
           </Tippy>
         </div>

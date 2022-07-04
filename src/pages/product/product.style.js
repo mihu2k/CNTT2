@@ -11,6 +11,16 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1.6rem',
       },
     },
+
+    '& .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.MuiGrid-grid-md-6.MuiGrid-grid-lg-4.css-3cz33d-MuiGrid-root':
+      {
+        backgroundColor: '#f7f7f7',
+        padding: '20px',
+        [theme.breakpoints.down('sm')]: {
+          justifyContent: 'center',
+          backgroundColor: '#fff',
+        },
+      },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',
@@ -20,6 +30,10 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     '& .MuiSelect-select': {
       padding: '14px',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      alignItems: 'baseline',
     },
   },
   select: {

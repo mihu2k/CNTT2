@@ -56,6 +56,35 @@ function Home() {
 
   // console.log(authReducer, 'authReducer');
 
+  const settings_new_products = {
+    dots: false,
+    slidesToScroll: 2,
+    lazyLoad: true,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <div className={cx(classes.container)}>
       <div className={classes.wrapper}>
@@ -95,19 +124,19 @@ function Home() {
       <div className={classes.sectionBanner}>
         <span className={cx('separate', classes.bannerItem)}>
           <PaymentIcon className={classes.bannerIcon} />
-          <p>Thanh toán dễ dàng và bảo mật</p>
+          <p className={classes.bannerText}>Thanh toán dễ dàng và bảo mật</p>
         </span>
         <span className={cx('separate', classes.bannerItem)}>
           <LocalShippingIcon className={classes.bannerIcon} />
-          <p>Giao hàng toàn quốc nhanh chóng</p>
+          <p className={classes.bannerText}>Giao hàng toàn quốc nhanh chóng</p>
         </span>
         <span className={cx('separate', classes.bannerItem)}>
           <PublishedWithChangesIcon className={classes.bannerIcon} />
-          <p>Đổi sản phẩm trong vòng 7 ngày</p>
+          <p className={classes.bannerText}>Đổi sản phẩm trong vòng 7 ngày</p>
         </span>
         <span className={classes.bannerItem}>
           <TaskAltIcon className={classes.bannerIcon} />
-          <p>Cam kết sản phẩm chính hãng</p>
+          <p className={classes.bannerText}>Cam kết sản phẩm chính hãng</p>
         </span>
       </div>
 
@@ -120,7 +149,15 @@ function Home() {
           <Grid container spacing={4}>
             {productReducer.products.length > 0 ? (
               productReducer.products.map((product) => (
-                <Grid item xs={3} style={{ display: 'flex' }} key={product._id}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  style={{ display: 'flex' }}
+                  key={product._id}
+                >
                   <ProductCard product={product} />
                 </Grid>
               ))
@@ -151,14 +188,12 @@ function Home() {
         {productReducer.products.length > 0 ? (
           <Slider
             className={cx(classes.sectionProducts)}
-            dots={false}
+            {...settings_new_products}
             slidesToShow={
               productReducer.products.length > 3
                 ? 3
                 : productReducer.products.length
             }
-            slidesToScroll={2}
-            lazyLoad={true}
           >
             {productReducer.products.map((product) => (
               <ProductCard key={product._id} product={product} />
@@ -170,6 +205,7 @@ function Home() {
           </Typography>
         )}
       </div>
+
       <div className={classes.sectionTitle}>
         <h2>Bạn có thể xem thêm</h2>
       </div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useStyles } from './checkout.style';
+import { useStyles } from './checkout-success.style';
 import {
   Box,
   Step,
@@ -45,20 +45,24 @@ function Checkout() {
       </Box>
 
       <Grid container spacing={4}>
-        <Grid item xs={7}>
+        <Grid item xs={12} sm={12} md={7}>
           <Typography
             variant="div"
             component="div"
+            className={classes.successContainer}
             sx={{ display: 'flex', gap: '20px' }}
           >
-            <CheckIcon
-              sx={{
-                fontSize: '4.5rem',
-                color: '#000',
-                fontWeight: '400',
-                marginTop: '25px',
-              }}
-            />
+            <span className={classes.successIcon}>
+              <CheckIcon
+                sx={{
+                  fontSize: '4.5rem',
+                  color: 'var(--primary-color)',
+                  fontWeight: '400',
+                  marginTop: '25px',
+                }}
+              />
+            </span>
+
             <div>
               <div className={classes.headingInfo}>
                 <p className={classes.headingStoreName}>RENÉ</p>
@@ -118,7 +122,7 @@ function Checkout() {
             </div>
           </Typography>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12} sm={12} md={5}>
           <div className={classes.invoiceWrapper}>
             <div className={classes.invoiceHeader}>
               <div className={classes.invoiceHeaderTitle}>

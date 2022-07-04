@@ -13,6 +13,24 @@ export const useStyles = makeStyles((theme) => ({
   headerLogo: {
     height: '64px',
     width: 'auto',
+    marginTop: '8px',
     padding: '14px 0',
+    [theme.breakpoints.only('xs')]: {
+      display: 'none',
+    },
+  },
+
+  headerText: {
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    gap: '5px',
+    [theme.breakpoints.down('sm')]: {},
+  },
+
+  backBtn: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+    },
   },
 }));

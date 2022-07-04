@@ -100,7 +100,7 @@ function OrderBody(props) {
                 Phương thức thanh toán
               </Typography>
             </Typography>
-            <p>Thanh toán tiền mặt</p>
+            <p className={classes.orderPaymentMethodInfo}>Thanh toán tiền mặt</p>
           </Typography>
         </Typography>
       </Typography>

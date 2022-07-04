@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
 
-// import cx from 'classnames';
+import cx from 'classnames';
 
 function ProfileSettings() {
   const classes = useStyles();
@@ -113,7 +113,7 @@ function ProfileSettings() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
+          <Box className={classes.modalContainer} sx={style}>
             <Typography
               id="modal-modal-title"
               className={classes.modalHeader}
@@ -213,7 +213,10 @@ function ProfileSettings() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box className={classes.modalPayment} sx={style}>
+          <Box
+            className={cx(classes.modalPayment, classes.modalContainer)}
+            sx={style}
+          >
             <Typography
               id="modal-modal-title"
               className={classes.modalHeader}

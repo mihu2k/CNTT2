@@ -41,7 +41,12 @@ export const Summary = () => {
       <List>
         <ListItem disablePadding>
           <ListItemIcon>
-            <LocalShippingIcon color="primary" fontSize="large" />
+            <LocalShippingIcon
+              sx={{
+                color: 'var(--primary-color)',
+              }}
+              fontSize="large"
+            />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="p" component="p">
@@ -51,7 +56,12 @@ export const Summary = () => {
         </ListItem>
         <ListItem disablePadding>
           <ListItemIcon>
-            <PublishedWithChangesIcon color="primary" fontSize="large" />
+            <PublishedWithChangesIcon
+              sx={{
+                color: 'var(--primary-color)',
+              }}
+              fontSize="large"
+            />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="p" component="p">
@@ -69,13 +79,18 @@ export const Summary = () => {
           1.500.196 ₫
         </Typography>
       </div>
-
       <Typography variant="p" component="p" gutterBottom>
         Giá đã bao gồm thuế
       </Typography>
-      <Button variant="contained" fullWidth className={cx('fz-16px')}>
-        Tiếp tục
-      </Button>
+      <div className={classes.nextButtonWrap}>
+        <Button
+          variant="contained"
+          fullWidth
+          className={cx(classes.nextButton, 'fz-16px')}
+        >
+          Tiếp tục
+        </Button>
+      </div>
 
       <div style={{ margin: '48px 0 24px' }}>
         <Typography variant="p" component="p" fontWeight={600}>
@@ -85,7 +100,11 @@ export const Summary = () => {
           {SUPPORT_PAYMENT.map((item, index) => (
             <ListItem disablePadding key={`${item.content}${index}`}>
               <ListItemIcon className="item-payment-icon">
-                <CheckRoundedIcon color="primary" />
+                <CheckRoundedIcon
+                  sx={{
+                    color: 'var(--primary-color)',
+                  }}
+                />
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="p" component="p" fontSize={15}>

@@ -6,6 +6,12 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: '30px 0',
     textTransform: 'uppercase',
+    [theme.breakpoints.down('lg')]: {
+      margin: '160px 0 101px 0',
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '0',
+    },
   },
   infoDashboardComer: {
     display: 'flex',
@@ -16,11 +22,24 @@ export const useStyles = makeStyles((theme) => ({
     margin: '32px 0 64px 0',
     borderRadius: '1.38888889vw',
     border: '1px solid #ccc',
+    [theme.breakpoints.down('lg')]: {
+      gap: '30px',
+      flexDirection: 'column',
+      margin: '80px 0 120px 0',
+      padding: '36px 0',
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '32px 0 64px 0',
+      padding: '24px',
+    },
   },
 
   dashboardHeader: {
     display: 'flex',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '1.8rem',
+    },
   },
 
   dashboardEdit: {
@@ -42,14 +61,20 @@ export const useStyles = makeStyles((theme) => ({
       top: '50%',
       bottom: '0',
       transform: 'translateY(-50%)',
+      [theme.breakpoints.down('lg')]: {
+        display: 'none',
+      },
     },
   },
 
   dashboardAddressTitle: {
     height: '32px',
-    fontSize: '18px',
+    fontSize: '1.8rem',
     fontWeight: 'bold',
     lineHeight: '1.33',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '2.2rem',
+    },
   },
 
   addressUsername: {
@@ -59,12 +84,18 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: '1.4rem',
     lineHeight: '1.33',
     fontWeight: 'bold',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '1.8rem',
+    },
   },
 
   addressInfo: {
     fontSize: '1.4rem',
     lineHeight: '1.33',
     marginTop: '8px',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '1.8rem',
+    },
   },
 
   infoDashboardPayment: {
@@ -74,10 +105,13 @@ export const useStyles = makeStyles((theme) => ({
 
   dashboardPaymentTitle: {
     height: '32px',
-    fontSize: '18px',
+    fontSize: '1.8rem',
     fontWeight: 'bold',
     lineHeight: '1.33',
     // padding: '0vw 1.66666667vw',
+    [theme.breakpoints.down('lg')]: {
+      fontSize: '2.2rem',
+    },
   },
 
   PaymentNumber: {
@@ -101,6 +135,11 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     fontSize: '2.2rem',
     fontFamily: 'var(--font-family-Two)',
+  },
+  modalContainer: {
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '100%',
+    },
   },
 
   modalForm: {

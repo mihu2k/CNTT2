@@ -27,6 +27,10 @@ const theme = createTheme({
     },
   },
   breakpoints: {
+    // xs: phone
+    // sm: ipad tro xuong
+    // md: ipad pro
+    // lg: desktop
     values: {
       xs: 0,
       sm: 600,

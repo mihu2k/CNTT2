@@ -3,6 +3,9 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: '#f2f2f2',
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: '#fff',
+    },
     '& .MuiTabs-flexContainer': {
       maxWidth: '580px',
       minHeight: '80px',
@@ -12,6 +15,9 @@ export const useStyles = makeStyles((theme) => ({
       borderTopRightRadius: '26px',
       borderTopLeftRadius: '26px',
       justifyContent: 'center',
+      [theme.breakpoints.down('sm')]: {
+        margin: '0',
+      },
     },
 
     '& .MuiTab-root': {

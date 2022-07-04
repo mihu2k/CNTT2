@@ -4,11 +4,19 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: '#f2f2f2',
     minHeight: '100vh',
+    [theme.breakpoints.down('sm')]: {
+      backgroundColor: '#fff',
+    },
     '& .MuiPaper-root': {
       height: 'fit-content',
       borderRadius: '0',
       borderBottomRightRadius: '26px',
       borderBottomLeftRadius: '26px',
+
+      [theme.breakpoints.down('sm')]: {
+        borderBottomRightRadius: '0',
+        borderBottomLeftRadius: '0',
+      },
     },
 
     '& .MuiInputLabel-root': {
@@ -109,6 +117,10 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiFormHelperText-root': {
       margin: '0 0 18px',
       fontSize: '1.2rem',
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      margin: '0',
     },
   },
 

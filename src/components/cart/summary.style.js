@@ -5,9 +5,9 @@ export const useStyles = makeStyles((theme) => {
     root: {
       position: 'sticky',
       top: 8,
-      padding: '16px 24px',
+      padding: '30px',
       borderRadius: '16px',
-      backgroundColor: '#f7f7f7',
+      backgroundColor: '#f4f4f4',
       '& .MuiListItemIcon-root': {
         minWidth: 40,
         '&.item-payment-icon': {
@@ -20,7 +20,32 @@ export const useStyles = makeStyles((theme) => {
       },
     },
     wrapPrice: {
-      margin: '72px 0',
+      marginTop: '62px',
+      gap: '10px',
+      [theme.breakpoints.only('md')]: {
+        display: 'flex',
+        flexDirection: 'column',
+      },
+    },
+    nextButtonWrap: {
+      display: 'flex',
+      marginTop: '62px',
+      width: '100%',
+      [theme.breakpoints.only('sm')]: {
+        justifyContent: 'flex-end',
+      },
+    },
+
+    nextButton: {
+      '&.MuiButtonBase-root': {
+        backgroundColor: 'var(--primary-color)',
+        fontWeight: 'bold',
+
+        [theme.breakpoints.only('sm')]: {
+          position: 'relative',
+          width: '30%',
+        },
+      },
     },
   };
 });

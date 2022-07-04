@@ -5,6 +5,18 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '32px',
   },
 
+  successContainer: {
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center',
+    },
+  },
+
+  successIcon: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+
   headingInfo: {
     display: 'flex',
     flexDirection: 'column',
@@ -37,6 +49,10 @@ export const useStyles = makeStyles((theme) => ({
     flex: '1',
     justifyContent: 'center',
     margin: '8px 0 32px 0',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+
     '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.css-10mg1vw-MuiStepper-root':
       {
         height: '76px',
@@ -180,6 +196,9 @@ export const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overFlow: 'hidden',
     textOverflow: 'ellipsis',
+    [theme.breakpoints.down('lg')]: {
+      justifyContent: 'space-between',
+    },
   },
 
   cicle: {
@@ -193,6 +212,12 @@ export const useStyles = makeStyles((theme) => ({
   invoiceInfoPrice: {
     fontWeight: 'bold',
     maxWidth: '100%',
+    [theme.breakpoints.only('md')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 
   moneyInfoList: {

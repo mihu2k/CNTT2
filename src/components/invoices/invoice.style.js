@@ -1,7 +1,6 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({
-  
   invoiceWrapper: {
     backgroundColor: '#f4f4f4',
     padding: '30px',
@@ -56,6 +55,9 @@ export const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
     overFlow: 'hidden',
     textOverflow: 'ellipsis',
+    [theme.breakpoints.down('lg')]: {
+      justifyContent: 'space-between',
+    },
   },
 
   cicle: {
@@ -69,6 +71,12 @@ export const useStyles = makeStyles((theme) => ({
   invoiceInfoPrice: {
     fontWeight: 'bold',
     maxWidth: '100%',
+    [theme.breakpoints.only('md')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 
   moneyInfoList: {

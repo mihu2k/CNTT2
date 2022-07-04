@@ -39,6 +39,36 @@ function Home() {
     },
   ];
 
+  var settings_new_products = {
+    dots: false,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    lazyLoad: true,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <div className={cx(classes.container)}>
       <div className={classes.wrapper}>
@@ -78,19 +108,19 @@ function Home() {
       <div className={classes.sectionBanner}>
         <span className={cx('separate', classes.bannerItem)}>
           <PaymentIcon className={classes.bannerIcon} />
-          <p>Thanh toán dễ dàng và bảo mật</p>
+          <p className={classes.bannerText}>Thanh toán dễ dàng và bảo mật</p>
         </span>
         <span className={cx('separate', classes.bannerItem)}>
           <LocalShippingIcon className={classes.bannerIcon} />
-          <p>Giao hàng toàn quốc nhanh chóng</p>
+          <p className={classes.bannerText}>Giao hàng toàn quốc nhanh chóng</p>
         </span>
         <span className={cx('separate', classes.bannerItem)}>
           <PublishedWithChangesIcon className={classes.bannerIcon} />
-          <p>Đổi sản phẩm trong vòng 7 ngày</p>
+          <p className={classes.bannerText}>Đổi sản phẩm trong vòng 7 ngày</p>
         </span>
         <span className={classes.bannerItem}>
           <TaskAltIcon className={classes.bannerIcon} />
-          <p>Cam kết sản phẩm chính hãng</p>
+          <p className={classes.bannerText}>Cam kết sản phẩm chính hãng</p>
         </span>
       </div>
 
@@ -101,28 +131,28 @@ function Home() {
 
         <Grid item className={cx(classes.sectionProducts, 'grid wide')}>
           <Grid container spacing={4}>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
           </Grid>
@@ -137,11 +167,8 @@ function Home() {
           <h2>Sản phẩm mới</h2>
         </div>
         <Slider
+          {...settings_new_products}
           className={cx(classes.sectionProducts)}
-          dots={false}
-          slidesToShow={3}
-          slidesToScroll={2}
-          lazyLoad={true}
         >
           <ProductCard />
           <ProductCard />

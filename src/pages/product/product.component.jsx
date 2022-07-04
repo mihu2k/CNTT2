@@ -105,7 +105,7 @@ function Product() {
       <Grid container spacing={2}>
         {/* <Grid item xs={12}>
         </Grid> */}
-        <Grid item xs={3}>
+        <Grid item xs={0} sm={3} md={3}>
           <div className={classes.wrapAccordion}>
             <Accordion expanded>
               <AccordionSummary
@@ -163,28 +163,24 @@ function Product() {
             </Accordion>
           </div>
         </Grid>
-        <Grid
-          item
-          xs={9}
-          style={{ backgroundColor: '#f7f7f7', padding: '20px' }}
-        >
-          <Grid container spacing={2}>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+        <Grid item xs={12} sm={9} md={9}>
+          <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
-            <Grid item xs={4} style={{ display: 'flex' }}>
+            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
               <ProductCard />
             </Grid>
           </Grid>

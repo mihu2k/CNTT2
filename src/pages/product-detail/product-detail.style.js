@@ -17,16 +17,43 @@ export const useStyles = makeStyles((theme) => {
     wrapMainInfo: {
       marginTop: '24px',
       '& .MuiBox-root': {
+        [theme.breakpoints.down('lg')]: {
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
         '& .MuiButton-root': {
           flex: 1,
-          borderRadius: '2px',
           minWidth: 'fit-content',
           fontSize: '1.6rem',
           textTransform: 'capitalize',
+          backgroundColor: 'var(--primary-color)',
+          color: '#fff',
+          boxShadowColor: 'var(--primary-color)',
+          padding: '10px 0',
+          borderRadius: '26px',
+          fontWeight: 'bold',
+
+          [theme.breakpoints.down('lg')]: {
+            minWidth: '100%',
+          },
         },
         '& .MuiButton-root + .MuiButton-root': {
           marginLeft: '16px',
+          color: 'var(--primary-color)',
+          backgroundColor: '#fff',
+
+          [theme.breakpoints.down('lg')]: {
+            margin: '24px 0',
+          },
         },
+      },
+    },
+
+    mainInfoContainer: {
+      [theme.breakpoints.down('sm')]: {
+        display: 'flex',
+        flexDirection: 'column-reverse',
       },
     },
     // imgSlider: {
@@ -54,6 +81,9 @@ export const useStyles = makeStyles((theme) => {
           },
         },
       },
+      [theme.breakpoints.down('sm')]: {
+        padding: '20px 20px 20px 0',
+      },
     },
     wrapMainImg: {
       height: '400px',
@@ -64,6 +94,8 @@ export const useStyles = makeStyles((theme) => {
     },
     wrapQuantity: {
       alignItems: 'center',
+      justifyContent: 'space-around',
+      margin: '32px 0',
       '& .MuiButtonBase-root.MuiIconButton-root': {
         minWidth: '36px',
       },
@@ -84,6 +116,7 @@ export const useStyles = makeStyles((theme) => {
         },
       },
     },
+
     price: {
       fontWeight: 600,
       fontSize: '20px',
@@ -105,6 +138,9 @@ export const useStyles = makeStyles((theme) => {
           fontWeight: 600,
         },
       },
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
     },
     text: {
       '& .MuiTypography-root': {
@@ -119,6 +155,19 @@ export const useStyles = makeStyles((theme) => {
     },
     wrapProdDetail: {
       margin: '60px 0',
+    },
+
+    showMoreBtn: {
+      '&.MuiButton-root': {
+        color: 'var(--primary-color)',
+        height: '40px',
+        fontSize: '1.6rem',
+        minWidth: '113px',
+        fontWeight: '500',
+        borderRadius: '20px',
+        textTransform: 'inherit',
+        backgroundColor: 'transparent!important',
+      },
     },
   };
 });

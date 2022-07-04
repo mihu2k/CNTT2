@@ -8,6 +8,7 @@ export const Truncate = ({ children, typographyProps, line = 1 }) => {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     wordBreak: 'break-word',
+    fontFamily: 'var(--font-family-Two)',
   };
 
   return (

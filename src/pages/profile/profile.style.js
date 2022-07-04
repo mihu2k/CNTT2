@@ -17,6 +17,11 @@ export const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     background: '#eee',
     marginRight: '25px',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '60px',
+      height: '60px',
+    },
   },
   infoProfileAvatarIcon: {
     width: '1.9999999vw',
@@ -27,6 +32,11 @@ export const useStyles = makeStyles((theme) => ({
     '-webkit-transform': 'translate(-50%,-50%)',
     transform: 'translate(-50%,-50%)',
     cursor: 'auto',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '22px',
+      height: '22px',
+    },
   },
 
   infoProfileUser: {
@@ -52,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '140px',
     marginTop: '2.22222222vw',
-    padding: '1.66666667vw 0vw',
+    padding: '24px 0',
     borderRadius: '1.38888889vw',
     border: '1px solid #ccc',
   },
@@ -132,6 +142,13 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '1.38888889vw',
     backgroundColor: '#f7f7f7',
     margin: '24px 0 48px 0',
+    [theme.breakpoints.down('lg')]: {
+      margin: '120px 0',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      margin: '30px 0',
+    },
   },
 
   shopInfoBox: {
@@ -142,8 +159,15 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     minHeight: '247px',
     padding: '24px 0',
+    [theme.breakpoints.down('lg')]: {
+      minHeight: '185px',
+    },
+
     '&.separate': {
       position: 'relative',
+      [theme.breakpoints.down('sm')]: {
+        borderBottom: '1px solid #ccc',
+      },
 
       '&::before': {
         content: `''`,
@@ -155,6 +179,12 @@ export const useStyles = makeStyles((theme) => ({
         top: '50%',
         bottom: '0',
         transform: 'translateY(-50%)',
+        [theme.breakpoints.down('lg')]: {
+          height: '150px',
+        },
+        [theme.breakpoints.down('sm')]: {
+          display: 'none',
+        },
       },
     },
   },

@@ -97,7 +97,7 @@ function ProductDetail() {
       </div>
 
       <div className={cx(classes.wrapMainInfo, 'd-f')}>
-        <div className={cx('d-f')}>
+        <div className={cx('d-f', classes.mainInfoContainer)}>
           <div className={cx(classes.wrapImgAndSlide)}>
             <div className={classes.wrapMainImg}>
               <img
@@ -182,12 +182,17 @@ function ProductDetail() {
                 display: 'flex',
                 justifyContent: 'space-between',
               }}
-              className={cx('mt-20px')}
             >
-              <Button variant="outlined" startIcon={<AddShoppingCartIcon />}>
+              <Button
+                variant="outlined"
+                startIcon={<AddShoppingCartIcon />}
+                className={classes.mainButton}
+              >
                 Thêm vào giỏ hàng
               </Button>
-              <Button variant="contained">Mua ngay</Button>
+              <Button variant="outlined" className={classes.mainButton}>
+                Mua ngay
+              </Button>
             </Box>
           </div>
         </div>
@@ -269,8 +274,11 @@ function ProductDetail() {
           <div style={{ textAlign: 'center', marginTop: '12px' }}>
             <Button
               variant="outlined"
-              className="fz-16px"
+              className={cx('fz-16px', classes.showMoreBtn)}
               onClick={handleClickShowMore}
+              style={{
+                
+              }}
             >
               {isShowMore ? 'Thu gọn' : 'Xem thêm'}
             </Button>

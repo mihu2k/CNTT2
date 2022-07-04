@@ -1,109 +1,145 @@
 .footer {
-    background-color: #1f2024;
-    width: 100%;
-    color: #e4e7eb;
-    min-height: 479px;
+  background-color: #1f2024;
+  width: 100%;
+  color: #e4e7eb;
+  min-height: 479px;
 }
 
 .footer-inner {
-    padding: 60px 0 74px 0;
-    text-align: center;
+  padding: 60px 0 74px 0;
+  text-align: center;
 }
 
 .footer-block-item {
-    text-align: left;
+  text-align: left;
 }
 
 .footer-title {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 1.7rem;
-    color: #878792;
-    letter-spacing: -0.04em;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  color: #878792;
+  letter-spacing: -0.04em;
 }
 
 .footer-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    list-style: none;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    padding: 0.4rem 0;
-    cursor: pointer; 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: 0.4rem 0;
+  cursor: pointer;
 }
-.footer-item .footer-item-link, 
+.footer-item .footer-item-link,
 .footer-item .footer-map-link {
-    color: #e4e7eb;
-    display: inline-block;
-
+  color: #e4e7eb;
+  display: inline-block;
 }
 .footer-item .footer-map-link {
-    margin-right: 6px;
+  margin-right: 6px;
 }
 
-.footer-item .footer-item-link:hover, 
+.footer-item .footer-item-link:hover,
 .footer-map-link:hover,
-.footer-contacts .footer-social-icon:hover, 
+.footer-contacts .footer-social-icon:hover,
 .footer-signature .footer-legal-links a:hover {
-    color: #878792;
-        outline-offset: 0;
-        transition: background-color 0.25s linear, border-color 0.25s linear,
-            opacity 0.25s linear, color 0.25s linear, fill 0.25s linear;
+  color: #878792;
+  outline-offset: 0;
+  transition: background-color 0.25s linear, border-color 0.25s linear,
+    opacity 0.25s linear, color 0.25s linear, fill 0.25s linear;
 }
 
 .footer-block-row .footer-list-item {
-    display: flex;
-    justify-content: flex-end;
-    gap: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
 }
 
 .footer-contacts {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    line-height: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  line-height: 0;
 }
 
 .footer-contacts .footer-social-icon {
-    display: flex;
-    width: 30px;
-    justify-content: center;
-    align-items: center;
-    color: #e4e7eb;
+  display: flex;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  color: #e4e7eb;
 }
 
 .footer-signature {
-    border-top: solid 1px #3c3c42;
-    margin-top: 0.9375em;
-    padding: 1.75em 0;
+  border-top: solid 1px #3c3c42;
+  margin-top: 0.9375em;
+  padding: 1.75em 0;
 }
 
 .footer-copyright {
-    display: block;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    color: #878792;
-    line-height: 2;
-    letter-spacing: 0.01rem;
+  display: block;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #878792;
+  line-height: 2;
+  letter-spacing: 0.01rem;
 }
 
 .footer-copyright.size-s {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .footer-signature .footer-legal-links {
-    display: flex;
-    gap: 10px;
-    color: #e4e7eb;
-    text-transform: uppercase;
-    font-size: 1.15rem;
-    line-height: 2;
+  display: flex;
+  gap: 10px;
+  color: #e4e7eb;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  line-height: 2;
 }
 
 .footer-signature .footer-legal-links a {
-    display: inline-block;
-    color: #e4e7eb;
+  display: inline-block;
+  color: #e4e7eb;
 }
 
+/* responsive for mobile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* Styles */
+
+  .footer-block-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-title,
+  .footer-item {
+    text-align: center;
+    justify-content: center;
+  }
+  .footer-inner {
+    gap: 20px;
+  }
+
+  .footer-block-row .footer-list-item {
+    justify-content: center;
+  }
+
+  .footer-signature {
+    font-size: 1.6rem;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer-signature .footer-legal-links {
+    margin: 20px 0 10px 0;
+    justify-content: center;
+    font-size: 1.5rem;
+    gap: 20px;
+  }
+}

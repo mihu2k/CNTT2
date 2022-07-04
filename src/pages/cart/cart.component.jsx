@@ -8,14 +8,14 @@ export function Cart() {
   return (
     <div className="mt-20px" style={{ marginBottom: '24px' }}>
       <Grid container spacing={4}>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={12} md={8}>
           <section className={classes.sectionListItem}>
             <CardHorizontal />
             <CardHorizontal />
             <CardHorizontal />
           </section>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <Summary />
         </Grid>
       </Grid>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useStyles } from './checkout.style';
+import { useStyles } from './checkout-shipment.style';
 import {
   Box,
   InputLabel,
@@ -76,7 +76,7 @@ function Checkout() {
       </Box>
 
       <Grid container spacing={4}>
-        <Grid item xs={7}>
+        <Grid item xs={12} sm={12} md={7}>
           <Typography
             fontSize="1.8rem"
             fontWeight="700"
@@ -293,7 +293,7 @@ function Checkout() {
             </Typography>
           </Typography>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12} sm={12} md={5}>
           <Invoice />
         </Grid>
       </Grid>

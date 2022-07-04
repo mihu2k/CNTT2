@@ -36,9 +36,11 @@ import { renderStars } from '~/common/utils';
 import ReviewList, { ReviewForm } from '~/components/product/review';
 import Tippy from '@tippyjs/react';
 import { InputQuantity } from '~/components/input-quantity';
+import { useLocation } from 'react-router-dom';
 
 function ProductDetail() {
   const classes = useStyles();
+  const location = useLocation();
 
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [isOpenFormRating, setIsOpenFormRating] = React.useState(false);
@@ -59,6 +61,8 @@ function ProductDetail() {
   const handleClickOpenFormRating = () => {
     setIsOpenFormRating(!isOpenFormRating);
   };
+
+  console.log(location, 'LOCATION');
 
   return (
     <div className={classes.root}>

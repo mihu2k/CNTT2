@@ -5,13 +5,16 @@ export const useStyles = makeStyles((theme) => ({
     marginBottom: '80px',
     '& .MuiBreadcrumbs-root': {
       '& .MuiLink-root': {
-        fontSize: '1.4rem',
+        fontSize: '1.6rem',
+      },
+      '& .MuiTypography-root ': {
+        fontSize: '1.6rem',
       },
     },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',
-    marginBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(3),
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -20,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   select: {
-    fontSize: '1.4rem',
+    fontSize: '1.6rem',
     fontFamily: "'SamsungOne', sans-serif",
     '& .MuiOutlinedInput-notchedOutline': {
       border: 0,
@@ -30,13 +33,14 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   selectItem: {
-    fontSize: '1.4rem',
+    fontSize: '1.6rem',
     fontFamily: "'SamsungOne', sans-serif",
   },
   wrapAccordion: {
     boxShadow: 'unset',
     '& .MuiAccordionSummary-root': {
       minHeight: '48px',
+      borderBottom: '1px solid #f1f1f1',
       '& .MuiAccordionSummary-content': {
         margin: '10px 0',
       },
@@ -52,8 +56,11 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiAccordion-root.Mui-expanded': {
       margin: '0',
     },
-
-    '& .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.Mui-expanded.MuiAccordion-gutters':
+    '& .MuiListItemButton-root': {
+      paddingTop: '2px',
+      paddingBottom: '2px',
+    },
+    '& .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters':
       {
         boxShadow: 'none',
       },

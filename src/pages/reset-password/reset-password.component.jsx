@@ -1,12 +1,49 @@
 import { Button, Grid, Paper, TextField } from '@mui/material';
-
 import { useStyles } from './reset-password.style';
 import Header from '~/components/login-form/header-login';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { resetPasswordRequest } from '~/redux/actions/user.action';
 
-// import cx from 'classnames';
+const schema = yup.object().shape({
+  password: yup
+    .string()
+    .required('Vui lòng nhập mật khẩu.')
+    .min(6, 'Mật khẩu phải ít nhất 6 kí tự.'),
+  confirmPassword: yup
+    .string()
+    .required('Vui lòng nhập lại mật khẩu.')
+    .when('password', {
+      is: (val) => (val && val.length > 0 ? true : false),
+      then: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Không trùng khớp với mật khẩu.'),
+    }),
+});
 
 function ResetPassword() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { userId, token } = useParams();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    const dataSubmit = { ...data, userId, token };
+    dispatch(resetPasswordRequest(dataSubmit));
+  };
+
   return (
     <div className={classes.wrapper}>
       <Header />
@@ -18,7 +55,11 @@ function ResetPassword() {
           </span>
         </Grid>
         <Grid>
-          <form type="submit" className={classes.form}>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <TextField
               className={classes.input}
               label="Mật khẩu mới"
@@ -26,6 +67,9 @@ function ResetPassword() {
               type="password"
               variant="standard"
               required
+              {...register('password')}
+              error={!!errors?.password?.message}
+              helperText={errors?.password?.message}
             />
             <TextField
               className={classes.input}
@@ -34,6 +78,9 @@ function ResetPassword() {
               type="password"
               variant="standard"
               required
+              {...register('confirmPassword')}
+              error={!!errors?.confirmPassword?.message}
+              helperText={errors?.confirmPassword?.message}
             />
             <Button
               fullWidth
@@ -46,9 +93,9 @@ function ResetPassword() {
 
             <Button
               fullWidth
-              type="submit"
               variant="outlined"
               className={classes.backButton}
+              onClick={() => navigate('/login')}
             >
               Quay lại đăng nhập
             </Button>

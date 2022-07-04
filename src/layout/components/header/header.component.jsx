@@ -21,6 +21,7 @@ import styles from './header.css';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutRequest } from '~/redux/actions/auth.action';
+import jwtDecode from 'jwt-decode';
 
 const cx = classNames.bind(styles);
 
@@ -105,6 +106,13 @@ function Header() {
   ];
 
   React.useEffect(() => {
+    const token = currentUser?.accessToken;
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
+    }
+
     setCurrentUser(JSON.parse(localStorage.getItem('profile')));
   }, []);
 

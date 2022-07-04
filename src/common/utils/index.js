@@ -39,3 +39,13 @@ export const showToastMsg = (type = 'info', msg, options = {}) => {
     ...options,
   });
 };
+
+/**
+ * @author MH
+ * @param {*} number
+ * @param {*} separate
+ * @returns {string} currency
+ */
+export function numberWithCommas(number, separate = '.') {
+  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, separate);
+}

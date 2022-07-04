@@ -7,24 +7,49 @@ import {
   Typography,
 } from '@mui/material';
 import cx from 'classnames';
-import { renderStars } from '~/common/utils';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { numberWithCommas, renderStars } from '~/common/utils';
+import { Truncate } from '~/components/truncate';
 import { useStyles } from './card.style';
 
-function ProductCard() {
+function ProductCard({ product }) {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [infoByColor, setInfoByColor] = React.useState(product?.colors[0]);
+
+  const handleClickColor = (color) => {
+    const index = product?.colors?.findIndex((item) => item.value === color);
+    setInfoByColor(product?.colors[index > -1 ? index : 0]);
+  };
+
+  const handleRedirect = (path) => {
+    navigate(path);
+  };
+
+  React.useEffect(() => {
+    setInfoByColor(product?.colors[0]);
+  }, [product]);
 
   return (
     <>
       <Card className={classes.wrapper}>
-        <img
-          src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-          alt="product image"
-          height="160"
-          width="160"
-          className={classes.imgProd}
-        />
+        <Typography
+          className={classes.wrapImgProd}
+          variant="div"
+          component={Link}
+          to={`/product/${product.slug}`}
+        >
+          <img
+            src={`${process.env.REACT_APP_API_BASE_URL}${infoByColor.image}`}
+            alt={product.name}
+            height="160"
+            width="160"
+            className={classes.imgProd}
+          />
+        </Typography>
         <CardContent className={classes.cardContent}>
-          <Typography
+          <Truncate
             fontFamily="SamsungOne"
             fontWeight="600"
             fontSize={16}
@@ -32,22 +57,39 @@ function ProductCard() {
             variant="h4"
             component="div"
             className={cx('f-grow-1', classes.prodName)}
+            line={2}
           >
-            Galaxy Watch4 Bluetooth (40mm)
-          </Typography>
+            {product.name}
+          </Truncate>
           <div className={cx('f-shrink-0', classes.wrapColor)}>
             <div>
               <span style={{ fontWeight: 600 }}>Màu sắc:</span>
-              <span className="pl-4px">Vàng Hồng Thanh Lịch</span>
+              <span className="pl-4px">{infoByColor.name}</span>
             </div>
             <div className={classes.wrapChooseColor}>
-              <div className={cx(classes.circleBox, 'mr-16px')}></div>
-              <div className={cx(classes.circleBox, 'mr-16px')}></div>
-              <div className={cx(classes.circleBox)}></div>
+              {product.colors.length > 0
+                ? product.colors.map((color) => (
+                    <div
+                      key={color.value}
+                      className={cx('boxChooseColor', classes.wrapCircleBox)}
+                      style={
+                        color.value === infoByColor.value
+                          ? { border: '1px solid #333' }
+                          : { border: '1px solid transparent' }
+                      }
+                    >
+                      <div
+                        className={cx(classes.circleBox)}
+                        style={{ backgroundColor: color.value }}
+                        onClick={() => handleClickColor(color.value)}
+                      />
+                    </div>
+                  ))
+                : null}
             </div>
           </div>
           <div className={cx('f-shrink-0', classes.wrapPrice)}>
-            <div>5.489.891 ₫</div>
+            <div>{numberWithCommas(product.price)} ₫</div>
             <div className="mt-20px">{renderStars(4)}</div>
           </div>
         </CardContent>
@@ -55,7 +97,12 @@ function ProductCard() {
           <Button size="large" variant="contained" fullWidth>
             Mua ngay
           </Button>
-          <Button size="large" variant="outlined" fullWidth>
+          <Button
+            size="large"
+            variant="outlined"
+            fullWidth
+            onClick={() => handleRedirect(`/product/${product.slug}`)}
+          >
             Tìm hiểu thêm
           </Button>
         </CardActions>

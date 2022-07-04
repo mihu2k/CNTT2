@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -11,14 +11,21 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import image from '~/assets/images';
 import { useStyles } from './home.style';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import config from '~/config';
 import ProductCard from '~/components/product/card';
 
 import cx from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductsRequest } from '~/redux/actions/product.action';
+import React from 'react';
 
 function Home() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const productReducer = useSelector((state) => state.product);
+  // const authReducer = useSelector((state) => state.auth);
 
   const LIST_SLIDER = [
     {
@@ -38,6 +45,16 @@ function Home() {
       url_image: image.slider4,
     },
   ];
+
+  const fetchProducts = (query = {}) => {
+    dispatch(getProductsRequest(query));
+  };
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, [location]);
+
+  // console.log(authReducer, 'authReducer');
 
   return (
     <div className={cx(classes.container)}>
@@ -101,30 +118,24 @@ function Home() {
 
         <Grid item className={cx(classes.sectionProducts, 'grid wide')}>
           <Grid container spacing={4}>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={3} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
+            {productReducer.products.length > 0 ? (
+              productReducer.products.map((product) => (
+                <Grid item xs={3} style={{ display: 'flex' }} key={product._id}>
+                  <ProductCard product={product} />
+                </Grid>
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <Typography
+                  variant="p"
+                  component="p"
+                  align="center"
+                  marginTop={4}
+                >
+                  Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
+                </Typography>
+              </Grid>
+            )}
           </Grid>
         </Grid>
         <Link to={'./'} className={classes.sectionDetails}>
@@ -136,23 +147,28 @@ function Home() {
         <div className={classes.sectionTitle}>
           <h2>Sản phẩm mới</h2>
         </div>
-        <Slider
-          className={cx(classes.sectionProducts)}
-          dots={false}
-          slidesToShow={3}
-          slidesToScroll={2}
-          lazyLoad={true}
-        >
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </Slider>
+
+        {productReducer.products.length > 0 ? (
+          <Slider
+            className={cx(classes.sectionProducts)}
+            dots={false}
+            slidesToShow={
+              productReducer.products.length > 3
+                ? 3
+                : productReducer.products.length
+            }
+            slidesToScroll={2}
+            lazyLoad={true}
+          >
+            {productReducer.products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </Slider>
+        ) : (
+          <Typography variant="p" component="p" align="center" marginTop={4}>
+            Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
+          </Typography>
+        )}
       </div>
       <div className={classes.sectionTitle}>
         <h2>Bạn có thể xem thêm</h2>

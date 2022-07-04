@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-export const Truncate = ({ children, typographyProps, line = 1 }) => {
+export const Truncate = ({ children, line = 1, ...props }) => {
   const styles = {
     display: '-webkit-box',
     WebkitLineClamp: line,
@@ -11,7 +11,7 @@ export const Truncate = ({ children, typographyProps, line = 1 }) => {
   };
 
   return (
-    <Typography {...typographyProps} style={styles}>
+    <Typography {...props} style={styles}>
       {children}
     </Typography>
   );

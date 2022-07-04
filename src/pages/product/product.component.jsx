@@ -4,16 +4,13 @@ import React from 'react';
 import { useStyles } from './product.style';
 // Icons
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 // Components
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Breadcrumbs,
   Checkbox,
   Grid,
-  Link,
   List,
   ListItem,
   ListItemButton,
@@ -23,12 +20,21 @@ import {
   Select,
   Typography,
 } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { Breadcrumb } from '~/components/breadcrumb';
+import Loading from '~/components/loading/loading.component';
 import ProductCard from '~/components/product/card';
+import { getProductsRequest } from '~/redux/actions/product.action';
 
 function Product() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const productReducer = useSelector((state) => state.product);
 
   const [checked, setChecked] = React.useState([0]);
+  const [expanded, setExpanded] = React.useState(true);
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -43,42 +49,24 @@ function Product() {
     setChecked(newChecked);
   };
 
+  const fetchProducts = (query = {}) => {
+    dispatch(getProductsRequest(query));
+  };
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, [location]);
+
+  console.log(location, 'LOCATION');
+
   return (
     <div className={classes.root}>
       <div className={classes.wrapHeaderFilter}>
-        <div>
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="medium" />}
-            aria-label="breadcrumb"
-          >
-            <Link
-              underline="hover"
-              key="1"
-              color="inherit"
-              href="/"
-              // onClick={handleClick}
-            >
-              Trang chủ
-            </Link>
-            <Link
-              underline="hover"
-              key="2"
-              color="inherit"
-              href="/material-ui/getting-started/installation/"
-              // onClick={handleClick}
-            >
-              Sản phẩm
-            </Link>
-            <Typography
-              key="3"
-              color="text.primary"
-              fontSize={14}
-              fontFamily="SamsungOne"
-            >
-              Tai nghe không dây
-            </Typography>
-          </Breadcrumbs>
-        </div>
+        <Breadcrumb
+          pathname={location.pathname}
+          breadcrumbNameMap={{ '/product': 'Sản phẩm' }}
+        />
+
         <div>
           <Select
             id="filter-select"
@@ -103,17 +91,16 @@ function Product() {
         </div>
       </div>
       <Grid container spacing={2}>
-        {/* <Grid item xs={12}>
-        </Grid> */}
         <Grid item xs={0} sm={3} md={3}>
           <div className={classes.wrapAccordion}>
-            <Accordion expanded>
+            <Accordion expanded={expanded}>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon fontSize="large" />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                onClick={() => setExpanded(!expanded)}
               >
-                <Typography fontSize={14}>Nhãn hiệu</Typography>
+                <Typography fontSize={16}>Thể loại</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <List
@@ -163,27 +150,53 @@ function Product() {
             </Accordion>
           </div>
         </Grid>
-        <Grid item xs={12} sm={9} md={9}>
-          <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
+
+        <Grid
+          item
+          xs={12}
+          sm={9}
+          md={9}
+          // style={{ backgroundColor: '#f7f7f7', padding: '20px' }}
+        >
+          {productReducer.status === 'pending' ? (
+            <Loading
+              style={{
+                position: 'unset',
+                width: '100%',
+                height: '100%',
+                background: 'none',
+              }}
+            />
+          ) : (
+            <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
+              {productReducer.products.length > 0 ? (
+                productReducer.products.map((product) => (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={6}
+                    lg={4}
+                    style={{ display: 'flex' }}
+                    key={product._id}
+                  >
+                    <ProductCard product={product} />
+                  </Grid>
+                ))
+              ) : (
+                <Grid item xs={12}>
+                  <Typography
+                    variant="p"
+                    component="p"
+                    align="center"
+                    marginTop={4}
+                  >
+                    Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
+                  </Typography>
+                </Grid>
+              )}
             </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-            <Grid item xs={12} sm={6} md={6} lg={4} style={{ display: 'flex' }}>
-              <ProductCard />
-            </Grid>
-          </Grid>
+          )}
         </Grid>
       </Grid>
     </div>

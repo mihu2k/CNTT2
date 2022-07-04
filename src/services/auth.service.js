@@ -7,10 +7,19 @@ class AuthService {
       password,
     });
 
-    if (data.access_token) {
+    if (data.accessToken) {
       localStorage.setItem('profile', JSON.stringify(data));
     }
     return data;
+  }
+
+  async register(data) {
+    const response = await httpRequest.post('/auth/register', data);
+
+    if (response.status === 200) {
+      localStorage.setItem('profile', JSON.stringify(response.data));
+    }
+    return response.data;
   }
 }
 

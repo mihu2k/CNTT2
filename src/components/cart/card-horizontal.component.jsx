@@ -21,10 +21,7 @@ export function CardHorizontal() {
       <div className={classes.wrapInfo}>
         <div className={cx('d-f', classes.info)}>
           <div style={{ maxWidth: '60%' }}>
-            <Truncate
-              typographyProps={{ variant: 'h4', component: 'h4' }}
-              line={2}
-            >
+            <Truncate variant="h4" component="h4" line={2}>
               Galaxy Tab S7 FE Galaxy Tab S7 FE LTE Galaxy Tab S7 FE LTE Galaxy
               Tab S7 FE LTE Galaxy Tab S7 FE LTE
             </Truncate>

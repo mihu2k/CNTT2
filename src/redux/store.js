@@ -10,7 +10,6 @@ const configureStore = () => {
   const composedEnhancers = compose(...enhancers);
 
   const store = createStore(rootReducer, composedEnhancers);
-
   return store;
 };
 

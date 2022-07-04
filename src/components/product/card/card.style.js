@@ -2,9 +2,10 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({
   wrapper: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    padding: '24px 24px 48px',
+    padding: '24px 24px 36px',
     margin: '2px 0',
     maxWidth: '320px',
     borderRadius: '20px',
@@ -35,9 +36,14 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: 'none',
   },
 
-  imgProd: {
-    alignSelf: 'center',
+  wrapImgProd: {
+    width: '100%',
     flexShrink: 0,
+    textAlign: 'center',
+    paddingBottom: '12px',
+  },
+  imgProd: {
+    display: 'inline-block !important',
   },
   cardContent: {
     flexGrow: 1,
@@ -47,6 +53,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   prodName: {
     fontFamily: 'var(--font-family-Two)',
+    lineHeight: 1.5,
   },
   wrapColor: {
     fontSize: '1.2rem',
@@ -54,15 +61,27 @@ export const useStyles = makeStyles((theme) => ({
   },
   wrapChooseColor: {
     marginTop: '8px',
+    '& .boxChooseColor + .boxChooseColor': {
+      marginLeft: '14px',
+    },
+    '& .boxChooseColor': {
+      display: 'inline-flex',
+    },
   },
   wrapPrice: {
     margin: '24px 0',
     fontSize: '1.8rem',
     fontWeight: 600,
   },
+  wrapCircleBox: {
+    width: '23px',
+    height: '23px',
+    borderRadius: '50%',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   circleBox: {
-    display: 'inline-block',
-
     width: '18px',
     height: '18px',
     borderRadius: 999,

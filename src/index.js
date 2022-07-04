@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './common/theme';
 import { Provider } from 'react-redux';
-import configureStore from './redux/config-store';
+import configureStore from './redux/store';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

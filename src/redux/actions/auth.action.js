@@ -1,7 +1,6 @@
 import { showToastMsg } from '~/common/utils';
 import AuthService from '~/services/auth.service';
 import GoogleService from '~/services/google.service';
-import UserService from '~/services/user.service';
 import * as types from '../types';
 
 export const loginRequest = (data) => async (dispatch) => {
@@ -38,7 +37,7 @@ export const registerRequest = (formData) => async (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST });
 
   try {
-    const response = await UserService.create(formData, 'register');
+    const response = await AuthService.register(formData);
     console.log('REGISTER SUCCESS', response);
     dispatch({ type: types.REGISTER_SUCCESS, payload: response });
   } catch (error) {

@@ -26,6 +26,9 @@ function Home() {
   const location = useLocation();
   const productReducer = useSelector((state) => state.product);
   // const authReducer = useSelector((state) => state.auth);
+  const [query, setQuery] = React.useState({
+    per_page: 8,
+  });
 
   const LIST_SLIDER = [
     {
@@ -50,9 +53,13 @@ function Home() {
     dispatch(getProductsRequest(query));
   };
 
+  const handleClickShowAll = () => {
+    setQuery((prev) => ({ ...prev, per_page: 'all' }));
+  };
+
   React.useEffect(() => {
-    fetchProducts();
-  }, [location]);
+    fetchProducts(query);
+  }, [location, query]);
 
   // console.log(authReducer, 'authReducer');
 
@@ -175,9 +182,11 @@ function Home() {
             )}
           </Grid>
         </Grid>
-        <Link to={'./'} className={classes.sectionDetails}>
-          <Button variant="text">Xem tất cả</Button>
-        </Link>
+        <div className={classes.sectionDetails}>
+          <Button variant="text" onClick={handleClickShowAll}>
+            Xem tất cả
+          </Button>
+        </div>
       </div>
 
       <div className={classes.sectionNewProducts}>
@@ -195,9 +204,11 @@ function Home() {
                 : productReducer.products.length
             }
           >
-            {productReducer.products.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
+            {productReducer.products
+              .filter((_product, index) => index < 10)
+              .map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
           </Slider>
         ) : (
           <Typography variant="p" component="p" align="center" marginTop={4}>

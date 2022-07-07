@@ -5,45 +5,52 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { useStyles } from './product-detail.style';
 // Icons
-import AddIcon from '@mui/icons-material/Add';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import PowerIcon from '@mui/icons-material/Power';
-import RemoveIcon from '@mui/icons-material/Remove';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 // Components
 import {
   Box,
-  Breadcrumbs,
   Button,
   Collapse,
   IconButton,
-  Link,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  OutlinedInput,
+  Rating,
   Typography,
 } from '@mui/material';
-import cx from 'classnames';
-import Slider from 'react-slick';
-import { renderStars } from '~/common/utils';
-import ReviewList, { ReviewForm } from '~/components/product/review';
 import Tippy from '@tippyjs/react';
+import cx from 'classnames';
+import { useLocation, useParams } from 'react-router-dom';
+import Slider from 'react-slick';
+import { numberWithCommas, renderStars } from '~/common/utils';
+import { Breadcrumb } from '~/components/breadcrumb';
 import { InputQuantity } from '~/components/input-quantity';
-import { useLocation } from 'react-router-dom';
+import ReviewList, { ReviewForm } from '~/components/product/review';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductBySlugRequest } from '~/redux/actions/product.action';
+import { Truncate } from '~/components/truncate';
 
 function ProductDetail() {
   const classes = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { slug } = useParams();
+  const descRef = React.useRef();
 
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [isOpenFormRating, setIsOpenFormRating] = React.useState(false);
+  const [infoByColor, setInfoByColor] = React.useState({});
+  const [rating, setRating] = React.useState(0);
+  const [height, setHeight] = React.useState(0);
+
+  const { product: productReducer } = useSelector((state) => state);
 
   const settings = {
     infinite: true,
@@ -62,42 +69,50 @@ function ProductDetail() {
     setIsOpenFormRating(!isOpenFormRating);
   };
 
+  const getProductBySlug = (slug) => {
+    dispatch(getProductBySlugRequest(slug));
+  };
+
+  const handleClickColor = (color) => {
+    const index = productReducer.product?.colors?.findIndex(
+      (item) => item.value === color,
+    );
+    setInfoByColor(productReducer.product?.colors[index > -1 ? index : 0]);
+  };
+
+  React.useEffect(() => {
+    getProductBySlug(slug);
+    setHeight(descRef.current.clientHeight);
+  }, [slug]);
+
+  React.useLayoutEffect(() => {
+    setInfoByColor(productReducer.product?.colors[0]);
+  }, [productReducer]);
+
+  React.useLayoutEffect(() => {
+    setRating((prev) => {
+      const countRatings =
+        productReducer.product?.comments.reduce(
+          (rating, item) => rating + item.rating,
+          0,
+        ) ?? prev;
+      return countRatings / productReducer.product?.comments?.length;
+    });
+  }, [productReducer.product?.comments]);
+
   console.log(location, 'LOCATION');
 
   return (
     <div className={classes.root}>
       <div className={classes.wrapBreadcrumb}>
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="medium" />}
-          aria-label="breadcrumb"
-        >
-          <Link
-            underline="hover"
-            key="1"
-            color="inherit"
-            href="/"
-            // onClick={handleClick}
-          >
-            Trang chủ
-          </Link>
-          <Link
-            underline="hover"
-            key="2"
-            color="inherit"
-            href="/material-ui/getting-started/installation/"
-            // onClick={handleClick}
-          >
-            Sản phẩm
-          </Link>
-          <Typography
-            key="3"
-            color="text.primary"
-            fontSize={14}
-            fontFamily="SamsungOne"
-          >
-            Tai nghe không dây
-          </Typography>
-        </Breadcrumbs>
+        <Breadcrumb
+          pathname={location.pathname}
+          breadcrumbNameMap={{
+            '/product': 'Sản phẩm',
+            [`/product/${productReducer.product?.slug}`]:
+              productReducer.product?.name,
+          }}
+        />
       </div>
 
       <div className={cx(classes.wrapMainInfo, 'd-f')}>
@@ -105,65 +120,88 @@ function ProductDetail() {
           <div className={cx(classes.wrapImgAndSlide)}>
             <div className={classes.wrapMainImg}>
               <img
-                src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                alt="Product Image"
+                src={`${process.env.REACT_APP_API_BASE_URL}${infoByColor?.image}`}
+                alt={productReducer.product?.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
               />
             </div>
-            <Slider {...settings}>
-              <div>
-                <img
-                  src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                  alt="Product Image"
-                  height={100}
-                />
-              </div>
-              <div>
-                <img
-                  src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                  alt="Product Image"
-                  height={100}
-                />
-              </div>
-              <div>
-                <img
-                  src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                  alt="Product Image"
-                  height={100}
-                />
-              </div>
-              <div>
-                <img
-                  src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                  alt="Product Image"
-                  height={100}
-                />
-              </div>
-              <div>
-                <img
-                  src="https://images.samsung.com/is/image/samsung/p6pim/vn/eo-ia500bbegww/gallery/vn-samsung-35mm-earphones-eo-ia500-eo-ia500bbegww-thumb-530460391?$160_160_PNG$"
-                  alt="Product Image"
-                  height={100}
-                />
-              </div>
-            </Slider>
+            <div
+              style={{
+                width: productReducer.product?.colors?.length * 100,
+                marginTop: '16px',
+              }}
+            >
+              <Slider
+                {...settings}
+                slidesToShow={
+                  productReducer.product?.colors?.length > 4
+                    ? 4
+                    : productReducer.product?.colors?.length
+                }
+              >
+                {productReducer.product?.colors?.length > 0 &&
+                  productReducer.product?.colors?.map((item, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                      }}
+                      onClick={() => handleClickColor(item.value)}
+                    >
+                      <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}${item?.image}`}
+                        alt={productReducer.product?.name}
+                        height={100}
+                        style={{
+                          cursor: 'pointer',
+                          border:
+                            infoByColor?.value === item.value
+                              ? '1px solid #ccc'
+                              : '1px solid transparent',
+                        }}
+                      />
+                    </div>
+                  ))}
+              </Slider>
+            </div>
           </div>
           <div style={{ maxWidth: '500px', margin: '0 16px' }}>
-            <Typography
+            <Truncate
+              fontWeight="600"
+              fontSize={20}
+              gutterBottom
               variant="h1"
               component="h1"
-              gutterBottom
-              fontSize={20}
-              fontWeight={600}
+              className={cx(classes.prodName)}
+              line={2}
             >
-              TAI NGHE NHÉT TAI JBL TUNE 110 CHÍNH HÃNG
-            </Typography>
-            <div className={cx('d-f')}>
-              {renderStars(3)}
-              <span className={cx('ml-8px')}>2.5</span>
-              <span className={cx('ml-4px')}>(25)</span>
+              {productReducer.product?.name}
+            </Truncate>
+            <div className={cx('d-f')} style={{ alignItems: 'center' }}>
+              <Rating
+                value={rating.toFixed(1)}
+                readOnly
+                precision={0.1}
+                style={{ fontSize: '24px' }}
+              />
+              <div style={{ marginTop: '2px' }}>
+                <span className={cx('ml-8px')}>
+                  {isNaN(rating.toFixed(1)) ? 0 : rating.toFixed(1)}
+                </span>
+                <span className={cx('ml-4px')}>
+                  ({productReducer.product?.comments?.length ?? 0})
+                </span>
+              </div>
             </div>
             <div className={cx('mt-20px')}>
-              Giá: <span className={classes.price}>5.489.891 ₫</span>
+              Giá:{' '}
+              <span className={classes.price}>
+                {numberWithCommas(productReducer.product?.price)} ₫
+              </span>
             </div>
             <ul className={cx('mt-20px', classes.shortDesc)}>
               <li>
@@ -259,34 +297,23 @@ function ProductDetail() {
           bgcolor="#f1f1f1"
           gutterBottom
         >
-          Chi tiết sản phẩm của TAI NGHE NHÉT TAI JBL TUNE 110 CHÍNH HÃNG
+          Chi tiết sản phẩm của {productReducer.product?.name}
         </Typography>
         <div style={{ padding: '0 16px' }}>
-          <Collapse in={isShowMore} collapsedSize={40}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum
-            laudantium possimus reiciendis eligendi quasi, veniam quidem quos
-            ipsum vel explicabo fuga dicta sed cum harum, dolorum voluptatum
-            blanditiis, doloremque animi! Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Omnis a numquam consectetur provident ut.
-            Assumenda quidem aut accusantium voluptatibus, commodi maxime,
-            reprehenderit labore unde suscipit ducimus laudantium excepturi eos
-            sapiente. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Odio sint, incidunt officia, sit cumque earum beatae qui eos dolorem
-            inventore non vitae reiciendis magnam obcaecati a! Veritatis
-            quibusdam impedit assumenda?
+          <Collapse in={isShowMore} collapsedSize={40} ref={descRef}>
+            {productReducer.product?.description}
           </Collapse>
-          <div style={{ textAlign: 'center', marginTop: '12px' }}>
-            <Button
-              variant="outlined"
-              className={cx('fz-16px', classes.showMoreBtn)}
-              onClick={handleClickShowMore}
-              style={{
-                
-              }}
-            >
-              {isShowMore ? 'Thu gọn' : 'Xem thêm'}
-            </Button>
-          </div>
+          {height > 500 && (
+            <div style={{ textAlign: 'center', marginTop: '12px' }}>
+              <Button
+                variant="outlined"
+                className={cx('fz-16px', classes.showMoreBtn)}
+                onClick={handleClickShowMore}
+              >
+                {isShowMore ? 'Thu gọn' : 'Xem thêm'}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -319,7 +346,7 @@ function ProductDetail() {
         <Collapse in={isOpenFormRating}>
           <ReviewForm />
         </Collapse>
-        <ReviewList />
+        <ReviewList reviews={productReducer.product?.comments ?? []} />
       </section>
     </div>
   );

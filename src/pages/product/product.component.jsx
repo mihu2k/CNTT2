@@ -26,38 +26,82 @@ import { Breadcrumb } from '~/components/breadcrumb';
 import Loading from '~/components/loading/loading.component';
 import ProductCard from '~/components/product/card';
 import { getProductsRequest } from '~/redux/actions/product.action';
+import { getCategoriesRequest } from '~/redux/actions/category.action';
+
+const FILTERS = [
+  {
+    text: 'Mới nhất',
+    name: 'updated_at',
+    value: 'desc',
+  },
+  {
+    text: 'Đánh giá cao nhất',
+    name: 'rating',
+    value: 'desc',
+  },
+  {
+    text: 'Giá thấp đến cao',
+    name: 'price',
+    value: 'asc',
+  },
+  {
+    text: 'Giá cao đến thấp',
+    name: 'price',
+    value: 'desc',
+  },
+];
 
 function Product() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
-  const productReducer = useSelector((state) => state.product);
+  const { product: productReducer, category: categoryReducer } = useSelector(
+    (state) => state,
+  );
 
-  const [checked, setChecked] = React.useState([0]);
   const [expanded, setExpanded] = React.useState(true);
+  const [query, setQuery] = React.useState({
+    categoryIds: [],
+    sort_by: 'updated_at',
+    sort_type: 'desc',
+  });
+  const [valueSelect, setValueSelect] = React.useState(0);
 
   const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const currentIndex = query.categoryIds.indexOf(value);
+    const newCategoryIds = [...query.categoryIds];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+    currentIndex === -1
+      ? newCategoryIds.push(value)
+      : newCategoryIds.splice(currentIndex, 1);
+    setQuery((prev) => ({ ...prev, categoryIds: newCategoryIds }));
+  };
 
-    setChecked(newChecked);
+  const handleChangeFilter = (e) => {
+    const { value } = e.target;
+    const filter = FILTERS[value];
+    setQuery((prev) => ({
+      ...prev,
+      sort_by: filter.name,
+      sort_type: filter.value,
+    }));
+    setValueSelect(value);
   };
 
   const fetchProducts = (query = {}) => {
     dispatch(getProductsRequest(query));
   };
 
-  React.useEffect(() => {
-    fetchProducts();
-  }, [location]);
+  const fetchCategories = (query = {}) => {
+    dispatch(getCategoriesRequest(query));
+  };
 
-  console.log(location, 'LOCATION');
+  React.useEffect(() => {
+    fetchProducts(query);
+    fetchCategories();
+  }, [location, query]);
+
+  console.log(query, 'CHECKED');
 
   return (
     <div className={classes.root}>
@@ -69,27 +113,23 @@ function Product() {
 
         <div>
           <Select
-            id="filter-select"
-            value={10}
+            value={valueSelect}
             className={classes.select}
-            // onChange={handleChange}
-            // variant="standard"
+            onChange={handleChangeFilter}
           >
-            <MenuItem value={10} className={classes.selectItem}>
-              Mới nhất
-            </MenuItem>
-            <MenuItem value={11} className={classes.selectItem}>
-              Đánh giá cao nhất
-            </MenuItem>
-            <MenuItem value={20} className={classes.selectItem}>
-              Giá thấp đến cao
-            </MenuItem>
-            <MenuItem value={30} className={classes.selectItem}>
-              Giá cao đến thấp
-            </MenuItem>
+            {FILTERS.map((filter, index) => (
+              <MenuItem
+                key={filter.text}
+                value={index}
+                className={classes.selectItem}
+              >
+                {filter.text}
+              </MenuItem>
+            ))}
           </Select>
         </div>
       </div>
+
       <Grid container spacing={2}>
         <Grid item xs={0} sm={3} md={3}>
           <div className={classes.wrapAccordion}>
@@ -100,7 +140,9 @@ function Product() {
                 id="panel1a-header"
                 onClick={() => setExpanded(!expanded)}
               >
-                <Typography fontSize={16}>Thể loại</Typography>
+                <Typography fontSize={16} fontWeight={600}>
+                  Thể loại
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <List
@@ -110,41 +152,38 @@ function Product() {
                     bgcolor: 'background.paper',
                   }}
                 >
-                  {[0, 1, 2, 3].map((value) => {
-                    const labelId = `checkbox-list-label-${value}`;
-
-                    return (
-                      <ListItem key={value} disablePadding>
-                        <ListItemButton
-                          key={value}
-                          role={undefined}
-                          onClick={handleToggle(value)}
-                          dense
-                        >
-                          <ListItemIcon>
-                            <Checkbox
-                              key={value}
-                              edge="start"
-                              checked={checked.indexOf(value) !== -1}
-                              tabIndex={-1}
-                              disableRipple
-                              inputProps={{
-                                'aria-labelledby': labelId,
+                  {categoryReducer.categories.length > 0
+                    ? categoryReducer.categories.map((category) => (
+                        <ListItem key={category.name} disablePadding>
+                          <ListItemButton
+                            key={category.name}
+                            role={undefined}
+                            onClick={handleToggle(category._id)}
+                            dense
+                          >
+                            <ListItemIcon>
+                              <Checkbox
+                                key={category.name}
+                                edge="start"
+                                checked={
+                                  query.categoryIds.indexOf(category._id) !== -1
+                                }
+                                tabIndex={-1}
+                                disableRipple
+                              />
+                            </ListItemIcon>
+                            <ListItemText
+                              key={category.name}
+                              id={category.slug}
+                              primaryTypographyProps={{
+                                fontSize: '1.5rem',
                               }}
+                              primary={category.name}
                             />
-                          </ListItemIcon>
-                          <ListItemText
-                            key={value}
-                            id={labelId}
-                            primaryTypographyProps={{
-                              fontSize: '1.4rem',
-                            }}
-                            primary={`Line item ${value + 1}`}
-                          />
-                        </ListItemButton>
-                      </ListItem>
-                    );
-                  })}
+                          </ListItemButton>
+                        </ListItem>
+                      ))
+                    : null}
                 </List>
               </AccordionDetails>
             </Accordion>

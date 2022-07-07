@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './footer.css';
 import { Place, Facebook, Instagram, Twitter } from '@mui/icons-material';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 function Footer() {
@@ -16,7 +17,7 @@ function Footer() {
                 <Link
                   className={cx('footer-item-link')}
                   title="Trang chủ"
-                  to="/Home"
+                  to={config.routes.home}
                 >
                   Trang chủ
                 </Link>
@@ -25,7 +26,7 @@ function Footer() {
                 <Link
                   className={cx('footer-item-link')}
                   title="Sản phẩm"
-                  to="/"
+                  to={config.routes.product}
                 >
                   Sản phẩm
                 </Link>

@@ -10,7 +10,10 @@ export const useStyles = makeStyles((theme) => {
       borderBottom: '1px solid #ccc',
       '& .MuiBreadcrumbs-root': {
         '& .MuiLink-root': {
-          fontSize: '1.4rem',
+          fontSize: '1.6rem',
+        },
+        '& .MuiTypography-root ': {
+          fontSize: '1.6rem',
         },
       },
     },
@@ -64,7 +67,8 @@ export const useStyles = makeStyles((theme) => {
     //   height: '80px',
     // },
     wrapImgAndSlide: {
-      width: '400px',
+      width: '416px',
+      flexShrink: 0,
       '& .slick-slider': {
         '& .slick-arrow': {
           margin: '0 36px',
@@ -85,6 +89,9 @@ export const useStyles = makeStyles((theme) => {
         padding: '20px 20px 20px 0',
       },
     },
+    prodName: {
+      lineHeight: 1.3,
+    },
     wrapMainImg: {
       height: '400px',
       display: 'flex',
@@ -94,7 +101,7 @@ export const useStyles = makeStyles((theme) => {
     },
     wrapQuantity: {
       alignItems: 'center',
-      justifyContent: 'space-around',
+      // justifyContent: 'space-around',
       margin: '32px 0',
       '& .MuiButtonBase-root.MuiIconButton-root': {
         minWidth: '36px',

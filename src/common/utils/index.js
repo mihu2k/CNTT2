@@ -47,5 +47,28 @@ export const showToastMsg = (type = 'info', msg, options = {}) => {
  * @returns {string} currency
  */
 export function numberWithCommas(number, separate = '.') {
-  return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, separate);
+  return number
+    ?.toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, separate);
+}
+
+/**
+ * @author MH
+ * @param {*} timestamp
+ * @returns {string} dd/MM/YYYY HH:mm
+ */
+export function formatDateTime(timestamp) {
+  const m = new Date(timestamp);
+  const dateString =
+    ('0' + m.getDate()).slice(-2) +
+    '/' +
+    ('0' + (m.getMonth() + 1)).slice(-2) +
+    '/' +
+    m.getFullYear() +
+    ' - ' +
+    ('0' + m.getHours()).slice(-2) +
+    ':' +
+    ('0' + m.getMinutes()).slice(-2);
+
+  return dateString;
 }

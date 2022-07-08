@@ -71,7 +71,8 @@ function Checkout() {
                   Mã Đơn hàng: <span>#Rene001</span>
                 </p>
                 <p>
-                  Cám ơn bạn vì đã xác nhận đơn hàng, theo đõi đơn hàng của bạn{' '}
+                  Cám ơn bạn vì đã xác nhận đơn hàng, theo đõi đơn hàng của
+                  bạn&nbsp;
                   <Link to={'./'}>
                     <span className={classes.orderInfoLink}>tại đây!</span>
                   </Link>

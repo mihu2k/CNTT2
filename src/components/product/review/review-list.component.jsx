@@ -1,6 +1,6 @@
-import { Avatar, Typography } from '@mui/material';
-import { formatDateTime, renderStars } from '~/common/utils';
+import { Avatar, Rating, Typography } from '@mui/material';
 import cx from 'classnames';
+import { formatDateTime } from '~/common/utils';
 import { useStyles } from './review-list.style';
 
 function ReviewList({ reviews }) {
@@ -9,8 +9,8 @@ function ReviewList({ reviews }) {
   return (
     <ul className={classes.list}>
       {reviews.length > 0 ? (
-        reviews?.map((review) => (
-          <li className={classes.item}>
+        reviews?.map((review, index) => (
+          <li className={classes.item} key={review?._id ?? index}>
             <div className={cx('d-f', classes.wrapInfo)}>
               <div className={cx('d-f', classes.wrapInfoLeft)}>
                 <Avatar
@@ -20,7 +20,7 @@ function ReviewList({ reviews }) {
                 />
                 <div className="ml-12px">
                   <div style={{ marginBottom: '-4px' }}>
-                    {renderStars(review?.rating)}
+                    <Rating value={review?.rating?.toFixed(1)} readOnly />
                   </div>
                   <span>{review?.author?.full_name}</span>
                 </div>

@@ -19,7 +19,7 @@ import Menu from '~/components/popper/menu';
 import Search from '../search';
 import styles from './header.css';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequest } from '~/redux/actions/auth.action';
 import jwtDecode from 'jwt-decode';
 
@@ -68,6 +68,7 @@ function Header() {
   const [currentUser, setCurrentUser] = React.useState(
     JSON.parse(localStorage.getItem('profile')),
   );
+  const { cart: cartReducer } = useSelector((state) => state);
 
   // handle logic
   const handleMenuChange = (menuItem) => {
@@ -129,10 +130,16 @@ function Header() {
 
         <div className={cx('header-action')}>
           <Tippy content="Giỏ hàng" placement="bottom" delay={[0, 100]}>
-            <button className={cx('header-action-btn')}>
-              <ShoppingCartOutlinedIcon style={generalIconStyle} />
-              <span className={cx('header-badge')}>1</span>
-            </button>
+            <Link to={config.routes.cart}>
+              <button className={cx('header-action-btn')}>
+                <ShoppingCartOutlinedIcon style={generalIconStyle} />
+                {cartReducer.products?.length > 0 && (
+                  <span className={cx('header-badge')}>
+                    {cartReducer.products?.length}
+                  </span>
+                )}
+              </button>
+            </Link>
           </Tippy>
 
           <Menu
@@ -148,6 +155,7 @@ function Header() {
                     : `${process.env.REACT_APP_API_BASE_URL}${currentUser.data.avatar}`
                 }
                 alt={currentUser.data.full_name ?? 'Avatar'}
+                referrerpolicy="no-referrer"
               />
             ) : (
               // <div className={cx('header-more-btn')}>

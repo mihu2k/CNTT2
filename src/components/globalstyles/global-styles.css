@@ -67,6 +67,10 @@ a {
   margin-top: 20px;
 }
 
+.mt-16px {
+  margin-top: 16px;
+}
+
 .ml-2px {
   margin-left: 2px;
 }
@@ -179,3 +183,14 @@ body .slick-dots li.slick-active button:before {
 /* body .slick-list {
   margin-left: 68px;
 } */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}

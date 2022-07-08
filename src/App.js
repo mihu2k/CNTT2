@@ -10,15 +10,26 @@ import { DefaultLayout } from '~/layout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import config from './config';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCartRequest } from './redux/actions/cart.action';
 
 function App() {
+  const dispatch = useDispatch();
+  const { cart: cartReducer } = useSelector((state) => state);
   const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
+
+  const fetchCart = () => dispatch(getCartRequest());
 
   React.useEffect(() => {
     if (!localStorage.getItem('profile')) {
       localStorage.setItem('profile', null);
     }
+    fetchCart();
   }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartReducer.products));
+  }, [cartReducer]);
 
   console.log('HEADER');
 

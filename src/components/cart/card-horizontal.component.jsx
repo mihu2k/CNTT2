@@ -7,41 +7,76 @@ import { InputQuantity } from '../input-quantity';
 import Tippy from '@tippyjs/react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Truncate } from '../truncate';
+import { numberWithCommas } from '~/common/utils';
+import { useDispatch } from 'react-redux';
+import {
+  actionQuantityCartRequest,
+  changeQuantityCartRequest,
+  deleteCartRequest,
+} from '~/redux/actions/cart.action';
 
-export function CardHorizontal() {
+export function CardHorizontal({ product }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleClickChange = (type, _quantity) => {
+    dispatch(actionQuantityCartRequest({ ...product }, type));
+  };
+
+  const handleChange = (quantity) => {
+    dispatch(changeQuantityCartRequest({ ...product }, quantity));
+  };
+
+  const handleDeleteItemCart = () => {
+    dispatch(deleteCartRequest({ ...product }));
+  };
 
   return (
     <div className={cx('d-f', classes.box)}>
       <img
-        src="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=164&h=164&fit=crop&auto=format"
-        alt="Product Image"
+        src={`${process.env.REACT_APP_API_BASE_URL}${product?.colorImage}`}
+        alt={product.name}
         className={classes.imgProd}
       />
       <div className={classes.wrapInfo}>
         <div className={cx('d-f', classes.info)}>
           <div style={{ maxWidth: '60%' }}>
-            <Truncate variant="h4" component="h4" line={2}>
-              Galaxy Tab S7 FE Galaxy Tab S7 FE LTE Galaxy Tab S7 FE LTE Galaxy
-              Tab S7 FE LTE Galaxy Tab S7 FE LTE
+            <Truncate
+              variant="h5"
+              component="h5"
+              line={2}
+              fontSize={20}
+              fontWeight={600}
+            >
+              {product.name}
             </Truncate>
+            <Typography variant="p" component="p" fontSize={14}>
+              {product.colorName}
+            </Typography>
           </div>
           <Typography
             variant="p"
             component="p"
             style={{ fontWeight: 'bold', fontSize: '1.8rem' }}
           >
-            9.595.932 ₫
+            {numberWithCommas(product.price)} ₫
           </Typography>
         </div>
-        <div className={cx('d-f', classes.action)}>
+        <div className={cx('d-f', classes.action, 'mt-16px')}>
           <div>
-            <InputQuantity />
+            <InputQuantity
+              quantityProps={product.quantity}
+              onClickChange={handleClickChange}
+              onChange={handleChange}
+            />
           </div>
-          <Tippy content={`Xóa {SP1} khỏi giỏ hàng`}>
+          <Tippy
+            content={`Xóa ${product.name} (${product.colorName}) khỏi giỏ hàng`}
+          >
             <IconButton
-              aria-label="delete product"
+              aria-label="delete-product"
               style={{ marginLeft: '8px' }}
+              onClick={handleDeleteItemCart}
             >
               <DeleteIcon style={{ fontSize: '22px', color: '#000' }} />
             </IconButton>

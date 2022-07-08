@@ -9,11 +9,14 @@ import {
   Typography,
 } from '@mui/material';
 // Icons
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 // Styles
+import { numberWithCommas } from '~/common/utils';
 import { useStyles } from './summary.style';
+import { useNavigate } from 'react-router-dom';
+import config from '~/config';
 
 const SUPPORT_PAYMENT = [
   {
@@ -33,8 +36,9 @@ const SUPPORT_PAYMENT = [
   },
 ];
 
-export const Summary = () => {
+export const Summary = ({ cart }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <div className={classes.root}>
@@ -76,7 +80,13 @@ export const Summary = () => {
           Tổng giá sau thuế:
         </Typography>
         <Typography variant="h4" component="span" fontWeight={600}>
-          1.500.196 ₫
+          {numberWithCommas(
+            cart.products.reduce(
+              (total, product) => total + product.price * product.quantity,
+              0,
+            ),
+          )}
+          &nbsp;₫
         </Typography>
       </div>
       <Typography variant="p" component="p" gutterBottom>
@@ -87,6 +97,7 @@ export const Summary = () => {
           variant="contained"
           fullWidth
           className={cx(classes.nextButton, 'fz-16px')}
+          onClick={() => navigate(config.routes.checkoutShipment)}
         >
           Tiếp tục
         </Button>

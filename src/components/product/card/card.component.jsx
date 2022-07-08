@@ -4,19 +4,24 @@ import {
   Card,
   CardActions,
   CardContent,
+  Rating,
   Typography,
 } from '@mui/material';
 import cx from 'classnames';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { numberWithCommas, renderStars } from '~/common/utils';
 import { Truncate } from '~/components/truncate';
+import { addToCartRequest } from '~/redux/actions/cart.action';
 import { useStyles } from './card.style';
 
 function ProductCard({ product }) {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [infoByColor, setInfoByColor] = React.useState(product?.colors[0]);
+  const [rating, setRating] = React.useState(0);
 
   const handleClickColor = (color) => {
     const index = product?.colors?.findIndex((item) => item.value === color);
@@ -27,8 +32,28 @@ function ProductCard({ product }) {
     navigate(path);
   };
 
+  const handleAddToCart = () => {
+    dispatch(
+      addToCartRequest(
+        {
+          ...product,
+          colorValue: infoByColor?.value,
+          colorName: infoByColor?.name,
+          colorImage: infoByColor?.image,
+        },
+        navigate,
+      ),
+    );
+  };
+
   React.useEffect(() => {
     setInfoByColor(product?.colors[0]);
+    setRating((prev) => {
+      const countRatings =
+        product?.comments.reduce((rating, item) => rating + item.rating, 0) ??
+        prev;
+      return countRatings / product?.comments?.length;
+    });
   }, [product]);
 
   return (
@@ -74,8 +99,11 @@ function ProductCard({ product }) {
                       className={cx('boxChooseColor', classes.wrapCircleBox)}
                       style={
                         color.value === infoByColor.value
-                          ? { border: '1px solid #333' }
-                          : { border: '1px solid transparent' }
+                          ? { border: '1px solid #333', cursor: 'pointer' }
+                          : {
+                              border: '1px solid transparent',
+                              cursor: 'pointer',
+                            }
                       }
                     >
                       <div
@@ -90,11 +118,24 @@ function ProductCard({ product }) {
           </div>
           <div className={cx('f-shrink-0', classes.wrapPrice)}>
             <div>{numberWithCommas(product.price)} ₫</div>
-            <div className="mt-20px">{renderStars(4)}</div>
+            <div className="mt-20px">
+              <Rating
+                value={rating.toFixed(1)}
+                readOnly
+                precision={0.1}
+                style={{ fontSize: '24px' }}
+              />
+              {/* {renderStars(4)} */}
+            </div>
           </div>
         </CardContent>
         <CardActions className={classes.cardAction}>
-          <Button size="large" variant="contained" fullWidth>
+          <Button
+            size="large"
+            variant="contained"
+            fullWidth
+            onClick={handleAddToCart}
+          >
             Mua ngay
           </Button>
           <Button

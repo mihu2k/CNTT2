@@ -12,11 +12,16 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import PowerIcon from '@mui/icons-material/Power';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 // Components
 import {
   Box,
   Button,
   Collapse,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   IconButton,
   List,
   ListItem,
@@ -27,20 +32,22 @@ import {
 } from '@mui/material';
 import Tippy from '@tippyjs/react';
 import cx from 'classnames';
-import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Slider from 'react-slick';
-import { numberWithCommas, renderStars } from '~/common/utils';
+import { numberWithCommas } from '~/common/utils';
 import { Breadcrumb } from '~/components/breadcrumb';
 import { InputQuantity } from '~/components/input-quantity';
 import ReviewList, { ReviewForm } from '~/components/product/review';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProductBySlugRequest } from '~/redux/actions/product.action';
 import { Truncate } from '~/components/truncate';
+import { addToCartRequest } from '~/redux/actions/cart.action';
+import { getProductBySlugRequest } from '~/redux/actions/product.action';
 
 function ProductDetail() {
   const classes = useStyles();
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { slug } = useParams();
   const descRef = React.useRef();
 
@@ -49,8 +56,10 @@ function ProductDetail() {
   const [infoByColor, setInfoByColor] = React.useState({});
   const [rating, setRating] = React.useState(0);
   const [height, setHeight] = React.useState(0);
+  const [quantity, setQuantity] = React.useState(1);
 
   const { product: productReducer } = useSelector((state) => state);
+  const [openModal, setOpenModal] = React.useState(false);
 
   const settings = {
     infinite: true,
@@ -80,6 +89,26 @@ function ProductDetail() {
     setInfoByColor(productReducer.product?.colors[index > -1 ? index : 0]);
   };
 
+  const handleAddToCart = (navigate) => {
+    dispatch(
+      addToCartRequest(
+        {
+          ...productReducer.product,
+          quantity,
+          colorValue: infoByColor?.value,
+          colorName: infoByColor?.name,
+          colorImage: infoByColor?.image,
+        },
+        navigate,
+      ),
+    );
+    setOpenModal(true);
+  };
+
+  const getQuantity = (quantity) => {
+    setQuantity(quantity);
+  };
+
   React.useEffect(() => {
     getProductBySlug(slug);
     setHeight(descRef.current.clientHeight);
@@ -104,6 +133,28 @@ function ProductDetail() {
 
   return (
     <div className={classes.root}>
+      <Dialog
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle
+          id="alert-dialog-title"
+          style={{ textAlign: 'center', paddingBottom: '8px' }}
+        >
+          <CheckCircleRoundedIcon
+            color="success"
+            style={{ fontSize: '48px' }}
+          />
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" fontSize={16}>
+            Sản phẩm đã được thêm vào giỏ hàng.
+          </DialogContentText>
+        </DialogContent>
+      </Dialog>
+
       <div className={classes.wrapBreadcrumb}>
         <Breadcrumb
           pathname={location.pathname}
@@ -130,7 +181,9 @@ function ProductDetail() {
             </div>
             <div
               style={{
-                width: productReducer.product?.colors?.length * 100,
+                width: isNaN(productReducer.product?.colors?.length * 100)
+                  ? '100%'
+                  : productReducer.product?.colors?.length * 100,
                 marginTop: '16px',
               }}
             >
@@ -198,7 +251,7 @@ function ProductDetail() {
               </div>
             </div>
             <div className={cx('mt-20px')}>
-              Giá:{' '}
+              Giá:&nbsp;
               <span className={classes.price}>
                 {numberWithCommas(productReducer.product?.price)} ₫
               </span>
@@ -216,7 +269,7 @@ function ProductDetail() {
             <div className={cx('d-f', classes.wrapQuantity, 'mt-20px')}>
               <span>Số lượng</span>
               <div className={cx('ml-16px')}>
-                <InputQuantity />
+                <InputQuantity getQuantity={getQuantity} />
               </div>
             </div>
             <Box
@@ -229,10 +282,15 @@ function ProductDetail() {
                 variant="outlined"
                 startIcon={<AddShoppingCartIcon />}
                 className={classes.mainButton}
+                onClick={() => handleAddToCart(null)}
               >
                 Thêm vào giỏ hàng
               </Button>
-              <Button variant="outlined" className={classes.mainButton}>
+              <Button
+                variant="outlined"
+                className={classes.mainButton}
+                onClick={() => handleAddToCart(navigate)}
+              >
                 Mua ngay
               </Button>
             </Box>

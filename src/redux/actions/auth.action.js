@@ -20,6 +20,7 @@ export const loginRequest = (data) => async (dispatch) => {
 
 export const loginWithGGRequest = (accessToken) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST });
+  console.log(accessToken, 'accessToken');
 
   try {
     const response = await GoogleService.getUserInfo(accessToken);

@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
   invoiceWrapper: {
     backgroundColor: '#f4f4f4',
-    padding: '30px',
+    padding: '30px 28px',
     height: '100%',
     borderRadius: '20px',
   },
@@ -28,8 +28,9 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
-    gap: '30px',
-    margin: '32px 0',
+    alignItems: 'center',
+    gap: '12px',
+    margin: '24px 0 0 0',
   },
 
   invoiceImg: {
@@ -38,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   invoiceInfo: {
-    maxWidth: '245px',
+    maxWidth: '200px',
     flex: '1',
   },
   invoiceInfoName: {

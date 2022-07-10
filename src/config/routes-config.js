@@ -1,18 +1,19 @@
 const routes = {
   default: '/',
   home: '/home',
-  profile: '/profile',
-  login: '/login',
   product: '/product',
   productDetail: '/product/:slug',
-  profileSettings: '/mypage/settings',
-  checkoutShipment: '/checkout/multi/delivery-address',
-  checkoutPayment: '/checkout/multi/payment-method',
-  orderConfirmation: '/checkout/order-confirmation',
   cart: '/cart',
-  order: '/order',
+  login: '/login',
   forgetPassword: '/forget-password',
   resetPassword: '/reset-password/:userId/:token',
+  // -----
+  profile: '/profile',
+  profileSettings: '/profile/settings',
+  checkoutShipment: '/checkout/delivery-address',
+  checkoutPayment: '/checkout/payment-method',
+  orderConfirmation: '/checkout/order-confirmation',
+  order: '/order',
 };
 
 export default routes;

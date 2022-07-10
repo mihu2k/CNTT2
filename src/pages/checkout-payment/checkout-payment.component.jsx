@@ -20,26 +20,27 @@ import {
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-// import image from '~/assets/images';
-// import { Link } from 'react-router-dom';
-// import config from '~/config';
-// import cx from 'classnames';
 import images from '~/assets/images';
 import Invoice from '~/components/invoices';
+import { useDispatch, useSelector } from 'react-redux';
+import { CHECKOUT_STEPS } from '~/constants';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { numberWithCommas } from '~/common/utils';
+import { createOrderRequest } from '~/redux/actions/order.action';
+import Loading from '~/components/loading/loading.component';
 
 function Checkout() {
   const classes = useStyles();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Stepper
-  const steps = [
-    'Điền thông tin giao hàng',
-    'Chọn thanh toán',
-    'Hoàn thành đặt hàng',
-  ];
+  const { cart: cartReducer, order: orderReducer } = useSelector(
+    (state) => state,
+  );
 
-  //Accordion
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false); // Accordion
+  const [loading, setLoading] = React.useState(false);
 
   const handleAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -59,6 +60,7 @@ function Checkout() {
   const handleExpiredMonth = (event) => {
     setExpiredMonth(event.target.value);
   };
+
   const handleExpiredYear = (event) => {
     setExpiredYear(event.target.value);
   };
@@ -79,11 +81,19 @@ function Checkout() {
     days.push(j);
   }
 
+  const handlePaymentByCash = () => {
+    // setLoading(true);
+    dispatch(createOrderRequest(location.state.checkoutInfo, navigate));
+  };
+
+  console.log(orderReducer, 'orderReducer');
+
   return (
     <div className={classes.wrapper}>
+      {orderReducer.status === 'pending' && <Loading />}
       <Box className={classes.stepsContainer} sx={{ width: '100%' }}>
         <Stepper activeStep={1} alternativeLabel>
-          {steps.map((label) => (
+          {CHECKOUT_STEPS.map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
@@ -93,7 +103,6 @@ function Checkout() {
 
       <Grid container spacing={4}>
         <Grid item xs={12} sm={12} md={7}>
-          {/* start accordion header */}
           <Typography
             variant="div"
             mb={'32px'}
@@ -105,7 +114,6 @@ function Checkout() {
               <span>Vui lòng chọn phương thức thanh toán</span>
             </Typography>
           </Typography>
-          {/* end accordion header */}
 
           <Typography variant="div">
             {/* start 1st Accordion */}
@@ -296,7 +304,11 @@ function Checkout() {
                     cách an toàn, bảo mật.
                   </Typography>
                   <Typography variant="div" fontWeight="bold">
-                    Tổng cộng: <span>1.390.000 &#8363;</span>
+                    Tổng cộng:&nbsp;
+                    <span>
+                      {numberWithCommas(location.state.checkoutInfo.total)}
+                      &nbsp;&#8363;
+                    </span>
                   </Typography>
                   <Typography variant="div" className={classes.accordionBtn}>
                     <Button variant="contained">Tiếp Tục</Button>
@@ -350,10 +362,16 @@ function Checkout() {
                       fontWeight: 'bold',
                     }}
                   >
-                    Tổng cộng: <span>1.390.000 &#8363;</span>
+                    Tổng cộng:&nbsp;
+                    <span>
+                      {numberWithCommas(location.state.checkoutInfo.total)}
+                      &nbsp;&#8363;
+                    </span>
                   </Typography>
                   <Typography variant="div" className={classes.accordionBtn}>
-                    <Button variant="contained">Tiếp Tục</Button>
+                    <Button variant="contained" onClick={handlePaymentByCash}>
+                      Tiếp Tục
+                    </Button>
                   </Typography>
                 </Typography>
               </AccordionDetails>
@@ -362,7 +380,7 @@ function Checkout() {
           </Typography>
         </Grid>
         <Grid item xs={12} sm={12} md={5}>
-          <Invoice />
+          <Invoice cart={cartReducer} />
         </Grid>
       </Grid>
     </div>

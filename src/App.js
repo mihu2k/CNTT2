@@ -1,22 +1,15 @@
 import React, { Fragment } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
-import { publicRoutes } from '~/routes';
-import { DefaultLayout } from '~/layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import config from './config';
-import { useDispatch, useSelector } from 'react-redux';
+import { DefaultLayout } from '~/layout';
+import { privateRoutes, publicRoutes, RequireAuth } from '~/routes';
 import { getCartRequest } from './redux/actions/cart.action';
 
 function App() {
   const dispatch = useDispatch();
   const { cart: cartReducer } = useSelector((state) => state);
-  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
 
   const fetchCart = () => dispatch(getCartRequest());
 
@@ -30,8 +23,6 @@ function App() {
   React.useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartReducer.products));
   }, [cartReducer]);
-
-  console.log('HEADER');
 
   return (
     <Router>
@@ -52,13 +43,33 @@ function App() {
                 key={index}
                 path={route.path}
                 element={
-                  route.path === '/login' && currentUser ? (
-                    <Navigate to={config.routes.home} replace />
-                  ) : (
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
+          {privateRoutes.map((route, index) => {
+            const Page = route.component;
+
+            let Layout = DefaultLayout;
+            if (route.layout) {
+              Layout = route.layout;
+            } else if (route.layout === null) {
+              Layout = Fragment;
+            }
+
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <RequireAuth>
                     <Layout>
                       <Page />
                     </Layout>
-                  )
+                  </RequireAuth>
                 }
               />
             );

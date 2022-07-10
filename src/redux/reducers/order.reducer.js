@@ -1,52 +1,49 @@
 import * as types from '../types';
 
 const initialState = {
-  profile: null,
+  order: null,
+  orders: [],
   status: null,
 };
 
-export default function authReducer(state = initialState, action) {
+export default function orderReducer(state = initialState, action) {
   switch (action.type) {
-    case types.LOGIN_REQUEST:
+    case types.CREATE_ORDER_REQUEST:
       return {
         ...state,
         status: 'pending',
       };
-    case types.LOGIN_SUCCESS:
+    case types.CREATE_ORDER_SUCCESS:
+      const order = action.payload.data?.data;
       return {
         ...state,
         status: 'success',
-        profile: action.payload.data,
+        order,
       };
-    case types.LOGIN_FAILURE:
+    case types.CREATE_ORDER_FAILURE:
       return {
         ...state,
         status: 'failure',
-        profile: null,
+        order: null,
       };
-    case types.REGISTER_REQUEST:
+    case types.GET_ORDER_BY_ID_REQUEST:
       return {
         ...state,
         status: 'pending',
       };
-    case types.REGISTER_SUCCESS:
+    case types.GET_ORDER_BY_ID_SUCCESS: {
+      const order = action.payload.data?.data;
       return {
         ...state,
         status: 'success',
-        profile: action.payload.data,
+        order,
       };
-    case types.REGISTER_FAILURE:
+    }
+    case types.GET_ORDER_BY_ID_FAILURE:
       return {
         ...state,
         status: 'failure',
-        profile: null,
-      };
-    case types.LOGOUT:
-      localStorage.removeItem('profile');
-      return {
-        ...state,
-        status: null,
-        profile: null,
+        order: null,
       };
 
     default:

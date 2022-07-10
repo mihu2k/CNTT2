@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css';
 import config from '~/config';
 
@@ -65,6 +65,7 @@ const generalIconStyle = {
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [currentUser, setCurrentUser] = React.useState(
     JSON.parse(localStorage.getItem('profile')),
   );
@@ -111,11 +112,14 @@ function Header() {
 
     if (token) {
       const decodedToken = jwtDecode(token);
+      console.log(decodedToken.exp, 'decodedToken.exp');
       if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
     }
 
     setCurrentUser(JSON.parse(localStorage.getItem('profile')));
-  }, []);
+  }, [location]);
+
+  console.log(location, 'LOCATION HEADER');
 
   return (
     <header className={cx('header-wrapper')}>
@@ -155,7 +159,7 @@ function Header() {
                     : `${process.env.REACT_APP_API_BASE_URL}${currentUser.data.avatar}`
                 }
                 alt={currentUser.data.full_name ?? 'Avatar'}
-                referrerpolicy="no-referrer"
+                referrerPolicy="no-referrer"
               />
             ) : (
               // <div className={cx('header-more-btn')}>

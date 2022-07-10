@@ -19,12 +19,13 @@ import { Cart } from '~/pages';
 import Order from '~/pages/orders/orders.component';
 import ForgetPassword from '~/pages/forget-password/forget-password.component';
 import ResetPassword from '~/pages/reset-password/reset-password.component';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
   { path: config.routes.home, component: Home },
-  { path: config.routes.profile, component: Profile },
-  { path: config.routes.profileSettings, component: ProfileSettings },
+  // { path: config.routes.profile, component: Profile },
+  // { path: config.routes.profileSettings, component: ProfileSettings },
   { path: config.routes.login, component: SignIn, layout: null },
   {
     path: config.routes.forgetPassword,
@@ -39,6 +40,31 @@ const publicRoutes = [
 
   { path: config.routes.product, component: Product },
   { path: config.routes.productDetail, component: ProductDetail },
+  // {
+  //   path: config.routes.checkoutShipment,
+  //   component: CheckoutShipment,
+  //   layout: FooterOnly,
+  // },
+  // {
+  //   path: config.routes.checkoutPayment,
+  //   component: CheckoutPayment,
+  //   layout: FooterOnly,
+  // },
+  // {
+  //   path: config.routes.orderConfirmation,
+  //   component: CheckoutConfirmation,
+  //   layout: FooterOnly,
+  // },
+  {
+    path: config.routes.cart,
+    component: Cart,
+    layout: FooterOnly,
+  },
+  // { path: config.routes.order, component: Order },
+];
+
+const privateRoutes = [
+  { path: config.routes.profile, component: Profile },
   {
     path: config.routes.checkoutShipment,
     component: CheckoutShipment,
@@ -54,14 +80,20 @@ const publicRoutes = [
     component: CheckoutConfirmation,
     layout: FooterOnly,
   },
-  {
-    path: config.routes.cart,
-    component: Cart,
-    layout: FooterOnly,
-  },
   { path: config.routes.order, component: Order },
+  { path: config.routes.profileSettings, component: ProfileSettings },
 ];
 
-const privateRoutes = [];
+function RequireAuth({ children }) {
+  const currentUser = JSON.parse(localStorage.getItem('profile'));
+  const location = useLocation();
 
-export { publicRoutes, privateRoutes };
+  if (!currentUser?.data) {
+    return (
+      <Navigate to={config.routes.login} state={{ from: location }} replace />
+    );
+  }
+  return children;
+}
+
+export { publicRoutes, privateRoutes, RequireAuth };

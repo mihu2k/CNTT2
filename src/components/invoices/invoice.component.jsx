@@ -36,31 +36,34 @@ export default function Invoice({ cart }) {
         {cart.products?.length > 0
           ? cart.products?.map((product, index) => (
               <div className={classes.invoiceProductInfo} key={index}>
-                <img
-                  className={classes.invoiceImg}
-                  src={`${process.env.REACT_APP_API_BASE_URL}${product?.colorImage}`}
-                  alt={product.name}
-                />
-                <div className={classes.invoiceInfo}>
-                  <h3 className={classes.invoiceInfoName}>{product.name}</h3>
-                  <div className={cx(classes.invoiceInfoDesc, 'colorInfo')}>
-                    <span>Màu sắc</span>
-                    <span
-                      className={classes.cicle}
-                      style={{ backgroundColor: product.colorValue }}
-                    />
-                  </div>
-                  <div className={classes.invoiceInfoDesc}>
-                    <span>Số lượng</span>
-                    <span>{product.quantity}</span>
-                  </div>
-                  <div className={classes.invoiceInfoDesc}>
-                    <span>Thương hiệu</span>
-                    <span className={classes.invoiceInfoBrand}>
-                      {product?.brand ?? 'JBL'}
-                    </span>
+                <div className="d-f">
+                  <img
+                    className={classes.invoiceImg}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${product?.colorImage}`}
+                    alt={product.name}
+                  />
+                  <div className={cx(classes.invoiceInfo, 'ml-16px')}>
+                    <h3 className={classes.invoiceInfoName}>{product.name}</h3>
+                    <div className={cx(classes.invoiceInfoDesc, 'colorInfo')}>
+                      <span>Màu sắc</span>
+                      <span
+                        className={classes.cicle}
+                        style={{ backgroundColor: product.colorValue }}
+                      />
+                    </div>
+                    <div className={classes.invoiceInfoDesc}>
+                      <span>Số lượng</span>
+                      <span>{product.quantity}</span>
+                    </div>
+                    <div className={classes.invoiceInfoDesc}>
+                      <span>Thương hiệu</span>
+                      <span className={classes.invoiceInfoBrand}>
+                        {product?.brand ?? 'RENE'}
+                      </span>
+                    </div>
                   </div>
                 </div>
+
                 <div className={classes.invoiceInfoDesc}>
                   <span className={classes.invoiceInfoPrice}>
                     {numberWithCommas(product.price)}&nbsp;&#8363;

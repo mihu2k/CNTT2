@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CHECKOUT_STEPS } from '~/constants';
 import { getOrderByIdRequest } from '~/redux/actions/order.action';
 import Loading from '~/components/loading/loading.component';
+import { numberWithCommas } from '~/common/utils';
 // import config from '~/config';
 // import images from '~/assets/images';
 // import routes from '~/config/routes-config';
@@ -36,22 +37,39 @@ function Checkout() {
   };
 
   React.useEffect(() => {
-    const intervalGetOrder = setInterval(() => {
-      location.state?.orderId && getOrderById(location.state.orderId);
-      console.log('setInterval');
-    }, 1000 * 7);
+    location.state?.orderId && getOrderById(location.state.orderId);
+  }, []);
 
-    if (orderReducer.order?.isVerify || orderReducer.status === 'failure') {
-      clearInterval(intervalGetOrder);
-      console.log('CONFIRMED');
-      return;
+  React.useEffect(() => {
+    if (orderReducer.order) {
+      const intervalGetOrder = setInterval(() => {
+        location.state?.orderId && getOrderById(location.state.orderId);
+        console.log('setInterval');
+      }, 1000 * 7);
+
+      if (orderReducer.order?.isVerify || orderReducer.status === 'failure') {
+        clearInterval(intervalGetOrder);
+        console.log('CONFIRMED');
+        return;
+      }
+      return () => clearInterval(intervalGetOrder);
     }
-
-    return () => clearInterval(intervalGetOrder);
   }, [orderReducer]);
 
   return (
     <div className={classes.wrapper}>
+      <Box className={classes.stepsContainer} sx={{ width: '100%' }}>
+        <Stepper
+          activeStep={orderReducer.order?.isVerify ? 3 : 2}
+          alternativeLabel
+        >
+          {CHECKOUT_STEPS.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
       {orderReducer.status === 'pending' ? (
         <div style={{ height: '50vh' }}>
           <Loading style={{ backgroundColor: 'transparent' }} />
@@ -60,7 +78,7 @@ function Checkout() {
         <>
           {orderReducer.order?.isVerify ? (
             <>
-              <Box className={classes.stepsContainer} sx={{ width: '100%' }}>
+              {/* <Box className={classes.stepsContainer} sx={{ width: '100%' }}>
                 <Stepper activeStep={2} alternativeLabel>
                   {CHECKOUT_STEPS.map((label) => (
                     <Step key={label}>
@@ -68,7 +86,7 @@ function Checkout() {
                     </Step>
                   ))}
                 </Stepper>
-              </Box>
+              </Box> */}
 
               <Grid container spacing={4}>
                 <Grid item xs={12} sm={12} md={7}>
@@ -94,13 +112,13 @@ function Checkout() {
                         <p className={classes.headingStoreName}>RENÉ</p>
                         <p>Đơn đặt hàng đã được xác nhận</p>
                         <p>
-                          Mã Đơn hàng:{' '}
-                          <span>#Rene001 {orderReducer.order?.isVerify}</span>
+                          Mã đơn hàng:&nbsp;
+                          <span>{orderReducer.order?.code}</span>
                         </p>
                         <p>
                           Cám ơn bạn vì đã xác nhận đơn hàng, theo đõi đơn hàng
                           của bạn&nbsp;
-                          <Link to={'./'}>
+                          <Link to={config.routes.order}>
                             <span className={classes.orderInfoLink}>
                               tại đây!
                             </span>
@@ -116,7 +134,11 @@ function Checkout() {
                             fontWeight: 'bold',
                           }}
                         >
-                          Thông tin đặt hàng
+                          Thông tin đặt hàng (
+                          {orderReducer.order?.shipMethod === 0
+                            ? 'Giao hàng tận nơi'
+                            : 'Nhận tại cửa hàng'}
+                          )
                         </Typography>
                         <Typography
                           variant="p"
@@ -127,15 +149,15 @@ function Checkout() {
                             margin: '20px 0 0 0',
                           }}
                         >
-                          Thông tin vận chuyển
+                          Thông tin&nbsp;
+                          {orderReducer.order?.shipMethod === 0
+                            ? 'vận chuyển'
+                            : 'khách hàng'}
                         </Typography>
-                        <p>Phạm Quốc Vương</p>
-                        <p>0369830702</p>
-                        <p>Vuongnguyen30702@gmail.com</p>
-                        <p>
-                          200/12/6, đường Lê Văn Lương, phường Tân Hưng, Quận 7,
-                          Thành phố Hồ Chí Minh
-                        </p>
+                        <p>{orderReducer.order?.fullName}</p>
+                        <p>{orderReducer.order?.phone}</p>
+                        <p>{orderReducer.order?.email}</p>
+                        <p>{orderReducer.order?.deliveryAddress}</p>
                         <Typography
                           variant="p"
                           component="p"
@@ -147,7 +169,13 @@ function Checkout() {
                         >
                           Phương thức thanh toán
                         </Typography>
-                        <p>Thanh toán tiền mặt</p>
+                        <p>
+                          {orderReducer.order?.paymentMethod === 2
+                            ? 'Thanh toán tiền mặt'
+                            : orderReducer.order?.paymentMethod === 1
+                            ? 'Thanh toán ATM/QR/Ví điện tử'
+                            : 'Thanh toán thẻ quốc tế VISA'}
+                        </p>
                       </div>
                     </div>
                   </Typography>
@@ -157,50 +185,82 @@ function Checkout() {
                     <div className={classes.invoiceHeader}>
                       <div className={classes.invoiceHeaderTitle}>
                         Đơn hàng (
-                        <span className={classes.quatityProduct}>1</span> sản
-                        phẩm)
+                        <span className={classes.quatityProduct}>
+                          {orderReducer.order?.products?.length}
+                        </span>
+                        &nbsp; sản phẩm)
                       </div>
                     </div>
                     <div className={classes.invoiceBody}>
-                      <div className={classes.invoiceProductInfo}>
-                        <img
-                          className={classes.invoiceImg}
-                          src="https://cdn.jblstore.com.vn/UploadTemp/7960173a-1c8a-4c13-b761-f6d49a9713df.jpg"
-                          alt="img-product-checkout-invoice"
-                        />
-                        <div className={classes.invoiceInfo}>
-                          <h3 className={classes.invoiceInfoName}>
-                            JBL TUNE110
-                          </h3>
-                          <div
-                            className={cx(classes.invoiceInfoDesc, 'colorInfo')}
-                          >
-                            <span>Màu sắc</span>
-                            <span className={classes.cicle}></span>
-                          </div>
-                          <div className={classes.invoiceInfoDesc}>
-                            <span>Số lượng</span>
-                            <span>1</span>
-                          </div>
-                          <div className={classes.invoiceInfoDesc}>
-                            <span>Thương hiệu</span>
-                            <span className={classes.invoiceInfoBrand}>
-                              JBL
-                            </span>
-                          </div>
-                        </div>
-                        <div className={classes.invoiceInfoDesc}>
-                          <span className={classes.invoiceInfoPrice}>
-                            1.390.000 &#8363;
-                          </span>
-                        </div>
-                      </div>
+                      {orderReducer.order?.products?.length > 0
+                        ? orderReducer.order?.products?.map((product) => (
+                            <div
+                              className={classes.invoiceProductInfo}
+                              key={product?._id}
+                            >
+                              <div className="d-f">
+                                <img
+                                  className={classes.invoiceImg}
+                                  src={`${process.env.REACT_APP_API_BASE_URL}${product?.productId?.colorImage}`}
+                                  alt={product?.productId?.productId?.name}
+                                />
+                                <div
+                                  className={cx(classes.invoiceInfo, 'ml-16px')}
+                                >
+                                  <h3 className={classes.invoiceInfoName}>
+                                    {product?.productId?.productId?.name}
+                                  </h3>
+                                  <div
+                                    className={cx(
+                                      classes.invoiceInfoDesc,
+                                      'colorInfo',
+                                    )}
+                                  >
+                                    <span>Màu sắc</span>
+                                    <span
+                                      className={classes.cicle}
+                                      style={{
+                                        backgroundColor:
+                                          product?.productId?.colorValue,
+                                      }}
+                                    />
+                                  </div>
+                                  <div className={classes.invoiceInfoDesc}>
+                                    <span>Số lượng</span>
+                                    <span>{product?.quantity}</span>
+                                  </div>
+                                  <div className={classes.invoiceInfoDesc}>
+                                    <span>Thương hiệu</span>
+                                    <span className={classes.invoiceInfoBrand}>
+                                      {product?.productId?.productId?.brand ??
+                                        'RENE'}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
 
-                      <ul>
+                              <div className={classes.invoiceInfoDesc}>
+                                <span className={classes.invoiceInfoPrice}>
+                                  {numberWithCommas(product?.price)}
+                                  &nbsp;&#8363;
+                                </span>
+                              </div>
+                            </div>
+                          ))
+                        : null}
+
+                      <ul style={{ marginTop: '24px' }}>
                         <li className={classes.moneyInfoList}>
                           <span className={classes.moneyInfo}>Tạm tính</span>
                           <span className={classes.moneyDetail}>
-                            1.390.000 &#8363;
+                            {numberWithCommas(
+                              orderReducer.order?.products?.reduce(
+                                (total, product) =>
+                                  total + product.price * product.quantity,
+                                0,
+                              ),
+                            )}
+                            &nbsp;&#8363;
                           </span>
                         </li>
                         <li className={classes.moneyInfoList}>
@@ -223,7 +283,14 @@ function Checkout() {
                           <span
                             className={cx(classes.moneyDetail, 'lastDetail')}
                           >
-                            1.390.000 &#8363;
+                            {numberWithCommas(
+                              orderReducer.order?.products?.reduce(
+                                (total, product) =>
+                                  total + product.price * product.quantity,
+                                0,
+                              ),
+                            )}
+                            &nbsp;&#8363;
                           </span>
                         </li>
                       </ul>

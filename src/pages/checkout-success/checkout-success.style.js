@@ -169,8 +169,9 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
-    gap: '30px',
-    margin: '32px 0',
+    alignItems: 'center',
+    gap: '12px',
+    margin: '24px 0 0 0',
   },
 
   invoiceImg: {
@@ -179,7 +180,7 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   invoiceInfo: {
-    maxWidth: '245px',
+    maxWidth: '200px',
     flex: '1',
   },
   invoiceInfoName: {

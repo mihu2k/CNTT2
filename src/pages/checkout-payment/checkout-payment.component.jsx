@@ -83,7 +83,12 @@ function Checkout() {
 
   const handlePaymentByCash = () => {
     // setLoading(true);
-    dispatch(createOrderRequest(location.state.checkoutInfo, navigate));
+    dispatch(
+      createOrderRequest(
+        { ...location.state.checkoutInfo, paymentMethod: 2 },
+        navigate,
+      ),
+    );
   };
 
   console.log(orderReducer, 'orderReducer');

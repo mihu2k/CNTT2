@@ -1,58 +1,110 @@
-import * as React from 'react';
-import { useStyles } from './checkout-shipment.style';
 import {
   Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  Grid,
   InputLabel,
   MenuItem,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
   Radio,
   RadioGroup,
   Select,
   Step,
-  Stepper,
   StepLabel,
-  Grid,
-  Typography,
+  Stepper,
   TextField,
-  Button,
+  Typography,
 } from '@mui/material';
+import * as React from 'react';
+import { useStyles } from './checkout-shipment.style';
 
 // import image from '~/assets/images';
-import { Link } from 'react-router-dom';
-import config from '~/config';
-import cx from 'classnames';
-import images from '~/assets/images';
 import Invoice from '~/components/invoices';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
+import { showToastMsg } from '~/common/utils';
+import config from '~/config';
+import { CHECKOUT_STEPS } from '~/constants';
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const schema = yup.object().shape({
+  address: yup.string().required(),
+  fullName: yup.string().required(),
+  phone: yup.string().matches(phoneRegExp),
+  note: yup.string().notRequired(),
+  // email: yup.string().required().email(),
+});
 
 function Checkout() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { cart: cartReducer } = useSelector((state) => state);
 
   // user login then current user == true;
-  const currentUser = true;
+  const currentUser = JSON.parse(localStorage.getItem('profile'));
 
-  // Stepper
-  const steps = [
-    'Điền thông tin giao hàng',
-    'Chọn thanh toán',
-    'Hoàn thành đặt hàng',
-  ];
-
+  const [formValue, setFormValue] = React.useState({
+    province: '',
+    district: '',
+    ward: '',
+  });
   // select form address
-  const [city, setCity] = React.useState('');
-  const handleCity = (event) => {
-    setCity(event.target.value);
+  const [city, setCity] = React.useState([]);
+  const [district, setDistrict] = React.useState([]);
+  const [ward, setWard] = React.useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    if (formValue.district && formValue.ward) {
+      const { province_name } = city.find(
+        (item) => item.province_id === formValue.province,
+      );
+      const { district_name } = district.find(
+        (item) => item.district_id === formValue.district,
+      );
+      const { ward_name } = ward.find(
+        (item) => item.ward_id === formValue.ward,
+      );
+      const formData = {
+        ...data,
+        address: `${data.address}, ${ward_name}, ${district_name}, ${province_name}`,
+        shipMethod: takeOrder,
+        // shipMethod: takeOrder === 0 ? 'Giao hàng tận nơi' : 'Nhận tại cửa hàng',
+        total: cartReducer.products.reduce(
+          (total, product) => total + product.price * product.quantity,
+          0,
+        ),
+        email: currentUser?.data?.email,
+        products: cartReducer.products,
+      };
+      console.log(formData, 'DATA');
+      navigate(config.routes.checkoutPayment, {
+        state: { checkoutInfo: formData },
+      });
+      return;
+    }
+    showToastMsg('warning', 'Thông tin chưa đủ.', {
+      toastId: data,
+      autoClose: 3000,
+    });
   };
 
-  const [district, setDistrict] = React.useState('');
-  const handleDistrict = (event) => {
-    setDistrict(event.target.value);
-  };
-
-  const [ward, setWard] = React.useState('');
-  const handleWard = (event) => {
-    setWard(event.target.value);
+  const handleChangeSelect = (type, e) => {
+    setFormValue((prev) => ({ ...prev, [type]: e.target.value }));
   };
 
   //call API render address
@@ -61,13 +113,53 @@ function Checkout() {
   const [takeOrder, setTakeOrder] = React.useState(0);
 
   const handleTakeOrder = (event) => {
-    setTakeOrder(event.target.value);
+    setTakeOrder(Number(event.target.value));
   };
+
+  React.useEffect(() => {
+    (async () => {
+      const {
+        data: { results: province },
+      } = await axios.get('https://vapi.vnappmob.com/api/province');
+      setCity(province);
+      setFormValue((prev) => ({ ...prev, province: province[0]?.province_id }));
+      console.log(province, 'province');
+    })();
+  }, []);
+
+  React.useEffect(() => {
+    formValue.province &&
+      (async () => {
+        const {
+          data: { results: district },
+        } = await axios.get(
+          `https://vapi.vnappmob.com/api/province/district/${formValue.province}`,
+        );
+        setDistrict(district);
+      })();
+  }, [formValue.province]);
+
+  React.useEffect(() => {
+    formValue.district &&
+      (async () => {
+        const {
+          data: { results: ward },
+        } = await axios.get(
+          `https://vapi.vnappmob.com/api/province/ward/${formValue.district}`,
+        );
+        setWard(ward);
+      })();
+  }, [formValue.district]);
+
+  // console.log(authReducer, 'authReducer');
+  // console.log(errors, 'errors----');
+  console.log(location, 'OCATION SHIPMENT');
+
   return (
     <div className={classes.wrapper}>
       <Box className={classes.stepsContainer} sx={{ width: '100%' }}>
         <Stepper activeStep={0} alternativeLabel>
-          {steps.map((label) => (
+          {CHECKOUT_STEPS.map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
@@ -82,52 +174,28 @@ function Checkout() {
             fontWeight="700"
             textTransform="uppercase"
             variant="h1"
-            component="h1"
+            component="h2"
           >
-            Thanh toán
+            Thông tin thanh toán
           </Typography>
           <Typography
             className={classes.checkoutInfoForm}
             variant="form"
             component="form"
+            onSubmit={handleSubmit(onSubmit)}
+            noValidate
+            autoComplete="off"
           >
-            {currentUser ? (
-              <>
-                <Typography
-                  fontSize="1.6rem"
-                  fontWeight="400"
-                  lineHeight="1.33"
-                  color="#8f8f8f"
-                  mt="40px"
-                  mb="16px"
-                  variant="div"
-                  component="div"
-                >
-                  <p>Địa chỉ email</p>
-
-                  <Typography
-                    fontSize="1.8rem"
-                    fontWeight="500"
-                    color="#000"
-                    mt="8px"
-                    variant="p"
-                    component="p"
-                  >
-                    vuongnguyen30702@gmail.com
-                  </Typography>
-                </Typography>
-              </>
-            ) : (
-              <>
-                <TextField
-                  label="Email"
-                  fullWidth
-                  variant="standard"
-                  required
-                />
-              </>
-            )}
-
+            <TextField
+              label="Email"
+              fullWidth
+              variant="standard"
+              required
+              value={currentUser?.data?.email}
+              disabled
+              // {...register('email')}
+              // error={!!errors?.email?.message}
+            />
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -136,81 +204,45 @@ function Checkout() {
                 onChange={handleTakeOrder}
               >
                 <FormControlLabel
-                  value="0"
+                  value={0}
                   control={<Radio />}
                   label="GIAO HÀNG TẬN NƠI"
                 />
                 <FormControlLabel
-                  value="1"
+                  value={1}
                   control={<Radio />}
                   label="NHẬN TẠI CỬA HÀNG"
                 />
               </RadioGroup>
             </FormControl>
 
-            <TextField
-              label="Họ tên người nhận"
-              fullWidth
-              type="text"
-              variant="standard"
-              required
-            />
+            <Grid container spacing={4}>
+              <Grid item xs={6}>
+                <TextField
+                  label="Họ tên người nhận"
+                  fullWidth
+                  type="text"
+                  variant="standard"
+                  required
+                  {...register('fullName')}
+                  error={!!errors?.fullName?.message}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label="Số điện thoại người nhận"
+                  fullWidth
+                  type="tel"
+                  variant="standard"
+                  required
+                  {...register('phone')}
+                  error={!!errors?.phone?.message}
+                />
+              </Grid>
+            </Grid>
 
-            <TextField
-              label="Số điện thoại người nhận"
-              fullWidth
-              type="tel"
-              variant="standard"
-              required
-            />
-            {currentUser ? (
+            {takeOrder === 0 && (
               <>
-                <Typography
-                  fontSize="1.6rem"
-                  fontWeight="400"
-                  lineHeight="1.33"
-                  color="#8f8f8f"
-                  mt="40px"
-                  mb="16px"
-                  variant="div"
-                  component="div"
-                >
-                  <p>Địa chỉ đã lưu</p>
-
-                  <Typography
-                    fontSize="1.8rem"
-                    fontWeight="500"
-                    color="#000"
-                    mt="8px"
-                    variant="p"
-                    component="p"
-                  >
-                    200/12/6 Lê Văn Lương, Phường Tân Hưng, Quận 7
-                  </Typography>
-                </Typography>
-              </>
-            ) : (
-              <>
-                <Grid container spacing={4}>
-                  <Grid item xs={6}>
-                    <TextField
-                      label="Số nhà"
-                      fullWidth
-                      type="text"
-                      variant="standard"
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <TextField
-                      label="Đường/Phố"
-                      fullWidth
-                      type="tel"
-                      variant="standard"
-                      required
-                    />
-                  </Grid>
-                </Grid>
                 <Grid container spacing={4}>
                   <Grid item xs={6}>
                     <FormControl fullWidth sx={{ marginTop: '32px' }}>
@@ -220,11 +252,19 @@ function Checkout() {
                       <Select
                         labelId="demo-simple-select-label-city"
                         id="demo-simple-select-city"
-                        value={city}
+                        value={formValue.province}
                         label="Chọn Tỉnh/ Thành phố"
-                        onChange={handleCity}
+                        onChange={(e) => handleChangeSelect('province', e)}
                       >
-                        <MenuItem value={10}>Ten</MenuItem>
+                        {city.length > 0 &&
+                          city?.map((item) => (
+                            <MenuItem
+                              key={item.province_id}
+                              value={item.province_id}
+                            >
+                              {item.province_name}
+                            </MenuItem>
+                          ))}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -236,11 +276,19 @@ function Checkout() {
                       <Select
                         labelId="demo-simple-select-label-district"
                         id="demo-simple-select-district"
-                        value={district}
+                        value={formValue.district}
                         label="Chọn Quận/Huyện"
-                        onChange={handleDistrict}
+                        onChange={(e) => handleChangeSelect('district', e)}
                       >
-                        <MenuItem value={10}>Ten</MenuItem>
+                        {district.length > 0 &&
+                          district?.map((item) => (
+                            <MenuItem
+                              key={item.district_id}
+                              value={item.district_id}
+                            >
+                              {item.district_name}
+                            </MenuItem>
+                          ))}
                       </Select>
                     </FormControl>
                   </Grid>
@@ -254,21 +302,29 @@ function Checkout() {
                       <Select
                         labelId="demo-simple-select-label-ward"
                         id="demo-simple-select-ward"
-                        value={ward}
+                        value={formValue.ward}
                         label="Chọn Phường"
-                        onChange={handleWard}
+                        onChange={(e) => handleChangeSelect('ward', e)}
                       >
-                        <MenuItem value={10}>Ten</MenuItem>
+                        {ward.length > 0 &&
+                          ward?.map((item) => (
+                            <MenuItem key={item.ward_id} value={item.ward_id}>
+                              {item.ward_name}
+                            </MenuItem>
+                          ))}
                       </Select>
                     </FormControl>
                   </Grid>
                   <Grid item xs={6}>
                     <TextField
-                      label="Làng/Khu phố - không bắt buộc"
+                      label="Số nhà, đường/phố"
                       fullWidth
                       type="text"
                       variant="outlined"
+                      required
                       sx={{ marginTop: '32px' }}
+                      {...register('address')}
+                      error={!!errors?.address?.message}
                     />
                   </Grid>
                 </Grid>
@@ -280,6 +336,7 @@ function Checkout() {
               fullWidth
               type="text"
               variant="standard"
+              {...register('note')}
             />
 
             <Typography
@@ -293,8 +350,9 @@ function Checkout() {
             </Typography>
           </Typography>
         </Grid>
+
         <Grid item xs={12} sm={12} md={5}>
-          <Invoice />
+          <Invoice cart={cartReducer} />
         </Grid>
       </Grid>
     </div>

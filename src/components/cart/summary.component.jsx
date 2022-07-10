@@ -17,6 +17,7 @@ import { numberWithCommas } from '~/common/utils';
 import { useStyles } from './summary.style';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
+import httpRequest from '~/common/utils/httpRequest';
 
 const SUPPORT_PAYMENT = [
   {
@@ -39,6 +40,29 @@ const SUPPORT_PAYMENT = [
 export const Summary = ({ cart }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  const handleNavigateCheckout = async () => {
+    const token = JSON.parse(localStorage.getItem('profile'))?.accessToken;
+    if (token) {
+      const response = await httpRequest.get('/auth/checkToken', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data?.status === 200) {
+        navigate(config.routes.checkoutShipment);
+      } else {
+        navigate(config.routes.login, {
+          state: { from: config.routes.cart },
+        });
+      }
+      console.log(response, 'response');
+      return;
+    }
+    navigate(config.routes.login, {
+      state: { from: config.routes.cart },
+    });
+  };
 
   return (
     <div className={classes.root}>
@@ -97,7 +121,7 @@ export const Summary = ({ cart }) => {
           variant="contained"
           fullWidth
           className={cx(classes.nextButton, 'fz-16px')}
-          onClick={() => navigate(config.routes.checkoutShipment)}
+          onClick={handleNavigateCheckout}
         >
           Tiếp tục
         </Button>

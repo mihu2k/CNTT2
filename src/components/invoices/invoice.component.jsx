@@ -1,22 +1,29 @@
-// import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import cx from 'classnames';
 
 import { useStyles } from './invoice.style';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import config from '~/config';
+import { Truncate } from '../truncate';
+import { numberWithCommas } from '~/common/utils';
 
-function Invoice() {
+export default function Invoice({ cart }) {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   return (
     <div className={classes.invoiceWrapper}>
       <div className={classes.invoiceHeader}>
         <div className={classes.invoiceHeaderTitle}>
-          Đơn hàng (<span className={classes.quatityProduct}>1</span> sản phẩm)
+          Đơn hàng (
+          <span className={classes.quatityProduct}>
+            {cart.products?.length}
+          </span>
+          &nbsp;sản phẩm)
         </div>
 
-        {/* chuyển trang về giỏi hàng */}
-        <Link to={'./'}>
+        <Link to={config.routes.cart}>
           <Button
             variant="text"
             sx={{ color: '#000', fontSize: '1.5rem', fontWeight: 'bold' }}
@@ -26,36 +33,55 @@ function Invoice() {
         </Link>
       </div>
       <div className={classes.invoiceBody}>
-        <div className={classes.invoiceProductInfo}>
-          <img
-            className={classes.invoiceImg}
-            src="https://cdn.jblstore.com.vn/UploadTemp/7960173a-1c8a-4c13-b761-f6d49a9713df.jpg"
-            alt="img-product-checkout-invoice"
-          />
-          <div className={classes.invoiceInfo}>
-            <h3 className={classes.invoiceInfoName}>JBL TUNE110</h3>
-            <div className={cx(classes.invoiceInfoDesc, 'colorInfo')}>
-              <span>Màu sắc</span>
-              <span className={classes.cicle}></span>
-            </div>
-            <div className={classes.invoiceInfoDesc}>
-              <span>Số lượng</span>
-              <span>1</span>
-            </div>
-            <div className={classes.invoiceInfoDesc}>
-              <span>Thương hiệu</span>
-              <span className={classes.invoiceInfoBrand}>JBL</span>
-            </div>
-          </div>
-          <div className={classes.invoiceInfoDesc}>
-            <span className={classes.invoiceInfoPrice}>1.390.000 &#8363;</span>
-          </div>
-        </div>
+        {cart.products?.length > 0
+          ? cart.products?.map((product, index) => (
+              <div className={classes.invoiceProductInfo} key={index}>
+                <img
+                  className={classes.invoiceImg}
+                  src={`${process.env.REACT_APP_API_BASE_URL}${product?.colorImage}`}
+                  alt={product.name}
+                />
+                <div className={classes.invoiceInfo}>
+                  <h3 className={classes.invoiceInfoName}>{product.name}</h3>
+                  <div className={cx(classes.invoiceInfoDesc, 'colorInfo')}>
+                    <span>Màu sắc</span>
+                    <span
+                      className={classes.cicle}
+                      style={{ backgroundColor: product.colorValue }}
+                    />
+                  </div>
+                  <div className={classes.invoiceInfoDesc}>
+                    <span>Số lượng</span>
+                    <span>{product.quantity}</span>
+                  </div>
+                  <div className={classes.invoiceInfoDesc}>
+                    <span>Thương hiệu</span>
+                    <span className={classes.invoiceInfoBrand}>
+                      {product?.brand ?? 'JBL'}
+                    </span>
+                  </div>
+                </div>
+                <div className={classes.invoiceInfoDesc}>
+                  <span className={classes.invoiceInfoPrice}>
+                    {numberWithCommas(product.price)}&nbsp;&#8363;
+                  </span>
+                </div>
+              </div>
+            ))
+          : null}
 
-        <ul>
+        <ul style={{ marginTop: '24px' }}>
           <li className={classes.moneyInfoList}>
             <span className={classes.moneyInfo}>Tạm tính</span>
-            <span className={classes.moneyDetail}>1.390.000 &#8363;</span>
+            <span className={classes.moneyDetail}>
+              {numberWithCommas(
+                cart.products.reduce(
+                  (total, product) => total + product.price * product.quantity,
+                  0,
+                ),
+              )}
+              &nbsp;&#8363;
+            </span>
           </li>
           <li className={classes.moneyInfoList}>
             <span className={classes.moneyInfo}>Mã giảm giá</span>
@@ -73,7 +99,13 @@ function Invoice() {
               Tổng giá
             </span>
             <span className={cx(classes.moneyDetail, 'lastDetail')}>
-              1.390.000 &#8363;
+              {numberWithCommas(
+                cart.products.reduce(
+                  (total, product) => total + product.price * product.quantity,
+                  0,
+                ),
+              )}
+              &nbsp;&#8363;
             </span>
           </li>
         </ul>
@@ -82,9 +114,3 @@ function Invoice() {
     </div>
   );
 }
-
-// Invoice.propTypes = {
-//   data: PropTypes.object.isRequired,
-// };
-
-export default Invoice;

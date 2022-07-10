@@ -5,7 +5,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Loading from '~/components/loading/loading.component';
 import config from '~/config';
@@ -24,6 +24,7 @@ function SignIn() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const authReducer = useSelector((state) => state.auth);
 
   const {
@@ -46,11 +47,13 @@ function SignIn() {
   });
 
   React.useEffect(() => {
-    (() => {
-      if (authReducer.status === 'success') {
+    if (authReducer.status === 'success') {
+      if (location.state?.from) {
+        navigate(location.state?.from);
+      } else {
         navigate(config.routes.home);
       }
-    })();
+    }
   }, [authReducer.status]);
 
   return (

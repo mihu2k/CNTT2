@@ -5,9 +5,14 @@ import SignIn from '~/components/login-form/sign-in';
 import SignUp from '~/components/login-form/sign-up';
 import Header from '~/components/login-form/header-login';
 import { useStyles } from './login-form.style';
+import { useLocation, useNavigate } from 'react-router-dom';
+import config from '~/config';
 
 function LoginForm() {
   const classes = useStyles();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
 
   const [value, setValue] = React.useState(0);
 
@@ -35,13 +40,16 @@ function LoginForm() {
     );
   }
 
+  React.useEffect(() => {
+    if (currentUser) navigate(config.routes.home);
+  }, [location]);
+
   return (
     <div className={classes.wrapper}>
       <Header />
 
       <Tabs value={value} onChange={handleChange} sx={{ position: 'relative' }}>
         <Tab label="Đăng Nhập" sx={{ fontWeight: 'bold' }} />
-
         <Tab label="Đăng ký" sx={{ fontWeight: 'bold' }} />
       </Tabs>
 

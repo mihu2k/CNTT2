@@ -6,11 +6,13 @@ import OrderHeader from '~/components/order-items/order-header';
 
 // import cx from 'classnames';
 
-function OrderItem() {
+function OrderItem({ order }) {
   const classes = useStyles();
+
   return (
     <Typography variant="div" component="div" className={classes.orderItem}>
-      <OrderHeader />
+      <OrderHeader order={order} />
+      <OrderBody separate />
       <OrderBody separate />
     </Typography>
   );

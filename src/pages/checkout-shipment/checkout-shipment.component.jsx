@@ -33,7 +33,7 @@ import { CHECKOUT_STEPS } from '~/constants';
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const schema = yup.object().shape({
-  address: yup.string().required(),
+  address: yup.string(),
   fullName: yup.string().required(),
   phone: yup.string().matches(phoneRegExp),
   note: yup.string().notRequired(),
@@ -64,43 +64,50 @@ function Checkout() {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
-    if (formValue.district && formValue.ward) {
-      const { province_name } = city.find(
-        (item) => item.province_id === formValue.province,
-      );
-      const { district_name } = district.find(
-        (item) => item.district_id === formValue.district,
-      );
-      const { ward_name } = ward.find(
-        (item) => item.ward_id === formValue.ward,
-      );
-      const formData = {
-        ...data,
-        address: `${data.address}, ${ward_name}, ${district_name}, ${province_name}`,
-        shipMethod: takeOrder,
-        // shipMethod: takeOrder === 0 ? 'Giao hàng tận nơi' : 'Nhận tại cửa hàng',
-        total: cartReducer.products.reduce(
-          (total, product) => total + product.price * product.quantity,
-          0,
-        ),
-        email: currentUser?.data?.email,
-        products: cartReducer.products,
-      };
-      console.log(formData, 'DATA');
+    const formData = {
+      ...data,
+      shipMethod: takeOrder,
+      total: cartReducer.products.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0,
+      ),
+      email: currentUser?.data?.email,
+      products: cartReducer.products,
+    };
+    if (takeOrder === 0) {
+      if (formValue.district && formValue.ward) {
+        const { province_name } = city.find(
+          (item) => item.province_id === formValue.province,
+        );
+        const { district_name } = district.find(
+          (item) => item.district_id === formValue.district,
+        );
+        const { ward_name } = ward.find(
+          (item) => item.ward_id === formValue.ward,
+        );
+
+        formData.address = `${data.address}, ${ward_name}, ${district_name}, ${province_name}`;
+        console.log(formData, 'DATA');
+        navigate(config.routes.checkoutPayment, {
+          state: { checkoutInfo: formData },
+        });
+        return;
+      }
+      showToastMsg('warning', 'Thông tin chưa đủ.', {
+        toastId: data,
+        autoClose: 3000,
+      });
+    } else {
       navigate(config.routes.checkoutPayment, {
         state: { checkoutInfo: formData },
       });
-      return;
     }
-    showToastMsg('warning', 'Thông tin chưa đủ.', {
-      toastId: data,
-      autoClose: 3000,
-    });
   };
 
   const handleChangeSelect = (type, e) => {
@@ -323,7 +330,9 @@ function Checkout() {
                       variant="outlined"
                       required
                       sx={{ marginTop: '32px' }}
-                      {...register('address')}
+                      {...register('address', {
+                        required: takeOrder === 0,
+                      })}
                       error={!!errors?.address?.message}
                     />
                   </Grid>

@@ -1,17 +1,29 @@
-import { useStyles } from './orders.style';
-import { Typography, TextField, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import config from '~/config';
+import { Button, TextField, Typography } from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import OrderItem from '~/components/order-items/order-item';
+import { getOrdersByYourselfRequest } from '~/redux/actions/order.action';
+import { useStyles } from './orders.style';
 
-import cx from 'classnames';
-
-function Order() {
+export default function Order() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const { order: orderReducer } = useSelector((state) => state);
+
+  const fetchYourOrders = (query = {}) => {
+    dispatch(getOrdersByYourselfRequest(query));
+  };
+
+  React.useEffect(() => {
+    fetchYourOrders();
+  }, []);
+
+  console.log(orderReducer, 'orderReducer');
+
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.heading}>Mã đơn hàng</h1>
-
       <Typography
         fontSize="1.5rem"
         fontWeight="400"
@@ -34,11 +46,14 @@ function Order() {
         />
         <Button variant="contained">Tra cứu đơn hàng</Button>
       </Typography>
-      <OrderItem />
-      <OrderItem />
-      <OrderItem />
+
+      {orderReducer.orders?.length > 0 ? (
+        orderReducer.orders?.map((order) => (
+          <OrderItem key={order?._id} order={order} />
+        ))
+      ) : (
+        <p>Chưa có đơn hàng nào.</p>
+      )}
     </div>
   );
 }
-
-export default Order;

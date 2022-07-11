@@ -1,4 +1,5 @@
 import { showToastMsg } from '~/common/utils';
+import config from '~/config';
 import AuthService from '~/services/auth.service';
 import GoogleService from '~/services/google.service';
 import * as types from '../types';
@@ -46,6 +47,22 @@ export const registerRequest = (formData) => async (dispatch) => {
     dispatch({ type: types.REGISTER_FAILURE, payload: error });
     const msg = error.response.data.message ?? 'Đăng ký thất bại.';
     showToastMsg('error', msg, { toastId: error.message });
+  }
+};
+
+export const checkTokenRequest = (token, navigate) => async (dispatch) => {
+  dispatch({ type: types.CHECK_TOKEN_REQUEST });
+
+  try {
+    const response = await AuthService.checkToken(token);
+    console.log('REGISTER SUCCESS', response);
+    dispatch({ type: types.CHECK_TOKEN_SUCCESS, payload: response });
+  } catch (error) {
+    console.log(error, 'ERROR REQ');
+    dispatch({ type: types.CHECK_TOKEN_FAILURE, payload: error });
+    navigate(config.routes.login, {
+      state: { from: config.routes.profile },
+    });
   }
 };
 

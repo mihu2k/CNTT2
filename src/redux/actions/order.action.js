@@ -15,6 +15,19 @@ export const getOrderByIdRequest = (id) => async (dispatch) => {
   }
 };
 
+export const getOrdersByYourselfRequest = (query) => async (dispatch) => {
+  dispatch({ type: types.GET_YOUR_ORDERS_REQUEST });
+
+  try {
+    const response = await OrderService.getByYourself(query);
+    dispatch({ type: types.GET_YOUR_ORDERS_SUCCESS, payload: response });
+    console.log('SUCCESS ORDER', response);
+  } catch (error) {
+    dispatch({ type: types.GET_YOUR_ORDERS_FAILURE, payload: error });
+    console.log(error, 'ERROR REQ ORDER');
+  }
+};
+
 export const createOrderRequest =
   (data, navigate = null) =>
   async (dispatch) => {

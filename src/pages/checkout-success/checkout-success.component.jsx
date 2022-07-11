@@ -313,7 +313,7 @@ function Checkout() {
               </Grid>
             </>
           ) : (
-            <p style={{ height: '50vh' }}>Chưa đc xác nhận</p>
+            <p style={{ height: '50vh' }}>Đơn hàng chưa được xác nhận.</p>
           )}
         </>
       )}

@@ -21,6 +21,15 @@ class AuthService {
     }
     return response.data;
   }
+
+  async checkToken(token) {
+    const response = await httpRequest.get('/auth/checkToken', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  }
 }
 
 export default new AuthService();

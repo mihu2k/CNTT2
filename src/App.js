@@ -24,6 +24,8 @@ function App() {
     localStorage.setItem('cart', JSON.stringify(cartReducer.products));
   }, [cartReducer]);
 
+  console.log('APP COMPONENT');
+
   return (
     <Router>
       <div className="App">

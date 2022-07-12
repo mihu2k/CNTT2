@@ -54,6 +54,7 @@ export const useStyles = makeStyles((theme) => {
     },
 
     mainInfoContainer: {
+      flex: 1,
       [theme.breakpoints.down('sm')]: {
         display: 'flex',
         flexDirection: 'column-reverse',
@@ -129,7 +130,8 @@ export const useStyles = makeStyles((theme) => {
       fontSize: '20px',
     },
     shortDesc: {
-      padding: '12px 0 12px 20px',
+      // padding: '12px 0 12px 20px',
+      padding: '16px 0',
       borderTop: '1px solid #ccc',
       borderBottom: '1px solid #ccc',
       fontSize: '1.4rem',
@@ -140,6 +142,7 @@ export const useStyles = makeStyles((theme) => {
     },
     wrapGuarantee: {
       borderLeft: '1px solid #ccc',
+      maxWidth: '330px',
       '& .MuiListItemIcon-root + .MuiListItemText-root': {
         '& .MuiTypography-root': {
           fontWeight: 600,

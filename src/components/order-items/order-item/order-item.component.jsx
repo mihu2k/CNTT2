@@ -13,7 +13,6 @@ function OrderItem({ order }) {
     <Typography variant="div" component="div" className={classes.orderItem}>
       <OrderHeader order={order} />
       <OrderBody separate />
-      <OrderBody separate />
     </Typography>
   );
 }

@@ -41,7 +41,7 @@ function Footer() {
                 >
                   Xem bản đồ của hàng
                 </a>
-                <Place sx={{ fontSize: 20, color: '#dc3a1a' }} />
+                <Place sx={{ fontSize: 20, color: 'var(--primary-color)' }} />
               </li>
             </ul>
           </div>

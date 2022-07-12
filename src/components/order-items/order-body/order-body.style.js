@@ -9,8 +9,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   orderBody: {
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    gap: '32px',
     margin: '16px 0',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme) => ({
 
   orderProductImg: {
     height: '100%',
-    maxWidth: '164px',
+    maxWidth: '200px',
     objectFit: 'cover',
   },
 
@@ -40,42 +40,5 @@ export const useStyles = makeStyles((theme) => ({
     fontFamily: 'var(--font-family-Two)',
   },
 
-  orderProductStatus: {
-    color: '#006ff2',
-    marginTop: '10px',
-    fontWeight: 'bold',
-    fontSize: '1.6rem',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1.8rem',
-    },
-  },
-
-  orderProductShipmentInfo: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '10px',
-    fontWeight: 'bold',
-    gap: '10px',
-  },
-  orderShipmentInfo: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-    fontSize: '1.5rem',
-  },
-  orderShipmentInfoTitle: {
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    margin: '20px 0 0 0',
-    [theme.breakpoints.down('sm')]: {
-      margin: '24px 0 0 0',
-      textAlign: 'center',
-    },
-  },
-
-  orderPaymentMethodInfo: {
-    [theme.breakpoints.down('sm')]: {
-      textAlign: 'center',
-    },
-  },
+  
 }));

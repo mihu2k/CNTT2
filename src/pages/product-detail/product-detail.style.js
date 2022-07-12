@@ -141,6 +141,7 @@ export const useStyles = makeStyles((theme) => {
       paddingTop: 0,
     },
     wrapGuarantee: {
+      paddingLeft: '10px',
       borderLeft: '1px solid #ccc',
       maxWidth: '330px',
       '& .MuiListItemIcon-root + .MuiListItemText-root': {
@@ -159,6 +160,7 @@ export const useStyles = makeStyles((theme) => {
     },
     widthIcon: {
       minWidth: indentListItem,
+      justifyContent: 'center',
     },
     indentListItem: {
       paddingLeft: indentListItem,

@@ -1,8 +1,9 @@
 import { useStyles } from './order-item.style';
 import { Typography } from '@mui/material';
 
-import OrderBody from '~/components/order-items/order-body';
 import OrderHeader from '~/components/order-items/order-header';
+import OrderBody from '~/components/order-items/order-body';
+import OrderUserInfo from '~/components/order-items/order-user-info';
 
 // import cx from 'classnames';
 
@@ -13,6 +14,7 @@ function OrderItem({ order }) {
     <Typography variant="div" component="div" className={classes.orderItem}>
       <OrderHeader order={order} />
       <OrderBody separate />
+      <OrderUserInfo />
     </Typography>
   );
 }

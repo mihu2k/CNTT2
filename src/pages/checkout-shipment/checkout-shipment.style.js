@@ -81,10 +81,13 @@ export const useStyles = makeStyles((theme) => ({
     '& .MuiInputBase-root': {
       fontSize: '1.8rem',
       marginBottom: '10px',
-
       display: 'block',
       width: '100%',
       outLine: 'unset',
+    },
+
+    '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
+      width: '92%',
     },
 
     '& .MuiButton-startIcon>*:nth-of-type(1)': {

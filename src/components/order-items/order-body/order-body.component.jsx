@@ -34,77 +34,10 @@ function OrderBody(props) {
             Số lượng: <span>1</span>
           </span>
           <span>
-            Tổng tiền: <span>1.300.000 đ</span>
+            Giá sản phẩm: <span>1.300.000 đ</span>
           </span>
-
-          <Typography
-            variant="span"
-            component="span"
-            className={classes.orderProductStatus}
-          >
-            Đang xử lý
-          </Typography>
-          <Typography
-            variant="span"
-            component="span"
-            className={classes.orderProductShipmentInfo}
-          >
-            <p>
-              Ship từ: <span>20/06/2022</span> <span>Giao hàng nhanh</span>
-            </p>
-            <p>
-              Phí vận chuyển: <span>Free</span>
-            </p>
-          </Typography>
         </Typography>
-        <Typography variant="div" component="div">
-          <Typography
-            variant="div"
-            component="div"
-            className={classes.orderShipmentInfo}
-          >
-            <Typography
-              variant="p"
-              component="p"
-              className={classes.orderShipmentInfoTitle}
-            >
-              <Typography
-                variant="span"
-                component="span"
-                sx={{
-                  fontSize: '1.7rem',
-                }}
-              >
-                Thông tin vận chuyển
-              </Typography>
-            </Typography>
-            <p>Phạm Quốc Vương</p>
-            <p>0369830702</p>
-            <p>Vuongnguyen30702@gmail.com</p>
-            <p>
-              200/12/6, đường Lê Văn Lương, phường Tân Hưng, Quận 7, Thành phố
-              Hồ Chí Minh
-            </p>
-            <Typography
-              variant="p"
-              component="p"
-              className={classes.orderShipmentInfoTitle}
-            >
-              <Typography
-                variant="span"
-                component="span"
-                sx={{
-                  fontSize: '1.7rem',
-                }}
-              >
-                Phương thức thanh toán
-              </Typography>
-            </Typography>
-            <p className={classes.orderPaymentMethodInfo}>
-              Thanh toán tiền mặt
-            </p>
-          </Typography>
-        </Typography>
+        {/* info */}
       </Typography>
     </div>
   );

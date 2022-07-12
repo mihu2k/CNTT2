@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: '#f4f4f4',
     padding: '30px 28px',
     height: '100%',
+    minHeight: '680px',
     borderRadius: '20px',
   },
 
@@ -22,6 +23,11 @@ export const useStyles = makeStyles((theme) => ({
   invoiceBody: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  invoiceProductInfoWrap: {
+    width: '100%',
+    maxHeight: '320px',
+    overflowY: 'scroll',
   },
 
   invoiceProductInfo: {

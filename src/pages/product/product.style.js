@@ -21,6 +21,10 @@ export const useStyles = makeStyles((theme) => ({
           backgroundColor: '#fff',
         },
       },
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-md-8.MuiGrid-spacing-lg-2.css-1x5eys6-MuiGrid-root':
+      {
+        backgroundColor: '#f7f7f7',
+      },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',

@@ -14,6 +14,7 @@ const routes = {
   checkoutPayment: '/checkout/payment-method',
   orderConfirmation: '/checkout/order-confirmation',
   order: '/order',
+  hadError: '/had-error',
 };
 
 export default routes;

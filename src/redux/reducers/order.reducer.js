@@ -5,6 +5,7 @@ const initialState = {
   orders: [],
   status: null,
   totalPage: 1,
+  totalRecord: 0,
 };
 
 export default function orderReducer(state = initialState, action) {
@@ -58,6 +59,7 @@ export default function orderReducer(state = initialState, action) {
         status: types.GET_YOUR_ORDERS_SUCCESS,
         orders,
         totalPage: action.payload.data?.total_page ?? 1,
+        totalRecord: action.payload.data?.totalRecord ?? 0,
       };
     }
     case types.GET_YOUR_ORDERS_FAILURE:

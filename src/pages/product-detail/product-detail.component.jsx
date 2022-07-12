@@ -222,7 +222,7 @@ function ProductDetail() {
               </Slider>
             </div>
           </div>
-          <div style={{ maxWidth: '500px', margin: '0 16px' }}>
+          <div style={{ maxWidth: '500px', margin: '0 16px', flex: 1 }}>
             <Truncate
               fontWeight="600"
               fontSize={20}
@@ -256,16 +256,14 @@ function ProductDetail() {
                 {numberWithCommas(productReducer.product?.price)} ₫
               </span>
             </div>
-            <ul className={cx('mt-20px', classes.shortDesc)}>
-              <li>
-                Kích thước driver: 9mm Kích thước driver: 9mm Kích thước driver:
-                9mm Kích thước driver: 9mm Kích thước driver: 9mm Kích thước
-                driver: 9mm
-              </li>
-              <li>Kích thước driver: 9mm</li>
-              <li>Kích thước driver: 9mm</li>
-              <li>Kích thước driver: 9mm</li>
-            </ul>
+            <ul
+              className={cx('mt-20px', classes.shortDesc)}
+              dangerouslySetInnerHTML={{
+                __html:
+                  productReducer.product?.specifications ||
+                  'Chưa có thông tin.',
+              }}
+            />
             <div className={cx('d-f', classes.wrapQuantity, 'mt-20px')}>
               <span>Số lượng</span>
               <div className={cx('ml-16px')}>
@@ -320,25 +318,18 @@ function ProductDetail() {
               </ListItemIcon>
               <ListItemText primary="Phụ kiện" className={classes.text} />
             </ListItem>
+            {/* <ul
+              dangerouslySetInnerHTML={{
+                __html: productReducer.product?.accessories,
+              }}
+            /> */}
             <ListItem disablePadding>
               <ListItemText
                 inset
                 className={cx(classes.text, classes.indentListItem)}
-                primary="- 3 x Nút tai nghe kích thước S, M, L"
-              />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemText
-                inset
-                className={cx(classes.text, classes.indentListItem)}
-                primary="- 3 x Nút tai nghe kích thước S, M, L"
-              />
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemText
-                inset
-                className={cx(classes.text, classes.indentListItem)}
-                primary="- 3 x Nút tai nghe kích thước S, M, L"
+                primary={
+                  productReducer.product?.accessories || 'Chưa có thông tin.'
+                }
               />
             </ListItem>
           </List>

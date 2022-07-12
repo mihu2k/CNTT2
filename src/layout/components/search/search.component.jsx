@@ -1,21 +1,24 @@
-import { useEffect, useState, useRef } from 'react';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 
-import * as searchServices from '~/services/search-service';
-import { Wrapper as PopperWrapper } from '~/components/popper';
-import AccountItem from '~/components/account-item';
 import { SearchIcon } from '~/components/icons';
+import { Wrapper as PopperWrapper } from '~/components/popper';
+import ProductItem from '~/components/product-item';
 import { useDebounce } from '~/hooks';
+import ProductService from '~/services/product.service';
 import styles from './search.css';
 
 const cx = classNames.bind(styles);
 
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState({
+    search: '',
+    per_page: 'all',
+  });
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +26,7 @@ function Search() {
 
   const inputRef = useRef();
   useEffect(() => {
-    if (!debouncedValue.trim()) {
+    if (!debouncedValue.search.trim()) {
       setSearchResult([]);
       return;
     }
@@ -33,8 +36,8 @@ function Search() {
 
     // Call API
     const fetchApi = async () => {
-      const result = await searchServices.search(debouncedValue);
-      setSearchResult(result);
+      const result = await ProductService.getAll(debouncedValue);
+      setSearchResult(result.data?.data);
       setLoading(false);
     };
 
@@ -42,7 +45,10 @@ function Search() {
   }, [debouncedValue]);
 
   const handleClear = () => {
-    setSearchValue('');
+    setSearchValue({
+      search: '',
+      per_page: 'all',
+    });
     setSearchResult([]);
     inputRef.current.focus();
   };
@@ -54,7 +60,7 @@ function Search() {
   const handleChange = (e) => {
     const searchValue = e.target.value;
     if (!searchValue.startsWith(' ')) {
-      setSearchValue(searchValue);
+      setSearchValue((prev) => ({ ...prev, search: searchValue }));
     }
   };
 
@@ -73,9 +79,9 @@ function Search() {
         render={(attrs) => (
           <div className={cx('search-results')} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-              <h4 className={cx('search-title')}>Accounts</h4>
-              {searchResult.map((result) => (
-                <AccountItem key={result.id} data={result} />
+              <h4 className={cx('search-title')}>Sản phẩm</h4>
+              {searchResult?.map((result) => (
+                <ProductItem key={result.id} data={result} />
               ))}
             </PopperWrapper>
           </div>
@@ -84,7 +90,7 @@ function Search() {
         <div className={cx('search')}>
           <input
             ref={inputRef}
-            value={searchValue}
+            value={searchValue.search}
             placeholder="Chúng tôi có thể giúp bạn tìm kiếm?"
             spellCheck={false}
             onChange={handleChange}
@@ -92,7 +98,7 @@ function Search() {
               setShowResults(true);
             }}
           />
-          {!!searchValue && !loading && (
+          {!!searchValue.search && !loading && (
             <button className={cx('clear')} onClick={handleClear}>
               <FontAwesomeIcon icon={faCircleXmark} />
             </button>

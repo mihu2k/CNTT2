@@ -20,6 +20,7 @@ import Order from '~/pages/orders/orders.component';
 import ForgetPassword from '~/pages/forget-password/forget-password.component';
 import ResetPassword from '~/pages/reset-password/reset-password.component';
 import { Navigate, useLocation } from 'react-router-dom';
+import ErrorPage from '~/pages/error-page';
 
 const publicRoutes = [
   { path: config.routes.default, component: Home },
@@ -60,6 +61,8 @@ const publicRoutes = [
     component: Cart,
     layout: FooterOnly,
   },
+  { path: config.routes.hadError, component: ErrorPage, layout: null },
+
   // { path: config.routes.order, component: Order },
 ];
 

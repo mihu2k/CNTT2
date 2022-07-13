@@ -10,11 +10,15 @@ import OrderUserInfo from '~/components/order-items/order-user-info';
 function OrderItem({ order }) {
   const classes = useStyles();
 
+  console.log(order, 'ORDER-----------------------------------------');
+
   return (
     <Typography variant="div" component="div" className={classes.orderItem}>
       <OrderHeader order={order} />
-      <OrderBody separate />
-      <OrderUserInfo />
+      {order?.products?.map((product) => (
+        <OrderBody key={product?._id} separate product={product} />
+      ))}
+      <OrderUserInfo order={order} />
     </Typography>
   );
 }

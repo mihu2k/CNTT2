@@ -110,8 +110,8 @@ function Footer() {
               <li className={cx('footer-item')}>
                 <Link
                   className={cx('footer-item-link')}
-                  title="Đắng ký thành viên"
-                  to="/"
+                  title="Đăng ký thành viên"
+                  to={config.routes.login}
                 >
                   Đăng ký thành viên
                 </Link>

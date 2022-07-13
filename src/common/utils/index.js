@@ -72,3 +72,45 @@ export function formatDateTime(timestamp) {
 
   return dateString;
 }
+
+/**
+ *
+ */
+export function showTextOrderStatus(shipMethod, statusCode) {
+  let status = '';
+  if (shipMethod === 0) {
+    switch (statusCode) {
+      case 0:
+        status = 'Đang xử lý';
+        break;
+      case 1:
+        status = 'Đã xác nhận';
+        break;
+      case 2:
+        status = 'Đang giao hàng';
+        break;
+      case 3:
+        status = 'Đã thanh toán';
+        break;
+      default:
+        status = 'Đang xử lý';
+        break;
+    }
+  } else {
+    switch (statusCode) {
+      case 0:
+        status = 'Đang xử lý';
+        break;
+      case 1:
+        status = 'Đã xác nhận';
+        break;
+      case 2:
+        status = 'Đã thanh toán';
+        break;
+      default:
+        status = 'Đang xử lý';
+        break;
+    }
+  }
+  return status;
+}

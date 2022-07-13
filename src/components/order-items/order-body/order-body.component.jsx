@@ -2,16 +2,20 @@ import { useStyles } from './order-body.style';
 import { Typography } from '@mui/material';
 
 import cx from 'classnames';
+import { numberWithCommas } from '~/common/utils';
+import { Truncate } from '~/components/truncate';
 
 function OrderBody(props) {
+  const { product } = props;
   const classes = useStyles();
+
   return (
     <div className={cx(classes.wrapper, props)}>
       <Typography variant="div" component="div" className={classes.orderBody}>
         <img
           className={classes.orderProductImg}
-          src="https://cdn.jblstore.com.vn/UploadTemp/7960173a-1c8a-4c13-b761-f6d49a9713df.jpg"
-          alt="order-item-img"
+          src={`${process.env.REACT_APP_API_BASE_URL}${product?.productId?.colorImage}`}
+          alt={product?.productId?.productId?.name}
         />
 
         <Typography
@@ -19,25 +23,40 @@ function OrderBody(props) {
           component="div"
           className={classes.orderProductInfo}
         >
-          <Typography
+          <Truncate
+            line={2}
             variant="span"
             component="span"
+            fontWeight={600}
+            lineHeight={1.3}
             className={classes.orderProductName}
           >
-            Galaxy s22+
-          </Typography>
-          <span>
-            Mã sản phẩm: <span>SM-S906EZWDXXV</span>
+            {product?.productId?.productId?.name}
+          </Truncate>
+          <span
+            className="d-f"
+            style={{
+              alignItems: 'center',
+            }}
+          >
+            Màu:&nbsp;<span>{product?.productId?.colorName}</span>
+            &nbsp;&nbsp;
+            <span
+              className={classes.circleColor}
+              style={{ backgroundColor: product?.productId?.colorValue }}
+            />
           </span>
-
           <span>
-            Số lượng: <span>1</span>
+            Số lượng:&nbsp;<span>{product?.quantity}</span>
           </span>
           <span>
-            Giá sản phẩm: <span>1.300.000 đ</span>
+            Giá sản phẩm:&nbsp;
+            <span>
+              {numberWithCommas(product?.price)}
+              &nbsp;&#8363;
+            </span>
           </span>
         </Typography>
-        {/* info */}
       </Typography>
     </div>
   );

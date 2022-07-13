@@ -18,7 +18,8 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '20px',
-    gap: '10px',
+    gap: '12px',
+    width: '33.33%',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
     },

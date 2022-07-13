@@ -29,7 +29,7 @@ function OrderHeader({ order }) {
             <span>{formatDateTime(order?.updated_at)}</span>
           </span>
           <span className={classes.orderHeaderInfo}>
-            Tổng số lượng sản phẩm của đơn hàng&nbsp;
+            Tổng sản phẩm của đơn hàng:&nbsp;
             <span>{order?.products?.length}</span>
           </span>
         </Typography>

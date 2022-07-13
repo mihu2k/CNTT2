@@ -1,33 +1,54 @@
 import { Avatar, Rating, Typography } from '@mui/material';
 import cx from 'classnames';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { formatDateTime } from '~/common/utils';
+import { getCommentsByProductIdRequest } from '~/redux/actions/comment.action';
 import { useStyles } from './review-list.style';
+import * as types from '../../../redux/types';
 
-function ReviewList({ reviews }) {
+function ReviewList({ productId }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const { comment: commentReducer } = useSelector((state) => state);
+
+  const getCommentsByProductId = (id, query = {}) => {
+    dispatch(getCommentsByProductIdRequest(id, query));
+  };
+
+  React.useEffect(() => {
+    if (productId) getCommentsByProductId(productId);
+  }, [productId]);
+
+  React.useEffect(() => {
+    if (commentReducer.status === types.CREATE_COMMENT_SUCCESS) {
+      getCommentsByProductId(productId);
+    }
+  }, [commentReducer.status]);
 
   return (
     <ul className={classes.list}>
-      {reviews.length > 0 ? (
-        reviews?.map((review, index) => (
-          <li className={classes.item} key={review?._id ?? index}>
+      {commentReducer.comments?.length > 0 ? (
+        commentReducer.comments?.map((comment, index) => (
+          <li className={classes.item} key={comment?._id ?? index}>
             <div className={cx('d-f', classes.wrapInfo)}>
               <div className={cx('d-f', classes.wrapInfoLeft)}>
                 <Avatar
-                  alt={review?.author?.full_name}
-                  src={`${process.env.REACT_APP_API_BASE_URL}${review?.author?.avatar}`}
+                  alt={comment?.author?.full_name}
+                  src={`${process.env.REACT_APP_API_BASE_URL}${comment?.author?.avatar}`}
                   sx={{ width: 44, height: 44 }}
                 />
                 <div className="ml-12px">
                   <div style={{ marginBottom: '-4px' }}>
-                    <Rating value={review?.rating?.toFixed(1)} readOnly />
+                    <Rating value={comment?.rating?.toFixed(1)} readOnly />
                   </div>
-                  <span>{review?.author?.full_name}</span>
+                  <span>{comment?.author?.full_name}</span>
                 </div>
               </div>
-              <p>{formatDateTime(review?.updated_at)}</p>
+              <p>{formatDateTime(comment?.updated_at)}</p>
             </div>
-            <p className={classes.content}>{review?.content}</p>
+            <p className={classes.content}>{comment?.content}</p>
           </li>
         ))
       ) : (

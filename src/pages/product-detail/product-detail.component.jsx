@@ -42,6 +42,7 @@ import ReviewList, { ReviewForm } from '~/components/product/review';
 import { Truncate } from '~/components/truncate';
 import { addToCartRequest } from '~/redux/actions/cart.action';
 import { getProductBySlugRequest } from '~/redux/actions/product.action';
+import * as types from '../../redux/types';
 
 function ProductDetail() {
   const classes = useStyles();
@@ -58,7 +59,9 @@ function ProductDetail() {
   const [height, setHeight] = React.useState(0);
   const [quantity, setQuantity] = React.useState(1);
 
-  const { product: productReducer } = useSelector((state) => state);
+  const { product: productReducer, comment: commentReducer } = useSelector(
+    (state) => state,
+  );
   const [openModal, setOpenModal] = React.useState(false);
 
   const settings = {
@@ -112,7 +115,14 @@ function ProductDetail() {
   React.useEffect(() => {
     getProductBySlug(slug);
     setHeight(descRef.current.clientHeight);
-  }, [slug]);
+  }, [slug, descRef.current?.clientHeight]);
+
+  // Update rating when user reviews
+  React.useEffect(() => {
+    if (commentReducer.status === types.CREATE_COMMENT_SUCCESS) {
+      getProductBySlug(slug);
+    }
+  }, [commentReducer.status]);
 
   React.useLayoutEffect(() => {
     setInfoByColor(productReducer.product?.colors[0]);
@@ -129,7 +139,9 @@ function ProductDetail() {
     });
   }, [productReducer.product?.comments]);
 
-  console.log(location, 'LOCATION');
+  // console.log(location, 'LOCATION');
+  // console.log(productReducer, 'productReducer.product?._id');
+  console.log(height, 'HEIGHT');
 
   return (
     <div className={classes.root}>
@@ -349,8 +361,8 @@ function ProductDetail() {
           Chi tiết sản phẩm của {productReducer.product?.name}
         </Typography>
         <div style={{ padding: '0 16px' }}>
-          <Collapse in={isShowMore} collapsedSize={40} ref={descRef}>
-            {productReducer.product?.description}
+          <Collapse in={isShowMore} collapsedSize={height > 500 ? 500 : height}>
+            <div ref={descRef}>{productReducer.product?.description}</div>
           </Collapse>
           {height > 500 && (
             <div style={{ textAlign: 'center', marginTop: '12px' }}>
@@ -393,9 +405,12 @@ function ProductDetail() {
         </Typography>
 
         <Collapse in={isOpenFormRating}>
-          <ReviewForm />
+          <ReviewForm
+            productId={productReducer?.product?._id}
+            productSlug={productReducer?.product?.slug}
+          />
         </Collapse>
-        <ReviewList reviews={productReducer.product?.comments ?? []} />
+        <ReviewList productId={productReducer?.product?._id} />
       </section>
     </div>
   );

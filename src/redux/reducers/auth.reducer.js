@@ -56,7 +56,7 @@ export default function authReducer(state = initialState, action) {
     case types.CHECK_TOKEN_SUCCESS:
       return {
         ...state,
-        status: 'success',
+        status: types.CHECK_TOKEN_SUCCESS,
         profile: action.payload?.data?.data,
       };
     case types.CHECK_TOKEN_FAILURE:

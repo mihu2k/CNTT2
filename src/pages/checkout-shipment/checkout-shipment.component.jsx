@@ -30,8 +30,9 @@ import { showToastMsg } from '~/common/utils';
 import config from '~/config';
 import { CHECKOUT_STEPS } from '~/constants';
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const phoneRegExp = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+// const phoneRegExp =
+//   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const schema = yup.object().shape({
   address: yup.string(),
   fullName: yup.string().required(),
@@ -77,7 +78,8 @@ function Checkout() {
         (total, product) => total + product.price * product.quantity,
         0,
       ),
-      email: currentUser?.data?.email,
+      email:
+        currentUser?.data?.media?.google?.email ?? currentUser?.data?.email,
       products: cartReducer.products,
     };
     if (takeOrder === 0) {
@@ -198,7 +200,10 @@ function Checkout() {
               fullWidth
               variant="standard"
               required
-              value={currentUser?.data?.email}
+              value={
+                currentUser?.data?.media?.google?.email ??
+                currentUser?.data?.email
+              }
               disabled
               // {...register('email')}
               // error={!!errors?.email?.message}

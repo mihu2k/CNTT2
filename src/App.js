@@ -5,6 +5,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DefaultLayout } from '~/layout';
 import { privateRoutes, publicRoutes, RequireAuth } from '~/routes';
+import config from './config';
+import ErrorPage from './pages/error-page';
 import { getCartRequest } from './redux/actions/cart.action';
 
 function App() {
@@ -76,6 +78,7 @@ function App() {
               />
             );
           })}
+          <Route path={config.routes.hadError} element={<ErrorPage />} />
         </Routes>
         <ToastContainer limit={1} />
       </div>

@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     gap: '32px',
-    margin: '16px 0',
+    margin: '0',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       fontSize: '1.6rem',
@@ -39,6 +39,12 @@ export const useStyles = makeStyles((theme) => ({
     color: '#212738',
     fontFamily: 'var(--font-family-Two)',
   },
-
-  
+  circleColor: {
+    height: 17,
+    width: 17,
+    border: '1px solid #f1f1f1',
+    backgroundColor: 'red',
+    display: 'inline-block',
+    borderRadius: '50%',
+  },
 }));

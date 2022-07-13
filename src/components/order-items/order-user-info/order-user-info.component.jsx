@@ -67,7 +67,7 @@ export default function OrderUserInfo({ order }) {
             <span>Giao hàng nhanh</span>
           </p> */}
           <p>
-            Phí vận chuyển:&nbsp;<span>Free</span>
+            Phí vận chuyển:&nbsp;<span>Miễn phí</span>
           </p>
           <p className={classes.orderProductStatus}>
             {showTextOrderStatus(order?.shipMethod, order?.status)}

@@ -62,10 +62,10 @@ export default function OrderUserInfo({ order }) {
               &nbsp;&#8363;
             </span>
           </p>
-          <p>
+          {/* <p>
             Ship từ:&nbsp;<span>20/06/2022</span>&nbsp;
             <span>Giao hàng nhanh</span>
-          </p>
+          </p> */}
           <p>
             Phí vận chuyển:&nbsp;<span>Free</span>
           </p>

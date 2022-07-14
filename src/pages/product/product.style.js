@@ -25,6 +25,9 @@ export const useStyles = makeStyles((theme) => ({
       {
         backgroundColor: '#f7f7f7',
       },
+    '& .css-1jeep95-MuiTypography-root': {
+      margin: '32px 32px 46px 32px',
+    },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',

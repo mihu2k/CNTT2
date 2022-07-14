@@ -313,7 +313,10 @@ function Checkout() {
               </Grid>
             </>
           ) : (
-            <p style={{ height: '50vh' }}>Đơn hàng chưa được xác nhận.</p>
+            <p style={{ height: '50vh', fontSize: '1.8rem' }}>
+              Vui lòng kiểm tra email của bạn và làm theo hướng dẫn để xác nhận
+              đơn hàng!
+            </p>
           )}
         </>
       )}

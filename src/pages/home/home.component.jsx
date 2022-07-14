@@ -170,12 +170,7 @@ function Home() {
               ))
             ) : (
               <Grid item xs={12}>
-                <Typography
-                  variant="p"
-                  component="p"
-                  align="center"
-                  marginTop={4}
-                >
+                <Typography variant="p" component="p" align="center" margin={4}>
                   Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
                 </Typography>
               </Grid>
@@ -211,7 +206,7 @@ function Home() {
               ))}
           </Slider>
         ) : (
-          <Typography variant="p" component="p" align="center" marginTop={4}>
+          <Typography variant="p" component="p" align="center" margin={4}>
             Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
           </Typography>
         )}

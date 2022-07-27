@@ -24,7 +24,8 @@ export default function OrderUserInfo({ order }) {
         >
           <p className={classes.userInfoTitle}>
             Thông tin&nbsp;
-            {order?.shipMethod === 0 ? 'vận chuyển' : 'khách hàng'}
+            {order?.shipMethod === 0 && 'vận chuyển'}
+            {order?.shipMethod === 1 && 'khách hàng'}
           </p>
           <p>{order?.fullName}</p>
           <p>{order?.phone}</p>
@@ -70,7 +71,7 @@ export default function OrderUserInfo({ order }) {
             Phí vận chuyển:&nbsp;<span>Miễn phí</span>
           </p>
           <p className={classes.orderProductStatus}>
-            {showTextOrderStatus(order?.shipMethod, order?.status)}
+            {showTextOrderStatus(order?.status)}
           </p>
         </Typography>
       </Typography>

@@ -135,9 +135,10 @@ function Checkout() {
                           }}
                         >
                           Thông tin đặt hàng (
-                          {orderReducer.order?.shipMethod === 0
-                            ? 'Giao hàng tận nơi'
-                            : 'Nhận tại cửa hàng'}
+                          {orderReducer.order?.shipMethod === 0 &&
+                            'Giao hàng tận nơi'}
+                          {orderReducer.order?.shipMethod === 1 &&
+                            'Nhận tại cửa hàng'}
                           )
                         </Typography>
                         <Typography
@@ -150,9 +151,8 @@ function Checkout() {
                           }}
                         >
                           Thông tin&nbsp;
-                          {orderReducer.order?.shipMethod === 0
-                            ? 'vận chuyển'
-                            : 'khách hàng'}
+                          {orderReducer.order?.shipMethod === 0 && 'vận chuyển'}
+                          {orderReducer.order?.shipMethod === 1 && 'khách hàng'}
                         </Typography>
                         <p>{orderReducer.order?.fullName}</p>
                         <p>{orderReducer.order?.phone}</p>

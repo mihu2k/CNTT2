@@ -103,11 +103,8 @@ function Profile() {
           <span className={classes.shopInfoBoxTitle}>Theo dõi đơn hàng</span>
           <span className={classes.shopInfoBoxNumber}>
             {
-              orderReducer.orders?.filter((order) =>
-                order?.shipMethod === 0
-                  ? order?.status !== 3
-                  : order?.status !== 2,
-              )?.length
+              orderReducer.orders?.filter((order) => order?.status !== 3)
+                ?.length
             }
           </span>
         </Link>
@@ -128,11 +125,8 @@ function Profile() {
           <span className={classes.shopInfoBoxTitle}>Sản phẩm của tôi</span>
           <span className={classes.shopInfoBoxNumber}>
             {
-              orderReducer.orders?.filter((order) =>
-                order?.shipMethod === 0
-                  ? order?.status === 3
-                  : order?.status === 2,
-              )?.length
+              orderReducer.orders?.filter((order) => order?.status === 3)
+                ?.length
             }
           </span>
         </Link>

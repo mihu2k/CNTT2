@@ -7,20 +7,20 @@ export const useStyles = makeStyles((theme) => {
     box: {
       // marginBottom: '24px',
       padding: '32px 0',
-      borderBottom: '1px solid #ccc',
+      boxShadow: '0 1px 0 rgb(0 0 0 / 12%)',
     },
     imgProd: {
       width: 80,
       height,
       borderRadius: '4px',
+      marginRight: '26px',
     },
     wrapInfo: {
       flex: 1,
-      marginLeft: '40px',
     },
     info: {
       justifyContent: 'space-between',
-      height,
+      alignItems: 'flex-start',
     },
     action: {
       justifyContent: 'space-between',

@@ -28,7 +28,7 @@ const cx = classNames.bind(styles);
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faUser} />,
-    title: 'Đăng nhập/Sign-up',
+    title: 'Đăng nhập/Đăng ký',
     to: '/login',
   },
   {
@@ -52,7 +52,7 @@ const MENU_ITEMS = [
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-    title: 'Feedback and help',
+    title: 'Phản hồi/hỗ trợ',
     to: '/feedback',
   },
 ];
@@ -95,13 +95,13 @@ function Header() {
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
-      title: 'View profile',
+      title: 'Thông tin của tôi',
       to: '/profile',
     },
     ...menu,
     {
       icon: <FontAwesomeIcon icon={faSignOut} />,
-      title: 'Log out',
+      title: 'Đăng xuất',
       type: 'logout',
       separate: true,
     },

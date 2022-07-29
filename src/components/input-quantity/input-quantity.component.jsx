@@ -46,7 +46,12 @@ export const InputQuantity = ({
     <div className={cx('d-f')}>
       <IconButton
         aria-label="delete"
-        style={{ borderRadius: 0, border: '1px solid #ccc' }}
+        style={{
+          borderRadius: 0,
+          border: '1px solid #ccc',
+          fontSize: '1.6rem',
+          minWidth: '38px',
+        }}
         onClick={() => handleClickChange('decrease')}
         disabled={quantity === 1}
       >
@@ -63,7 +68,12 @@ export const InputQuantity = ({
       </div>
       <IconButton
         aria-label="add"
-        style={{ borderRadius: 0, border: '1px solid #ccc' }}
+        style={{
+          borderRadius: 0,
+          border: '1px solid #ccc',
+          fontSize: '1.6rem',
+          minWidth: '38px',
+        }}
         onClick={() => handleClickChange('increase')}
       >
         <AddIcon />

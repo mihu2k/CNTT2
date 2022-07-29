@@ -59,6 +59,7 @@ function Home() {
 
   React.useEffect(() => {
     fetchProducts(query);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, query]);
 
   // console.log(authReducer, 'authReducer');
@@ -216,7 +217,7 @@ function Home() {
         <h2>Bạn có thể xem thêm</h2>
       </div>
       <div className={cx(classes.sectionHomeBoxs)}>
-        <Link to={'./'} className={classes.sectionBox}>
+        <Link to={config.routes.product} className={classes.sectionBox}>
           <h4 className={classes.sectionBoxTitle}>Loa không dây </h4>
           <img
             className={cx(classes.sectionBoxImg, 'box-transform')}
@@ -224,7 +225,7 @@ function Home() {
             alt="homeBox1"
           />
         </Link>
-        <Link to={'./'} className={classes.sectionBox}>
+        <Link to={config.routes.product} className={classes.sectionBox}>
           <h4 className={classes.sectionBoxTitle}>Tai nghe</h4>
           <img
             className={cx(classes.sectionBoxImg, 'box-transform')}
@@ -232,7 +233,7 @@ function Home() {
             alt="homeBox2"
           />
         </Link>
-        <Link to={'./'} className={classes.sectionBox}>
+        <Link to={config.routes.product} className={classes.sectionBox}>
           <h4 className={classes.sectionBoxTitle}>Âm thanh gia đình</h4>
           <img
             className={cx(classes.sectionBoxImg, 'box-transform')}
@@ -240,7 +241,7 @@ function Home() {
             alt="homeBox5"
           />
         </Link>
-        <Link to={'./'} className={classes.sectionBox}>
+        <Link to={config.routes.product} className={classes.sectionBox}>
           <h4 className={classes.sectionBoxTitle}>Dòng sản phẩm gaming</h4>
           <img
             className={cx(classes.sectionBoxImg, 'box-transform')}
@@ -248,7 +249,7 @@ function Home() {
             alt="homeBox3"
           />
         </Link>
-        <Link to={'./'} className={classes.sectionBox}>
+        <Link to={config.routes.product} className={classes.sectionBox}>
           <h4 className={classes.sectionBoxTitle}>Âm thanh chuyên nghiệp</h4>
           <img
             className={cx(classes.sectionBoxImg, 'box-transform')}

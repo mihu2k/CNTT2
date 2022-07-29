@@ -40,7 +40,7 @@ export function CardHorizontal({ product }) {
       />
       <div className={classes.wrapInfo}>
         <div className={cx('d-f', classes.info)}>
-          <div style={{ maxWidth: '60%' }}>
+          <div style={{ maxWidth: '70%' }}>
             <Truncate
               variant="h5"
               component="h5"
@@ -50,14 +50,22 @@ export function CardHorizontal({ product }) {
             >
               {product.name}
             </Truncate>
-            <Typography variant="p" component="p" fontSize={14}>
-              {product.colorName}
+            <Typography
+              variant="p"
+              component="p"
+              style={{ fontSize: '1.6rem' }}
+            >
+              Màu sắc: {product.colorName}
             </Typography>
           </div>
           <Typography
             variant="p"
             component="p"
-            style={{ fontWeight: 'bold', fontSize: '1.8rem' }}
+            style={{
+              fontWeight: 'bold',
+              fontSize: '2rem',
+              marginRight: '14px',
+            }}
           >
             {numberWithCommas(product.price)} ₫
           </Typography>

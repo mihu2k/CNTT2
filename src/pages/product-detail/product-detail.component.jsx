@@ -115,6 +115,7 @@ function ProductDetail() {
   React.useEffect(() => {
     getProductBySlug(slug);
     setHeight(descRef.current.clientHeight);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, descRef.current?.clientHeight]);
 
   // Update rating when user reviews
@@ -122,6 +123,7 @@ function ProductDetail() {
     if (commentReducer.status === types.CREATE_COMMENT_SUCCESS) {
       getProductBySlug(slug);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commentReducer.status]);
 
   React.useLayoutEffect(() => {
@@ -225,7 +227,7 @@ function ProductDetail() {
                           cursor: 'pointer',
                           border:
                             infoByColor?.value === item.value
-                              ? '1px solid #ccc'
+                              ? '1px solid rgb(0 0 0 / 12%)'
                               : '1px solid transparent',
                         }}
                       />
@@ -263,9 +265,8 @@ function ProductDetail() {
               </div>
             </div>
             <div className={cx('mt-20px')}>
-              Giá:&nbsp;
               <span className={classes.price}>
-                {numberWithCommas(productReducer.product?.price)} ₫
+                {numberWithCommas(productReducer.product?.price)} &#8363;
               </span>
             </div>
             <ul
@@ -277,7 +278,7 @@ function ProductDetail() {
               }}
             />
             <div className={cx('d-f', classes.wrapQuantity, 'mt-20px')}>
-              <span>Số lượng</span>
+              <span style={{ fontWeight: 'bold' }}>Số lượng</span>
               <div className={cx('ml-16px')}>
                 <InputQuantity getQuantity={getQuantity} />
               </div>

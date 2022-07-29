@@ -17,7 +17,7 @@ import SignIn from '~/pages/login-form/login-form.component';
 import Order from '~/pages/orders/orders.component';
 import ProductDetail from '~/pages/product-detail/product-detail.component';
 import Product from '~/pages/product/product.component';
-import ProfileSettings from '~/pages/profile-settings/profile-settings.component';
+// import ProfileSettings from '~/pages/profile-settings/profile-settings.component';
 import Profile from '~/pages/profile/profile.component';
 import ResetPassword from '~/pages/reset-password/reset-password.component';
 

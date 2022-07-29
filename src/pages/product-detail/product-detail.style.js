@@ -7,13 +7,14 @@ export const useStyles = makeStyles((theme) => {
     root: {},
     wrapBreadcrumb: {
       padding: '24px 0',
-      borderBottom: '1px solid #ccc',
+      boxShadow: '0 1px 0 rgb(0 0 0 / 12%)',
       '& .MuiBreadcrumbs-root': {
         '& .MuiLink-root': {
           fontSize: '1.6rem',
         },
         '& .MuiTypography-root ': {
           fontSize: '1.6rem',
+          fontWeight: 'bold',
         },
       },
     },
@@ -98,20 +99,22 @@ export const useStyles = makeStyles((theme) => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '1px solid #ccc',
+      // border: '1px solid #ccc',
     },
     wrapQuantity: {
-      alignItems: 'center',
+      alignItems: 'baseline',
       // justifyContent: 'space-around',
       margin: '32px 0',
       '& .MuiButtonBase-root.MuiIconButton-root': {
-        minWidth: '36px',
+        minWidth: '38px',
+        minHeight: '38px',
       },
     },
     wrapInputQuantity: {
       '& .MuiOutlinedInput-root': {
         fontSize: '1.4rem',
         maxWidth: '52px',
+        height: '100%',
         '& .MuiOutlinedInput-input': {
           textAlign: 'center',
           padding: '8px',
@@ -126,23 +129,23 @@ export const useStyles = makeStyles((theme) => {
     },
 
     price: {
-      fontWeight: 600,
-      fontSize: '20px',
+      fontWeight: 'bold',
+      fontSize: '26px',
+      color: 'var(--primary-color)',
     },
     shortDesc: {
       // padding: '12px 0 12px 20px',
       padding: '16px 0',
-      borderTop: '1px solid #ccc',
-      borderBottom: '1px solid #ccc',
-      fontSize: '1.4rem',
+      borderTop: '1px solid rgb(0 0 0 / 12%)',
+      borderBottom: '1px solid rgb(0 0 0 / 12%)',
+      fontSize: '1.6rem',
     },
     list: {
-      marginLeft: '16px',
       paddingTop: 0,
     },
     wrapGuarantee: {
-      paddingLeft: '10px',
-      borderLeft: '1px solid #ccc',
+      paddingLeft: '16px',
+      borderLeft: '1px solid rgb(0 0 0 / 12%)',
       maxWidth: '330px',
       '& .MuiListItemIcon-root + .MuiListItemText-root': {
         '& .MuiTypography-root': {
@@ -154,13 +157,18 @@ export const useStyles = makeStyles((theme) => {
       },
     },
     text: {
+      letterSpacing: '0.03rem',
       '& .MuiTypography-root': {
         fontSize: '1.6rem',
       },
     },
     widthIcon: {
       minWidth: indentListItem,
-      justifyContent: 'center',
+      justifyContent: 'left',
+      '& svg.MuiSvgIcon-root.MuiSvgIcon-colorPrimary.MuiSvgIcon-fontSizeLarge.css-bsqp9w-MuiSvgIcon-root':
+        {
+          color: 'var(--primary-color)',
+        },
     },
     indentListItem: {
       paddingLeft: indentListItem,

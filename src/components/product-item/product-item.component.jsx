@@ -8,9 +8,13 @@ import styles from './product-item.css';
 
 const cx = classNames.bind(styles);
 
-export default function ProductItem({ data }) {
+export default function ProductItem({ data, onClick }) {
   return (
-    <Link to={`/product/${data.slug}`} className={cx('account-item-wrapper')}>
+    <Link
+      to={`/product/${data.slug}`}
+      onClick={onClick}
+      className={cx('account-item-wrapper')}
+    >
       <Image
         alt={data.name}
         src={`${process.env.REACT_APP_API_BASE_URL}${data?.colors[0]?.image}`}

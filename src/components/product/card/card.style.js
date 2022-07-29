@@ -70,8 +70,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   wrapPrice: {
     margin: '24px 0',
-    fontSize: '1.8rem',
-    fontWeight: 600,
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: 'var(--primary-color)',
   },
   wrapCircleBox: {
     width: '23px',

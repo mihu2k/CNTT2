@@ -11,7 +11,7 @@ import cx from 'classnames';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { numberWithCommas, renderStars } from '~/common/utils';
+import { numberWithCommas } from '~/common/utils';
 import { Truncate } from '~/components/truncate';
 import { addToCartRequest } from '~/redux/actions/cart.action';
 import { useStyles } from './card.style';
@@ -87,7 +87,7 @@ function ProductCard({ product }) {
             {product.name}
           </Truncate>
           <div className={cx('f-shrink-0', classes.wrapColor)}>
-            <div>
+            <div style={{ fontSize: '1.6rem' }}>
               <span style={{ fontWeight: 600 }}>Màu sắc:</span>
               <span className="pl-4px">{infoByColor.name}</span>
             </div>

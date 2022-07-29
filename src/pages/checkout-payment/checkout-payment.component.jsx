@@ -2,16 +2,11 @@ import * as React from 'react';
 import { useStyles } from './checkout-payment.style';
 import {
   Box,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
   Step,
   Stepper,
   StepLabel,
   Grid,
   Typography,
-  TextField,
   Button,
   Accordion,
   AccordionDetails,
@@ -40,46 +35,46 @@ function Checkout() {
   );
 
   const [expanded, setExpanded] = React.useState(false); // Accordion
-  const [loading, setLoading] = React.useState(false);
+  // const [loading, setLoading] = React.useState(false);
 
   const handleAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   // Select payment method
-  const [paymentCard, setPaymentCard] = React.useState('');
+  // const [paymentCard, setPaymentCard] = React.useState('');
 
-  const handleSelectCard = (event) => {
-    setPaymentCard(event.target.value);
-  };
+  // const handleSelectCard = (event) => {
+  //   setPaymentCard(event.target.value);
+  // };
 
   // Select time-expired
-  const [expiredMonth, setExpiredMonth] = React.useState('');
-  const [expiredYear, setExpiredYear] = React.useState('');
+  // const [expiredMonth, setExpiredMonth] = React.useState('');
+  // const [expiredYear, setExpiredYear] = React.useState('');
 
-  const handleExpiredMonth = (event) => {
-    setExpiredMonth(event.target.value);
-  };
+  // const handleExpiredMonth = (event) => {
+  //   setExpiredMonth(event.target.value);
+  // };
 
-  const handleExpiredYear = (event) => {
-    setExpiredYear(event.target.value);
-  };
+  // const handleExpiredYear = (event) => {
+  //   setExpiredYear(event.target.value);
+  // };
 
-  //  Expired Time of cards payment
-  const d = new Date();
-  const months = [];
-  const days = [];
+  // //  Expired Time of cards payment
+  // const d = new Date();
+  // const months = [];
+  // const days = [];
 
-  for (let i = d.getFullYear(); i <= d.getFullYear() + 10; i++) {
-    months.push(i);
-  }
+  // for (let i = d.getFullYear(); i <= d.getFullYear() + 10; i++) {
+  //   months.push(i);
+  // }
 
-  for (let j = 1; j < 13; j++) {
-    if (j < 10) {
-      j = '0' + j;
-    }
-    days.push(j);
-  }
+  // for (let j = 1; j < 13; j++) {
+  //   if (j < 10) {
+  //     j = '0' + j;
+  //   }
+  //   days.push(j);
+  // }
 
   const handlePaymentByCash = () => {
     // setLoading(true);
@@ -134,7 +129,7 @@ function Checkout() {
               >
                 <Typography variant="div" className={classes.accordionTitle}>
                   <Typography variant="span" fontWeight="bold">
-                    Thanh toán bằng thẻ quốc tế
+                    Thanh toán bằng cách chuyển khoản
                   </Typography>
                   <img
                     className={classes.paymentImgCard}
@@ -143,9 +138,9 @@ function Checkout() {
                   />
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                {/* Form */}
-                <Typography
+
+              {/* Form */}
+              {/* <Typography
                   className={classes.checkoutInfoForm}
                   variant="form"
                   component="form"
@@ -269,6 +264,52 @@ function Checkout() {
                       Tiếp Tục
                     </Button>
                   </Typography>
+                </Typography> */}
+
+              <AccordionDetails>
+                <Typography
+                  variant="div"
+                  component="div"
+                  className={classes.accordionContent}
+                >
+                  <Typography variant="div">
+                    Khách hàng vui lòng thực hiện chuyển khoản theo các thông
+                    tin chuyển khoản bên dưới, chúng tôi sẽ xác nhận đơn hàng
+                    ngay khi đã xác nhận thông tin chuyển khoản thành công!
+                  </Typography>
+                  <Typography variant="div">
+                    Sau khi chuyển khoản, vui lòng nhấn chọn <b>Tiếp tục</b> để
+                    hoàn thành đơn hàng!
+                  </Typography>
+                  <Typography variant="div">
+                    <p>
+                      <b>Ngân hàng vietcombank</b>
+                    </p>
+                    <p>
+                      <b>STK: 0081001179000</b>
+                    </p>
+                    <p>
+                      <b>Nội dung: Tên khách hàng + email khách hàng</b>
+                    </p>
+                  </Typography>
+                  <Typography
+                    variant="div"
+                    sx={{
+                      fontSize: '2rem',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Tổng cộng:&nbsp;
+                    <span>
+                      {numberWithCommas(location.state.checkoutInfo.total)}
+                      &nbsp;&#8363;
+                    </span>
+                  </Typography>
+                  <Typography variant="div" className={classes.accordionBtn}>
+                    <Button variant="contained" onClick={handlePaymentByCash}>
+                      Tiếp Tục
+                    </Button>
+                  </Typography>
                 </Typography>
               </AccordionDetails>
             </Accordion>
@@ -287,7 +328,7 @@ function Checkout() {
               >
                 <Typography variant="div" className={classes.accordionTitle}>
                   <Typography variant="span" fontWeight="bold">
-                    Thanh toán bằng ATM/Mã QR/Ví điện tử
+                    Thanh toán bằng Mã QR/Ví điện tử
                   </Typography>
                   <img
                     className={classes.paymentImgCard}
@@ -308,7 +349,13 @@ function Checkout() {
                     thanh toán trực tuyến và hoàn thành quy trình mua hàng một
                     cách an toàn, bảo mật.
                   </Typography>
-                  <Typography variant="div" fontWeight="bold">
+                  <Typography
+                    variant="div"
+                    sx={{
+                      fontSize: '2rem',
+                      fontWeight: 'bold',
+                    }}
+                  >
                     Tổng cộng:&nbsp;
                     <span>
                       {numberWithCommas(location.state.checkoutInfo.total)}
@@ -354,8 +401,8 @@ function Checkout() {
                   <Typography variant="div">
                     Sau khi đọc và chấp thuận Điều khoản và Điều kiện mua hàng,
                     hãy vui lòng nhấn chọn Tiếp tục. Tin nhắn yêu cầu xác nhận
-                    sẽ được gửi đến số điện thoại nhận hàng và email của bạn.
-                    Vui lòng xác nhận bằng cách điền OTP.
+                    sẽ được gửi đến email của bạn. Vui lòng xác nhận bằng cách
+                    làm theo hướng dẫn trong mail.
                   </Typography>
                   <Typography variant="div">
                     Nếu bạn không xác nhận, đơn hàng sẽ không được xử lý.

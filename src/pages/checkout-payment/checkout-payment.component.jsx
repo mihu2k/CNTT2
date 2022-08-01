@@ -402,10 +402,18 @@ function Checkout() {
                     Sau khi đọc và chấp thuận Điều khoản và Điều kiện mua hàng,
                     hãy vui lòng nhấn chọn Tiếp tục. Tin nhắn yêu cầu xác nhận
                     sẽ được gửi đến email của bạn. Vui lòng xác nhận bằng cách
-                    làm theo hướng dẫn trong mail.
+                    làm theo hướng dẫn trong mail. Nếu bạn không xác nhận, đơn
+                    hàng sẽ không được xử lý.
                   </Typography>
                   <Typography variant="div">
-                    Nếu bạn không xác nhận, đơn hàng sẽ không được xử lý.
+                    <strong>
+                      <em>
+                        Lưu ý, cửa hàng chỉ xác nhận đơn hàng thanh toán tiền
+                        mặt có giá trị dưới 10 triệu đồng. Các hóa đơn giá trị
+                        cao hơn vui lòng thực hiện thanh toán qua hình thức
+                        chuyển khoản!
+                      </em>
+                    </strong>
                   </Typography>
                   <Typography
                     variant="div"

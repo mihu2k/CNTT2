@@ -135,7 +135,7 @@ export const useStyles = makeStyles((theme) => {
     },
     shortDesc: {
       // padding: '12px 0 12px 20px',
-      padding: '16px 0',
+      padding: '16px 0 16px 16px',
       borderTop: '1px solid rgb(0 0 0 / 12%)',
       borderBottom: '1px solid rgb(0 0 0 / 12%)',
       fontSize: '1.6rem',

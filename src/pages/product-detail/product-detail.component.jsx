@@ -115,7 +115,7 @@ function ProductDetail() {
   React.useEffect(() => {
     getProductBySlug(slug);
     setHeight(descRef.current.clientHeight);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, descRef.current?.clientHeight]);
 
   // Update rating when user reviews
@@ -123,7 +123,7 @@ function ProductDetail() {
     if (commentReducer.status === types.CREATE_COMMENT_SUCCESS) {
       getProductBySlug(slug);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commentReducer.status]);
 
   React.useLayoutEffect(() => {
@@ -331,12 +331,14 @@ function ProductDetail() {
               </ListItemIcon>
               <ListItemText primary="Phụ kiện" className={classes.text} />
             </ListItem>
-            {/* <ul
+            <ul
+              className={cx(classes.text, classes.indentListItem)}
               dangerouslySetInnerHTML={{
-                __html: productReducer.product?.accessories,
+                __html:
+                  productReducer.product?.accessories || 'Chưa có thông tin',
               }}
-            /> */}
-            <ListItem disablePadding>
+            />
+            {/* <ListItem disablePadding>
               <ListItemText
                 inset
                 className={cx(classes.text, classes.indentListItem)}
@@ -344,7 +346,7 @@ function ProductDetail() {
                   productReducer.product?.accessories || 'Chưa có thông tin.'
                 }
               />
-            </ListItem>
+            </ListItem> */}
           </List>
         </div>
       </div>
@@ -363,7 +365,13 @@ function ProductDetail() {
         </Typography>
         <div style={{ padding: '0 16px' }}>
           <Collapse in={isShowMore} collapsedSize={height > 500 ? 500 : height}>
-            <div ref={descRef}>{productReducer.product?.description}</div>
+            <div
+              ref={descRef}
+              dangerouslySetInnerHTML={{
+                __html:
+                  productReducer.product?.description || 'Chưa có thông tin.',
+              }}
+            />
           </Collapse>
           {height > 500 && (
             <div style={{ textAlign: 'center', marginTop: '12px' }}>

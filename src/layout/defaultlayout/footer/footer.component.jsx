@@ -107,7 +107,7 @@ function Footer() {
                   Điều khoản và Điều kiện
                 </Link>
               </li>
-              <li className={cx('footer-item')}>
+              {/* <li className={cx('footer-item')}>
                 <Link
                   className={cx('footer-item-link')}
                   title="Đăng ký thành viên"
@@ -115,12 +115,12 @@ function Footer() {
                 >
                   Đăng ký thành viên
                 </Link>
-              </li>
+              </li> */}
               <li className={cx('footer-item')}>
                 <Link
                   className={cx('footer-item-link')}
                   title="Kiểm tra thời hạn bảo hành"
-                  to="/"
+                  to={config.routes.order}
                 >
                   Kiểm tra thời hạn bảo hành
                 </Link>
@@ -201,7 +201,7 @@ function Footer() {
             </li>
             <div className={cx('footer-contacts')}>
               <a
-                href="facebook.com"
+                href="https://www.facebook.com/profile.php?id=100008162281792"
                 title="Facebook"
                 target="_blank"
                 rel="noreferrer"
@@ -210,7 +210,7 @@ function Footer() {
                 <Facebook sx={{ fontSize: 20 }} />
               </a>
               <a
-                href="instagram.com"
+                href="https://www.instagram.com/phmqucvuong/"
                 title="Instagram"
                 target="_blank"
                 rel="noreferrer"
@@ -219,15 +219,13 @@ function Footer() {
                 <Instagram sx={{ fontSize: 20 }} />
               </a>
 
-              <a
-                href="twitter.com"
-                target="_blank"
+              <span
                 title="Twitter"
                 rel="noreferrer"
                 className={cx('footer-social-icon', 'social-icon-twitter')}
               >
-                <Twitter sx={{ fontSize: 20 }} />
-              </a>
+                <Twitter sx={{ fontSize: 20, cursor: 'pointer' }} />
+              </span>
             </div>
           </ul>
         </div>

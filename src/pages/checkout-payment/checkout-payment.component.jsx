@@ -86,6 +86,15 @@ function Checkout() {
     );
   };
 
+  const handlePaymentByTransfer = () => {
+    dispatch(
+      createOrderRequest(
+        { ...location.state.checkoutInfo, paymentMethod: 0 },
+        navigate,
+      ),
+    );
+  };
+
   console.log(orderReducer, 'orderReducer');
 
   return (
@@ -306,7 +315,10 @@ function Checkout() {
                     </span>
                   </Typography>
                   <Typography variant="div" className={classes.accordionBtn}>
-                    <Button variant="contained" onClick={handlePaymentByCash}>
+                    <Button
+                      variant="contained"
+                      onClick={handlePaymentByTransfer}
+                    >
                       Tiếp Tục
                     </Button>
                   </Typography>

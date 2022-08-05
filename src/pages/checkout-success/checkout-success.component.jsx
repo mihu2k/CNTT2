@@ -174,7 +174,7 @@ function Checkout() {
                             ? 'Thanh toán tiền mặt'
                             : orderReducer.order?.paymentMethod === 1
                             ? 'Thanh toán ATM/QR/Ví điện tử'
-                            : 'Thanh toán thẻ quốc tế VISA'}
+                            : 'Thanh toán chuyển khoản'}
                         </p>
                       </div>
                     </div>

@@ -43,7 +43,7 @@ export default function OrderUserInfo({ order }) {
               ? 'Thanh toán tiền mặt'
               : order?.paymentMethod === 1
               ? 'Thanh toán ATM/QR/Ví điện tử'
-              : 'Thanh toán thẻ quốc tế VISA'}
+              : 'Thanh toán chuyển khoản'}
           </p>
         </Typography>
         <Typography

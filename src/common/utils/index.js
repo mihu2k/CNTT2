@@ -89,7 +89,7 @@ export function showTextOrderStatus(statusCode) {
       status = 'Đang giao hàng';
       break;
     case 3:
-      status = 'Đã thanh toán';
+      status = 'Đã giao hàng';
       break;
     default:
       status = 'Đang xử lý';

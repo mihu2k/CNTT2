@@ -98,4 +98,18 @@
   .header-logo {
     display: none;
   }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .header-wrapper {
+    height: fit-content;
+  }
+
+  .header-action {
+    margin-bottom: 20px;
+  }
 }

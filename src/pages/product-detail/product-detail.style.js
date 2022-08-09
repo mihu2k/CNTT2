@@ -89,10 +89,14 @@ export const useStyles = makeStyles((theme) => {
       },
       [theme.breakpoints.down('sm')]: {
         padding: '20px 20px 20px 0',
+        width: 'fit-content',
       },
     },
     prodName: {
       lineHeight: 1.3,
+      [theme.breakpoints.down('sm')]: {
+        paddingRight: '30px',
+      },
     },
     wrapMainImg: {
       height: '400px',
@@ -108,6 +112,9 @@ export const useStyles = makeStyles((theme) => {
       '& .MuiButtonBase-root.MuiIconButton-root': {
         minWidth: '38px',
         minHeight: '38px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: 'center',
       },
     },
     wrapInputQuantity: {

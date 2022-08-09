@@ -266,7 +266,7 @@ function ProductDetail() {
             </div>
             <div className={cx('mt-20px')}>
               <span className={classes.price}>
-                {numberWithCommas(productReducer.product?.price)} &#8363;
+                {numberWithCommas(productReducer.product?.price ?? 0)} &#8363;
               </span>
             </div>
             <ul

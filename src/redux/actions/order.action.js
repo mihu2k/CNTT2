@@ -1,12 +1,13 @@
 import config from '~/config';
 import OrderService from '~/services/order.service';
+import { trackPromise } from 'react-promise-tracker';
 import * as types from '../types';
 
 export const getOrderByIdRequest = (id) => async (dispatch) => {
   dispatch({ type: types.GET_ORDER_BY_ID_REQUEST });
 
   try {
-    const response = await OrderService.getOneById(id);
+    const response = await trackPromise(OrderService.getOneById(id));
     dispatch({ type: types.GET_ORDER_BY_ID_SUCCESS, payload: response });
     // console.log('SUCCESS ORDER', response);
   } catch (error) {
@@ -19,7 +20,7 @@ export const getOrdersByYourselfRequest = (query) => async (dispatch) => {
   dispatch({ type: types.GET_YOUR_ORDERS_REQUEST });
 
   try {
-    const response = await OrderService.getByYourself(query);
+    const response = await trackPromise(OrderService.getByYourself(query));
     dispatch({ type: types.GET_YOUR_ORDERS_SUCCESS, payload: response });
     // console.log('SUCCESS ORDER', response);
   } catch (error) {
@@ -34,7 +35,7 @@ export const createOrderRequest =
     dispatch({ type: types.CREATE_ORDER_REQUEST });
 
     try {
-      const response = await OrderService.create(data);
+      const response = await trackPromise(OrderService.create(data));
       dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: response });
       navigate &&
         navigate(config.routes.orderConfirmation, {

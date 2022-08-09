@@ -9,6 +9,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Checkbox,
   Grid,
   List,
@@ -17,16 +18,17 @@ import {
   ListItemIcon,
   ListItemText,
   MenuItem,
+  Pagination,
   Select,
+  Stack,
   Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Breadcrumb } from '~/components/breadcrumb';
-import Loading from '~/components/loading/loading.component';
 import ProductCard from '~/components/product/card';
-import { getProductsRequest } from '~/redux/actions/product.action';
 import { getCategoriesRequest } from '~/redux/actions/category.action';
+import { getProductsRequest } from '~/redux/actions/product.action';
 
 const FILTERS = [
   {
@@ -64,6 +66,8 @@ function Product() {
     categoryIds: [],
     sort_by: 'updated_at',
     sort_type: 'desc',
+    per_page: 9,
+    page: 1,
   });
   const [valueSelect, setValueSelect] = React.useState(0);
 
@@ -74,7 +78,7 @@ function Product() {
     currentIndex === -1
       ? newCategoryIds.push(value)
       : newCategoryIds.splice(currentIndex, 1);
-    setQuery((prev) => ({ ...prev, categoryIds: newCategoryIds }));
+    setQuery((prev) => ({ ...prev, categoryIds: newCategoryIds, page: 1 }));
   };
 
   const handleChangeFilter = (e) => {
@@ -197,45 +201,52 @@ function Product() {
           md={9}
           // style={{ backgroundColor: '#f7f7f7', padding: '20px' }}
         >
-          {productReducer.status === 'pending' ? (
-            <Loading
-              style={{
-                position: 'unset',
-                width: '100%',
-                height: '100%',
-                background: 'none',
-              }}
-            />
-          ) : (
-            <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
-              {productReducer.products.length > 0 ? (
-                productReducer.products.map((product) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={6}
-                    lg={4}
-                    style={{ display: 'flex' }}
-                    key={product._id}
-                  >
-                    <ProductCard product={product} />
-                  </Grid>
-                ))
-              ) : (
-                <Grid item xs={12}>
-                  <Typography
-                    variant="p"
-                    component="p"
-                    align="center"
-                    marginTop={4}
-                  >
-                    Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
-                  </Typography>
+          <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
+            {productReducer.products.length > 0 ? (
+              productReducer.products.map((product) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  lg={4}
+                  style={{ display: 'flex' }}
+                  key={product._id}
+                >
+                  <ProductCard product={product} />
                 </Grid>
-              )}
-            </Grid>
-          )}
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <Typography
+                  variant="p"
+                  component="p"
+                  align="center"
+                  marginTop={4}
+                >
+                  Chưa có sản phẩm nào. Vui lòng quay lại sau. Xin cảm ơn.
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
+          <Box my={2}>
+            <Pagination
+              count={productReducer?.totalPage ?? 1}
+              shape="rounded"
+              size="large"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                '& .MuiPagination-ul .MuiPaginationItem-root': {
+                  fontSize: '16px',
+                },
+              }}
+              page={query.page ?? 1}
+              onChange={(_, value) =>
+                setQuery((prev) => ({ ...prev, page: value }))
+              }
+            />
+          </Box>
         </Grid>
       </Grid>
     </div>

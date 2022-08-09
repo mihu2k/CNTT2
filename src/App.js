@@ -9,6 +9,7 @@ import config from './config';
 import ErrorPage from './pages/error-page';
 import { getCartRequest } from './redux/actions/cart.action';
 import ScrollToTop from '~/components/scroll-to-top/scroll-to-top.component';
+
 function App() {
   const dispatch = useDispatch();
   const { cart: cartReducer } = useSelector((state) => state);

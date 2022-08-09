@@ -1,17 +1,16 @@
-import { useStyles } from './profile.style';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '~/config';
+import { useStyles } from './profile.style';
 
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import CreditScoreIcon from '@mui/icons-material/CreditScore';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HistoryIcon from '@mui/icons-material/History';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import cx from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
-import httpRequest from '~/common/utils/httpRequest';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkTokenRequest } from '~/redux/actions/auth.action';
 import { getOrdersByYourselfRequest } from '~/redux/actions/order.action';
 

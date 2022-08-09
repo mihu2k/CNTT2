@@ -44,12 +44,12 @@ function Checkout() {
     if (orderReducer.order) {
       const intervalGetOrder = setInterval(() => {
         location.state?.orderId && getOrderById(location.state.orderId);
-        console.log('setInterval');
+        // console.log('setInterval');
       }, 1000 * 7);
 
       if (orderReducer.order?.isVerify || orderReducer.status === 'failure') {
         clearInterval(intervalGetOrder);
-        console.log('CONFIRMED');
+        // console.log('CONFIRMED');
         return;
       }
       return () => clearInterval(intervalGetOrder);

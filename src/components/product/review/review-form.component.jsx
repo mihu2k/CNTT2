@@ -40,7 +40,7 @@ export function ReviewForm({ productId, productSlug }) {
     });
   };
 
-  // console.log(formValue);
+  // // console.log(formValue);
 
   return (
     <section className={cx('d-f', classes.root)}>

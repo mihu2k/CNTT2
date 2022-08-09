@@ -12,13 +12,13 @@ export const getCommentsByProductIdRequest =
         type: types.GET_COMMENTS_BY_PRODUCT_ID_SUCCESS,
         payload: response,
       });
-      console.log('SUCCESS', response);
+      // console.log('SUCCESS', response);
     } catch (error) {
       dispatch({
         type: types.GET_COMMENTS_BY_PRODUCT_ID_FAILURE,
         payload: error,
       });
-      console.log(error, 'ERROR REQ');
+      // console.log(error, 'ERROR REQ');
     }
   };
 
@@ -30,12 +30,12 @@ export const createCommentRequest = (data) => async (dispatch) => {
     dispatch({ type: types.CREATE_COMMENT_SUCCESS, payload: response });
     // dispatch(getCommentsByProductIdRequest(data.productId, {}));
     showToastMsg('success', 'Đánh giá thành công.', { toastId: 'hung' });
-    console.log('SUCCESS CREATE COMMENT', response);
+    // console.log('SUCCESS CREATE COMMENT', response);
   } catch (error) {
     dispatch({ type: types.CREATE_COMMENT_FAILURE, payload: error });
     error.response.status === 401 ||
       (error.response.status === 403 &&
         showToastMsg('error', 'Đăng nhập để đánh giá.', { toastId: 'hung' }));
-    console.log(error, 'ERROR REQ CREATE COMMENT');
+    // console.log(error, 'ERROR REQ CREATE COMMENT');
   }
 };

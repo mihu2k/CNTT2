@@ -7,9 +7,9 @@ export const getCategoriesRequest = (query) => async (dispatch) => {
   try {
     const response = await CategoryService.getAll(query);
     dispatch({ type: types.GET_CATEGORIES_SUCCESS, payload: response });
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
   } catch (error) {
     dispatch({ type: types.GET_CATEGORIES_FAILURE, payload: error });
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
   }
 };

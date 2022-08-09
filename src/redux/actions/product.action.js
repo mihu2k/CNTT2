@@ -7,10 +7,10 @@ export const getProductsRequest = (query) => async (dispatch) => {
   try {
     const response = await ProductService.getAll(query);
     dispatch({ type: types.GET_PRODUCTS_SUCCESS, payload: response });
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
   } catch (error) {
     dispatch({ type: types.GET_PRODUCTS_FAILURE, payload: error });
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
   }
 };
 
@@ -20,9 +20,9 @@ export const getProductBySlugRequest = (slug) => async (dispatch) => {
   try {
     const response = await ProductService.getOneBySlug(slug);
     dispatch({ type: types.GET_PRODUCT_BY_SLUG_SUCCESS, payload: response });
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
   } catch (error) {
     dispatch({ type: types.GET_PRODUCT_BY_SLUG_FAILURE, payload: error });
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
   }
 };

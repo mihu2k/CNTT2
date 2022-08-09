@@ -40,7 +40,7 @@ export const InputQuantity = ({
     getQuantity(quantity);
   }, [quantity]);
 
-  // console.log(quantity, 'QUAN');
+  // // console.log(quantity, 'QUAN');
 
   return (
     <div className={cx('d-f')}>

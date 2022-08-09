@@ -112,14 +112,14 @@ function Header() {
 
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log(decodedToken.exp, 'decodedToken.exp');
+      // console.log(decodedToken.exp, 'decodedToken.exp');
       if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
     }
 
     setCurrentUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
-  console.log(location, 'LOCATION HEADER');
+  // console.log(location, 'LOCATION HEADER');
 
   return (
     <header className={cx('header-wrapper')}>

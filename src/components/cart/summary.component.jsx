@@ -56,7 +56,7 @@ export const Summary = ({ cart }) => {
           state: { from: config.routes.cart },
         });
       }
-      console.log(response, 'response');
+      // console.log(response, 'response');
       return;
     }
     navigate(config.routes.login, {

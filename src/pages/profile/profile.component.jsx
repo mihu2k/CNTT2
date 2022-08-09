@@ -32,7 +32,7 @@ function Profile() {
     })();
   }, []);
 
-  // console.log(authReducer, 'authReducer profile');
+  // // console.log(authReducer, 'authReducer profile');
 
   return (
     <div>

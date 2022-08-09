@@ -59,10 +59,10 @@ function Home() {
 
   React.useEffect(() => {
     fetchProducts(query);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, query]);
 
-  // console.log(authReducer, 'authReducer');
+  // // console.log(authReducer, 'authReducer');
 
   const settings_new_products = {
     dots: false,

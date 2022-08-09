@@ -58,6 +58,7 @@ export function numberWithCommas(number, separate = '.') {
  * @returns {string} dd/MM/YYYY HH:mm
  */
 export function formatDateTime(timestamp) {
+  if (!timestamp) return '';
   const m = new Date(timestamp);
   const dateString =
     ('0' + m.getDate()).slice(-2) +

@@ -24,7 +24,7 @@ export default function Order() {
   };
 
   const handleSearch = () => {
-    fetchYourOrders(query);
+    fetchYourOrders({ ...query, search: query.search.trim() });
   };
 
   React.useEffect(() => {

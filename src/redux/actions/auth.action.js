@@ -3,12 +3,13 @@ import config from '~/config';
 import AuthService from '~/services/auth.service';
 import GoogleService from '~/services/google.service';
 import * as types from '../types';
+import { trackPromise } from 'react-promise-tracker';
 
 export const loginRequest = (data) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST });
 
   try {
-    const response = await AuthService.login(data);
+    const response = await trackPromise(AuthService.login(data));
     // console.log('SUCCESS', response);
     dispatch({ type: types.LOGIN_SUCCESS, payload: response });
   } catch (error) {
@@ -24,7 +25,7 @@ export const loginWithGGRequest = (accessToken) => async (dispatch) => {
   // console.log(accessToken, 'accessToken');
 
   try {
-    const response = await GoogleService.getUserInfo(accessToken);
+    const response = await trackPromise(GoogleService.getUserInfo(accessToken));
     // console.log('SUCCESS', response);
     dispatch({ type: types.LOGIN_SUCCESS, payload: response });
   } catch (error) {
@@ -39,7 +40,7 @@ export const registerRequest = (formData) => async (dispatch) => {
   dispatch({ type: types.REGISTER_REQUEST });
 
   try {
-    const response = await AuthService.register(formData);
+    const response = await trackPromise(AuthService.register(formData));
     // console.log('REGISTER SUCCESS', response);
     dispatch({ type: types.REGISTER_SUCCESS, payload: response });
   } catch (error) {
@@ -54,7 +55,7 @@ export const checkTokenRequest = (token, navigate) => async (dispatch) => {
   dispatch({ type: types.CHECK_TOKEN_REQUEST });
 
   try {
-    const response = await AuthService.checkToken(token);
+    const response = await trackPromise(AuthService.checkToken(token));
     // console.log('REGISTER SUCCESS', response);
     dispatch({ type: types.CHECK_TOKEN_SUCCESS, payload: response });
   } catch (error) {

@@ -9,6 +9,7 @@ import theme from './common/theme';
 import { Provider } from 'react-redux';
 import configureStore from './redux/store';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Loading from './components/loading/loading.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore();
@@ -21,6 +22,7 @@ root.render(
         <GlobalStyles>
           <App />
         </GlobalStyles>
+        <Loading />
       </ThemeProvider>
     </Provider>
   </GoogleOAuthProvider>,

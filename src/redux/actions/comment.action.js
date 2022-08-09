@@ -1,13 +1,16 @@
 import { showToastMsg } from '~/common/utils';
 import CommentService from '~/services/comment.service';
 import * as types from '../types';
+import { trackPromise } from 'react-promise-tracker';
 
 export const getCommentsByProductIdRequest =
   (id, query) => async (dispatch) => {
     dispatch({ type: types.GET_COMMENTS_BY_PRODUCT_ID_REQUEST });
 
     try {
-      const response = await CommentService.getByProductId(id, query);
+      const response = await trackPromise(
+        CommentService.getByProductId(id, query),
+      );
       dispatch({
         type: types.GET_COMMENTS_BY_PRODUCT_ID_SUCCESS,
         payload: response,
@@ -26,7 +29,7 @@ export const createCommentRequest = (data) => async (dispatch) => {
   dispatch({ type: types.CREATE_COMMENT_REQUEST });
 
   try {
-    const response = await CommentService.create(data);
+    const response = await trackPromise(CommentService.create(data));
     dispatch({ type: types.CREATE_COMMENT_SUCCESS, payload: response });
     // dispatch(getCommentsByProductIdRequest(data.productId, {}));
     showToastMsg('success', 'Đánh giá thành công.', { toastId: 'hung' });

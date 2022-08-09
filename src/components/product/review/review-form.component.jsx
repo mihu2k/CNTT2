@@ -1,20 +1,14 @@
-import React from 'react';
-import cx from 'classnames';
 import { Button, Rating, TextareaAutosize } from '@mui/material';
-import { useStyles } from './review-form.style';
-import { useDispatch, useSelector } from 'react-redux';
-import { createCommentRequest } from '~/redux/actions/comment.action';
+import cx from 'classnames';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { showToastMsg } from '~/common/utils';
-import * as types from '../../../redux/types';
-import { checkTokenRequest } from '~/redux/actions/auth.action';
-import { useNavigate } from 'react-router-dom';
-import config from '~/config';
-import httpRequest from '~/common/utils/httpRequest';
+import { createCommentRequest } from '~/redux/actions/comment.action';
+import { useStyles } from './review-form.style';
 
 export function ReviewForm({ productId, productSlug }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [formValue, setFormValue] = React.useState({ rating: 5, content: '' });
 
   // const { auth: authReducer, comment: commentReducer } = useSelector(
@@ -30,7 +24,7 @@ export function ReviewForm({ productId, productSlug }) {
   };
 
   const handleSubmit = async () => {
-    if (formValue.content && productId) {
+    if (formValue.content.trim() && productId) {
       dispatch(createCommentRequest({ ...formValue, productId }));
       handleResetForm();
       return;

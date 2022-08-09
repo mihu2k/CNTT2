@@ -1,13 +1,14 @@
 import { showToastMsg } from '~/common/utils';
 import UserService from '~/services/user.service';
 import * as types from '../types';
+import { trackPromise } from 'react-promise-tracker';
 
 export const resetPasswordConfirmRequest = (data) => async (dispatch) => {
   dispatch({ type: types.RESET_PASSWORD_CONFIRM_REQUEST });
   let msg = '';
 
   try {
-    const response = await UserService.resetPassConfirm(data);
+    const response = await trackPromise(UserService.resetPassConfirm(data));
     msg = 'Kiểm tra email để đổi mật khẩu.';
 
     dispatch({ type: types.RESET_PASSWORD_CONFIRM_SUCCESS, payload: response });
@@ -27,7 +28,7 @@ export const resetPasswordRequest = (data) => async (dispatch) => {
   let msg = '';
 
   try {
-    const response = await UserService.resetPassword(data);
+    const response = await trackPromise(UserService.resetPassword(data));
     msg = 'Thay đổi thành công.';
 
     dispatch({ type: types.RESET_PASSWORD_SUCCESS, payload: response });

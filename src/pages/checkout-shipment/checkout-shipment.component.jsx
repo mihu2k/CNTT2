@@ -19,14 +19,14 @@ import * as React from 'react';
 import { useStyles } from './checkout-shipment.style';
 
 // import image from '~/assets/images';
-import Invoice from '~/components/invoices';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import { showToastMsg } from '~/common/utils';
+import Invoice from '~/components/invoices';
 import config from '~/config';
 import { CHECKOUT_STEPS } from '~/constants';
 
@@ -44,7 +44,6 @@ const schema = yup.object().shape({
 function Checkout() {
   const classes = useStyles();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { cart: cartReducer } = useSelector((state) => state);
 
@@ -65,7 +64,6 @@ function Checkout() {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
   } = useForm({
     resolver: yupResolver(schema),
   });

@@ -229,7 +229,7 @@ function Checkout() {
             </FormControl>
 
             <Grid container spacing={4}>
-              <Grid item xs={6}>
+              <Grid item lg={6} md={6} sm={12} xs={12}>
                 <TextField
                   label="Họ tên người nhận"
                   fullWidth
@@ -240,7 +240,7 @@ function Checkout() {
                   error={!!errors?.fullName?.message}
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item lg={6} md={6} sm={12} xs={12}>
                 <TextField
                   label="Số điện thoại người nhận"
                   fullWidth
@@ -256,7 +256,7 @@ function Checkout() {
             {takeOrder === 0 && (
               <>
                 <Grid container spacing={4}>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
                     <FormControl fullWidth sx={{ marginTop: '32px' }}>
                       <InputLabel id="demo-simple-select-label-city">
                         Chọn Tỉnh/Thành phố
@@ -280,7 +280,7 @@ function Checkout() {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
                     <FormControl fullWidth sx={{ marginTop: '32px' }}>
                       <InputLabel id="demo-simple-select-label-district">
                         Chọn Quận/Huyện
@@ -306,7 +306,7 @@ function Checkout() {
                   </Grid>
                 </Grid>
                 <Grid container spacing={4}>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
                     <FormControl fullWidth sx={{ marginTop: '32px' }}>
                       <InputLabel id="demo-simple-select-label-ward">
                         Chọn Phường
@@ -327,7 +327,7 @@ function Checkout() {
                       </Select>
                     </FormControl>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item lg={6} md={6} sm={12} xs={12}>
                     <TextField
                       label="Số nhà, đường/phố"
                       fullWidth

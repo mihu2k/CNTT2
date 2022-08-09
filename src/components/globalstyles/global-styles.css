@@ -123,6 +123,15 @@ button.fz-16px {
   margin-top: var(--default-layout-header-height, 60px);
 }
 
+/* responsive for mobile */
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* Styles */
+  .mt-header {
+    margin-top: 140px;
+  }
+}
+
 /* Color */
 .gray {
   color: #ccc;
@@ -191,6 +200,6 @@ input::-webkit-inner-spin-button {
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
-  -moz-appearance:textfield; /* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
 }

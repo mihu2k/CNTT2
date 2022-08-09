@@ -8,6 +8,9 @@ export const useStyles = makeStyles((theme) => {
       // marginBottom: '24px',
       padding: '32px 0',
       boxShadow: '0 1px 0 rgb(0 0 0 / 12%)',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+      },
     },
     imgProd: {
       width: 80,
@@ -21,6 +24,9 @@ export const useStyles = makeStyles((theme) => {
     info: {
       justifyContent: 'space-between',
       alignItems: 'flex-start',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+      },
     },
     action: {
       justifyContent: 'space-between',

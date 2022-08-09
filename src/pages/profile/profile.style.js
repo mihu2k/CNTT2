@@ -65,6 +65,10 @@ export const useStyles = makeStyles((theme) => ({
     padding: '24px 0',
     borderRadius: '1.38888889vw',
     border: '1px solid #ccc',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      gap: '20px',
+    },
   },
 
   infoDashboardAddress: {
@@ -82,6 +86,10 @@ export const useStyles = makeStyles((theme) => ({
       top: '50%',
       bottom: '0',
       transform: 'translateY(-50%)',
+      [theme.breakpoints.down('sm')]: {
+        backgroundColor: 'transparent',
+        width: '0',
+      },
     },
   },
 

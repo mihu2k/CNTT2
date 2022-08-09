@@ -8,13 +8,13 @@ class UserService {
 
   async resetPassConfirm(data) {
     const response = await httpRequest.post('/user/resetPassword', data);
-    console.log(response);
+    // console.log(response);
     return response;
   }
 
   async resetPassword(data) {
     const response = await httpRequest.patch('/user/resetPassword', data);
-    console.log(response);
+    // console.log(response);
     return response;
   }
 }

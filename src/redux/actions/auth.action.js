@@ -9,10 +9,10 @@ export const loginRequest = (data) => async (dispatch) => {
 
   try {
     const response = await AuthService.login(data);
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
     dispatch({ type: types.LOGIN_SUCCESS, payload: response });
   } catch (error) {
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
     const msg = error.response.data.message ?? 'Đăng nhập thất bại.';
     showToastMsg('error', msg, { toastId: error.response.data.status });
@@ -21,14 +21,14 @@ export const loginRequest = (data) => async (dispatch) => {
 
 export const loginWithGGRequest = (accessToken) => async (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST });
-  console.log(accessToken, 'accessToken');
+  // console.log(accessToken, 'accessToken');
 
   try {
     const response = await GoogleService.getUserInfo(accessToken);
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
     dispatch({ type: types.LOGIN_SUCCESS, payload: response });
   } catch (error) {
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
     dispatch({ type: types.LOGIN_FAILURE, payload: error });
     const msg = 'Đăng nhập thất bại.';
     showToastMsg('error', msg, { toastId: error.message });
@@ -40,10 +40,10 @@ export const registerRequest = (formData) => async (dispatch) => {
 
   try {
     const response = await AuthService.register(formData);
-    console.log('REGISTER SUCCESS', response);
+    // console.log('REGISTER SUCCESS', response);
     dispatch({ type: types.REGISTER_SUCCESS, payload: response });
   } catch (error) {
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
     dispatch({ type: types.REGISTER_FAILURE, payload: error });
     const msg = error.response.data.message ?? 'Đăng ký thất bại.';
     showToastMsg('error', msg, { toastId: error.message });
@@ -55,10 +55,10 @@ export const checkTokenRequest = (token, navigate) => async (dispatch) => {
 
   try {
     const response = await AuthService.checkToken(token);
-    console.log('REGISTER SUCCESS', response);
+    // console.log('REGISTER SUCCESS', response);
     dispatch({ type: types.CHECK_TOKEN_SUCCESS, payload: response });
   } catch (error) {
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
     dispatch({ type: types.CHECK_TOKEN_FAILURE, payload: error });
     navigate(config.routes.login, {
       state: { from: config.routes.profile },

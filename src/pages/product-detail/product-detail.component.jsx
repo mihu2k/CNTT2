@@ -141,9 +141,9 @@ function ProductDetail() {
     });
   }, [productReducer.product?.comments]);
 
-  // console.log(location, 'LOCATION');
-  // console.log(productReducer, 'productReducer.product?._id');
-  console.log(height, 'HEIGHT');
+  // // console.log(location, 'LOCATION');
+  // // console.log(productReducer, 'productReducer.product?._id');
+  // console.log(height, 'HEIGHT');
 
   return (
     <div className={classes.root}>

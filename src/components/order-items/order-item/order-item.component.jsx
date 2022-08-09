@@ -10,7 +10,7 @@ import OrderUserInfo from '~/components/order-items/order-user-info';
 function OrderItem({ order }) {
   const classes = useStyles();
 
-  console.log(order, 'ORDER-----------------------------------------');
+  // console.log(order, 'ORDER-----------------------------------------');
 
   return (
     <Typography variant="div" component="div" className={classes.orderItem}>

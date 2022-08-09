@@ -95,7 +95,7 @@ function Checkout() {
     );
   };
 
-  console.log(orderReducer, 'orderReducer');
+  // console.log(orderReducer, 'orderReducer');
 
   return (
     <div className={classes.wrapper}>

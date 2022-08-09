@@ -7,7 +7,7 @@ class ProductService {
       params: query,
       paramsSerializer: (params) => qs.stringify(params),
     });
-    console.log(response, 'RESPONSE');
+    // console.log(response, 'RESPONSE');
     return response;
   }
 

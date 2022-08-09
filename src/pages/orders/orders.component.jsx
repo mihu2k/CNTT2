@@ -31,7 +31,7 @@ export default function Order() {
     fetchYourOrders(query);
   }, []);
 
-  console.log(orderReducer, 'orderReducer');
+  // console.log(orderReducer, 'orderReducer');
 
   return (
     <div className={classes.wrapper}>

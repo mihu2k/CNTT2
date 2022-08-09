@@ -101,7 +101,7 @@ function Product() {
     fetchCategories();
   }, [location, query]);
 
-  console.log(query, 'CHECKED');
+  // console.log(query, 'CHECKED');
 
   return (
     <div className={classes.root}>

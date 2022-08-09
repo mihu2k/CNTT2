@@ -4,7 +4,7 @@ import httpRequest from '~/common/utils/httpRequest';
 class CommentService {
   async create(data) {
     const response = await httpRequest.post('/comment', data);
-    console.log(response, 'CREATE COMMENT');
+    // console.log(response, 'CREATE COMMENT');
     return response;
   }
 
@@ -13,7 +13,7 @@ class CommentService {
       params: query,
       paramsSerializer: (params) => qs.stringify(params),
     });
-    console.log(response, 'RESPONSE COMMENT');
+    // console.log(response, 'RESPONSE COMMENT');
     return response;
   }
 }

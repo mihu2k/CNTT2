@@ -12,13 +12,13 @@ export const resetPasswordConfirmRequest = (data) => async (dispatch) => {
 
     dispatch({ type: types.RESET_PASSWORD_CONFIRM_SUCCESS, payload: response });
     showToastMsg('success', msg, { toastId: msg });
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
   } catch (error) {
     msg = 'Thao tác thất bại.';
 
     dispatch({ type: types.RESET_PASSWORD_CONFIRM_FAILURE, payload: error });
     showToastMsg('error', msg, { toastId: msg });
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
   }
 };
 
@@ -32,12 +32,12 @@ export const resetPasswordRequest = (data) => async (dispatch) => {
 
     dispatch({ type: types.RESET_PASSWORD_SUCCESS, payload: response });
     showToastMsg('success', msg, { toastId: msg });
-    console.log('SUCCESS', response);
+    // console.log('SUCCESS', response);
   } catch (error) {
     msg = 'Thay đổi thất bại.';
 
     dispatch({ type: types.RESET_PASSWORD_FAILURE, payload: error });
     showToastMsg('error', msg, { toastId: msg });
-    console.log(error, 'ERROR REQ');
+    // console.log(error, 'ERROR REQ');
   }
 };

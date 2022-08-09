@@ -95,7 +95,7 @@ function Checkout() {
         );
 
         formData.address = `${data.address}, ${ward_name}, ${district_name}, ${province_name}`;
-        console.log(formData, 'DATA');
+        // console.log(formData, 'DATA');
         navigate(config.routes.checkoutPayment, {
           state: { checkoutInfo: formData },
         });
@@ -132,7 +132,7 @@ function Checkout() {
       } = await axios.get('https://vapi.vnappmob.com/api/province');
       setCity(province);
       setFormValue((prev) => ({ ...prev, province: province[0]?.province_id }));
-      console.log(province, 'province');
+      // console.log(province, 'province');
     })();
   }, []);
 
@@ -160,9 +160,9 @@ function Checkout() {
       })();
   }, [formValue.district]);
 
-  // console.log(authReducer, 'authReducer');
-  // console.log(errors, 'errors----');
-  console.log(location, 'OCATION SHIPMENT');
+  // // console.log(authReducer, 'authReducer');
+  // // console.log(errors, 'errors----');
+  // console.log(location, 'OCATION SHIPMENT');
 
   return (
     <div className={classes.wrapper}>

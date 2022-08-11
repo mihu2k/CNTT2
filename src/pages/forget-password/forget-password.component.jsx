@@ -1,12 +1,13 @@
-import { Button, Grid, Paper, TextField } from '@mui/material';
-import { useStyles } from './forget-password.style';
-import Header from '~/components/login-form/header-login';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
+import { Button, Grid, Paper, TextField } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import Header from '~/components/login-form/header-login';
 import { resetPasswordConfirmRequest } from '~/redux/actions/user.action';
+import { useStyles } from './forget-password.style';
 
 const schema = yup.object().shape({
   email: yup
@@ -20,6 +21,8 @@ function ForgetPassword() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
+
   const {
     register,
     handleSubmit,
@@ -32,6 +35,10 @@ function ForgetPassword() {
   const onSubmit = (data) => {
     dispatch(resetPasswordConfirmRequest(data));
   };
+
+  React.useEffect(() => {
+    if (currentUser) navigate(-1, { replace: true });
+  }, []);
 
   return (
     <div className={classes.wrapper}>

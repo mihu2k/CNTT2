@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Grid, Paper, TextField } from '@mui/material';
 import { useStyles } from './reset-password.style';
 import Header from '~/components/login-form/header-login';
@@ -30,6 +31,8 @@ function ResetPassword() {
   const dispatch = useDispatch();
   const { userId, token } = useParams();
 
+  const currentUser = JSON.parse(localStorage.getItem('profile'))?.data;
+
   const {
     register,
     handleSubmit,
@@ -43,6 +46,10 @@ function ResetPassword() {
     const dataSubmit = { ...data, userId, token };
     dispatch(resetPasswordRequest(dataSubmit));
   };
+
+  React.useEffect(() => {
+    if (currentUser) navigate(-1, { replace: true });
+  }, []);
 
   return (
     <div className={classes.wrapper}>

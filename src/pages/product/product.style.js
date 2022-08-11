@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
 
-    '& .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.MuiGrid-grid-md-6.MuiGrid-grid-lg-4.css-3cz33d-MuiGrid-root':
+    '& .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.MuiGrid-grid-sm-6.MuiGrid-grid-md-6.MuiGrid-grid-lg-4':
       {
         backgroundColor: '#f7f7f7',
         padding: '20px',
@@ -21,13 +21,13 @@ export const useStyles = makeStyles((theme) => ({
           backgroundColor: '#fff',
         },
       },
-    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-md-8.MuiGrid-spacing-lg-2.css-1x5eys6-MuiGrid-root':
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-md-8.MuiGrid-spacing-lg-2':
       {
         backgroundColor: '#f7f7f7',
       },
-    '& .css-1jeep95-MuiTypography-root': {
-      margin: '32px 32px 46px 32px',
-    },
+    // '& .css-1jeep95-MuiTypography-root': {
+    //   margin: '32px 32px 46px 32px',
+    // },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',

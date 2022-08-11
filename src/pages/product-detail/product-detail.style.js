@@ -172,7 +172,7 @@ export const useStyles = makeStyles((theme) => {
     widthIcon: {
       minWidth: indentListItem,
       justifyContent: 'left',
-      '& svg.MuiSvgIcon-root.MuiSvgIcon-colorPrimary.MuiSvgIcon-fontSizeLarge.css-bsqp9w-MuiSvgIcon-root':
+      '& svg.MuiSvgIcon-root.MuiSvgIcon-colorPrimary.MuiSvgIcon-fontSizeLarge':
         {
           color: 'var(--primary-color)',
         },

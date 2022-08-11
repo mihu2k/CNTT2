@@ -27,7 +27,18 @@ export const useStyles = makeStyles((theme) => ({
   invoiceProductInfoWrap: {
     width: '100%',
     maxHeight: '320px',
-    overflowY: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      overflowY: 'scroll',
+    },
+  },
+
+  invoiceProductBox: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    },
   },
 
   invoiceProductInfo: {
@@ -47,6 +58,9 @@ export const useStyles = makeStyles((theme) => ({
   invoiceInfo: {
     maxWidth: '200px',
     flex: '1',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '240px',
+    },
   },
   invoiceInfoName: {
     fontFamily: 'var(--font-family-Two)',

@@ -4,12 +4,11 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginBottom: '32px',
 
-    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4.css-480o17-MuiGrid-root':
-      {
-        [theme.breakpoints.down('md')]: {
-          flexDirection: 'column-reverse',
-        },
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4': {
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column-reverse',
       },
+    },
   },
 
   stepsContainer: {
@@ -17,14 +16,13 @@ export const useStyles = makeStyles((theme) => ({
     flex: '1',
     justifyContent: 'center',
     margin: '8px 0 32px 0',
-    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.css-10mg1vw-MuiStepper-root':
-      {
-        height: '76px',
-        [theme.breakpoints.down('sm')]: {
-          height: 'auto',
-          flexDirection: 'column',
-        },
+    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel': {
+      height: '76px',
+      [theme.breakpoints.down('sm')]: {
+        height: 'auto',
+        flexDirection: 'column',
       },
+    },
     '& .MuiStep-root': {
       minWidth: '180px',
       height: '100%',
@@ -32,10 +30,9 @@ export const useStyles = makeStyles((theme) => ({
       cursor: 'default',
     },
 
-    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root':
-      {
-        fontSize: '2.4rem',
-      },
+    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root': {
+      fontSize: '2.4rem',
+    },
     '& .MuiStepIcon-text': {
       fontSize: '1.2rem',
       fontFamily: 'var(--font-family-Two)',
@@ -53,18 +50,19 @@ export const useStyles = makeStyles((theme) => ({
       color: '#000',
     },
 
-    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-77k407-MuiStepLabel-label':
-      {
-        fontWeight: '700',
-      },
+    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel': {
+      fontWeight: '700',
+    },
 
-    '& .css-z7uhs0-MuiStepConnector-line': {
+    '& .MuiStepConnector-line.MuiStepConnector-lineHorizontal': {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
     },
   },
-
+  '.MuiTypography-root.MuiTypography-h1': {
+    marginBottom: '10px',
+  },
   checkoutInfoForm: {
     '& .MuiPaper-root': {
       height: 'fit-content',
@@ -86,7 +84,7 @@ export const useStyles = makeStyles((theme) => ({
       outLine: 'unset',
     },
 
-    '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
+    '& .MuiOutlinedInput-input.MuiInputBase-input': {
       width: '92%',
     },
 
@@ -94,10 +92,6 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
-      {
-        margin: '10px 0',
-      },
     '& .MuiInputBase-root-MuiInput-root:before': {
       borderBottom: '2px solid #000',
     },

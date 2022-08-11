@@ -47,7 +47,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
+    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root':
       {
         margin: '10px 0',
       },
@@ -62,7 +62,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '1.5rem',
       fontWeight: '600',
     },
-    '& .MuiGrid-root.css-vj1n65-MuiGrid-root': {
+    '& .MuiGrid-root': {
       margin: '0 68px 0 68px',
       minWidth: '236px',
 

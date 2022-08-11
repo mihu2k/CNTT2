@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
       '-webkit-text-fill-color': 'transparent',
       '-webkit-background-clip': 'text',
     },
-    '& button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root.css-1071omr-MuiButtonBase-root-MuiButton-root':
+    '& button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root':
       {
         padding: '8px 36px',
         marginTop: '32px',

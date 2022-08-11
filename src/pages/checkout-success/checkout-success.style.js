@@ -53,7 +53,7 @@ export const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
 
-    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.css-10mg1vw-MuiStepper-root':
+    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel':
       {
         height: '76px',
       },
@@ -64,7 +64,7 @@ export const useStyles = makeStyles((theme) => ({
       cursor: 'default',
     },
 
-    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root':
+    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root':
       {
         fontSize: '2.4rem',
       },
@@ -85,7 +85,7 @@ export const useStyles = makeStyles((theme) => ({
       color: '#000',
     },
 
-    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-77k407-MuiStepLabel-label':
+    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
       {
         fontWeight: '700',
       },
@@ -128,7 +128,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
+    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root':
       {
         margin: '10px 0',
       },

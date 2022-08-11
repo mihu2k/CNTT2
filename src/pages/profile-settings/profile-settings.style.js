@@ -182,7 +182,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
+    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root':
       {
         margin: '10px 0',
       },

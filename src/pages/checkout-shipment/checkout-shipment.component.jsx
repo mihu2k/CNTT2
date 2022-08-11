@@ -177,11 +177,10 @@ function Checkout() {
       <Grid container spacing={4}>
         <Grid item xs={12} sm={12} md={7}>
           <Typography
-            fontSize="1.8rem"
-            fontWeight="700"
             textTransform="uppercase"
             variant="h1"
             component="h2"
+            sx={{ marginBottom: '10px', fontSize: '1.8rem', fontWeight: '700' }}
           >
             Thông tin thanh toán
           </Typography>

@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   wrapper: {
     marginBottom: '32px',
 
-    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4.css-480o17-MuiGrid-root':
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-4':
       {
         [theme.breakpoints.down('md')]: {
           flexDirection: 'column-reverse',
@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme) => ({
     flex: '1',
     justifyContent: 'center',
     margin: '8px 0 32px 0',
-    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.css-10mg1vw-MuiStepper-root':
+    '& .MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel':
       {
         height: '76px',
         [theme.breakpoints.down('sm')]: {
@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme) => ({
       cursor: 'default',
     },
 
-    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root':
+    '& svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.MuiStepIcon-root':
       {
         fontSize: '2.4rem',
       },
@@ -52,12 +52,12 @@ export const useStyles = makeStyles((theme) => ({
       color: '#000',
     },
 
-    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel.css-77k407-MuiStepLabel-label':
+    '& span.MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
       {
         fontWeight: '700',
       },
 
-    '& .css-z7uhs0-MuiStepConnector-line': {
+    '& .MuiStepConnector-line.MuiStepConnector-lineHorizontal': {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
@@ -105,7 +105,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
+    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root':
       {
         margin: '10px 0',
       },
@@ -116,7 +116,7 @@ export const useStyles = makeStyles((theme) => ({
       borderBottom: '2px solid #000',
     },
 
-    '& .MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-6talhg-MuiButtonBase-root-MuiMenuItem-root':
+    '& .MuiMenuItem-root.MuiMenuItem-gutters.MuiButtonBase-root':
       {
         fontSize: '1.6rem',
       },

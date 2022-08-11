@@ -37,7 +37,7 @@ export default function Invoice({ cart }) {
           {cart.products?.length > 0
             ? cart.products?.map((product, index) => (
                 <div className={classes.invoiceProductInfo} key={index}>
-                  <div className="d-f">
+                  <div className={cx(classes.invoiceProductBox, 'd-f')}>
                     <img
                       className={classes.invoiceImg}
                       src={`${process.env.REACT_APP_API_BASE_URL}${product?.colorImage}`}

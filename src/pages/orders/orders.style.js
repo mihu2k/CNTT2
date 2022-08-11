@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
       fontSize: '2.2rem',
     },
 
-    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root':
+    '& .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root':
       {
         margin: '10px 0',
       },
@@ -50,7 +50,7 @@ export const useStyles = makeStyles((theme) => ({
       borderBottom: '2px solid #000',
     },
 
-    '& .MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-6talhg-MuiButtonBase-root-MuiMenuItem-root':
+    '& .MuiMenuItem-root.MuiMenuItem-gutters.MuiButtonBase-root':
       {
         fontSize: '1.6rem',
       },

@@ -60,4 +60,4 @@ function ReviewList({ productId }) {
   );
 }
 
-export default ReviewList;
+export default React.memo(ReviewList);

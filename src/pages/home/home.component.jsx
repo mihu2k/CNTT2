@@ -19,6 +19,7 @@ import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductsRequest } from '~/redux/actions/product.action';
 import React from 'react';
+import CategoriesBox from '~/components/categories-box/categories-box.component';
 
 function Home() {
   const classes = useStyles();
@@ -216,48 +217,8 @@ function Home() {
       <div className={classes.sectionTitle}>
         <h2>Bạn có thể xem thêm</h2>
       </div>
-      <div className={cx(classes.sectionHomeBoxs)}>
-        <Link to={config.routes.product} className={classes.sectionBox}>
-          <h4 className={classes.sectionBoxTitle}>Loa không dây </h4>
-          <img
-            className={cx(classes.sectionBoxImg, 'box-transform')}
-            src={image.homeBox1}
-            alt="homeBox1"
-          />
-        </Link>
-        <Link to={config.routes.product} className={classes.sectionBox}>
-          <h4 className={classes.sectionBoxTitle}>Tai nghe</h4>
-          <img
-            className={cx(classes.sectionBoxImg, 'box-transform')}
-            src={image.homeBox2}
-            alt="homeBox2"
-          />
-        </Link>
-        <Link to={config.routes.product} className={classes.sectionBox}>
-          <h4 className={classes.sectionBoxTitle}>Âm thanh gia đình</h4>
-          <img
-            className={cx(classes.sectionBoxImg, 'box-transform')}
-            src={image.homeBox5}
-            alt="homeBox5"
-          />
-        </Link>
-        <Link to={config.routes.product} className={classes.sectionBox}>
-          <h4 className={classes.sectionBoxTitle}>Dòng sản phẩm gaming</h4>
-          <img
-            className={cx(classes.sectionBoxImg, 'box-transform')}
-            src={image.homeBox3}
-            alt="homeBox3"
-          />
-        </Link>
-        <Link to={config.routes.product} className={classes.sectionBox}>
-          <h4 className={classes.sectionBoxTitle}>Âm thanh chuyên nghiệp</h4>
-          <img
-            className={cx(classes.sectionBoxImg, 'box-transform')}
-            src={image.homeBox4}
-            alt="homeBox4"
-          />
-        </Link>
-      </div>
+
+      <CategoriesBox />
     </div>
   );
 }

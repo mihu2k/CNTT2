@@ -4,7 +4,7 @@ import {
   faEarthAsia,
   faSignOut,
   faUser,
-  faHouseChimney
+  faHouseChimney,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
@@ -30,17 +30,17 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faUser} />,
     title: 'Đăng nhập/Đăng ký',
-    to: '/login',
+    to: config.routes.login,
   },
   {
     icon: <FontAwesomeIcon icon={faHouseChimney} />,
     title: 'Trang chủ',
-    to: '/home',
+    to: config.routes.home,
   },
   {
     icon: <FontAwesomeIcon icon={faBorderAll} />,
     title: 'Trang sản phẩm',
-    to: '/products',
+    to: config.routes.product,
   },
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -60,7 +60,7 @@ const MENU_ITEMS = [
         },
       ],
     },
-  }
+  },
 ];
 
 const generalIconStyle = {
@@ -102,7 +102,7 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: 'Thông tin của tôi',
-      to: '/profile',
+      to: config.routes.profile,
     },
     ...menu,
     {

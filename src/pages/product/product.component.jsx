@@ -100,9 +100,19 @@ function Product() {
   };
 
   React.useEffect(() => {
+    if (location.state.categoryId) {
+      setQuery((prev) => ({
+        ...prev,
+        categoryIds: Array.from(
+          new Set([...prev.categoryIds, location.state.categoryId]),
+        ),
+      }));
+    }
+  }, [location.state?.categoryId]);
+
+  React.useEffect(() => {
     fetchProducts(query);
     fetchCategories();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, query]);
 
   // console.log(query, 'CHECKED');
@@ -136,12 +146,7 @@ function Product() {
 
       <Grid container spacing={2}>
         {/* category */}
-        <Grid 
-          item 
-          xs={0} 
-          sm={3} 
-          md={3}
-        >
+        <Grid item xs={0} sm={3} md={3}>
           <div className={classes.wrapAccordion}>
             <Accordion expanded={expanded}>
               <AccordionSummary
@@ -200,12 +205,7 @@ function Product() {
           </div>
         </Grid>
         {/* products block */}
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={9}
-        >
+        <Grid item xs={12} sm={12} md={9}>
           <Grid container spacing={{ sm: 0, md: 0, lg: 2 }}>
             {productReducer.products.length > 0 ? (
               productReducer.products.map((product) => (

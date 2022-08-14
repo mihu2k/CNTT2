@@ -61,12 +61,17 @@ function Product() {
   );
 
   const [expanded, setExpanded] = React.useState(true);
-  const [query, setQuery] = React.useState({
-    categoryIds: [],
-    sort_by: 'updated_at',
-    sort_type: 'desc',
-    per_page: 9,
-    page: 1,
+  const [query, setQuery] = React.useState(() => {
+    let categoryIds = [];
+    if (location.state?.categoryId)
+      categoryIds.push(location.state?.categoryId);
+    return {
+      categoryIds,
+      sort_by: 'updated_at',
+      sort_type: 'desc',
+      per_page: 9,
+      page: 1,
+    };
   });
   const [valueSelect, setValueSelect] = React.useState(0);
 
@@ -100,20 +105,12 @@ function Product() {
   };
 
   React.useEffect(() => {
-    if (location.state.categoryId) {
-      setQuery((prev) => ({
-        ...prev,
-        categoryIds: Array.from(
-          new Set([...prev.categoryIds, location.state.categoryId]),
-        ),
-      }));
-    }
-  }, [location.state?.categoryId]);
+    fetchCategories();
+  }, []);
 
   React.useEffect(() => {
     fetchProducts(query);
-    fetchCategories();
-  }, [location, query]);
+  }, [query]);
 
   // console.log(query, 'CHECKED');
 

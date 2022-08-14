@@ -36,6 +36,7 @@ const CategoriesBox = () => {
       {categorySelector.categories?.length > 0
         ? categorySelector.categories.map((category, index) => (
             <Box
+              key={category?._id}
               className={classes.sectionBox}
               onClick={() => handleClick(category?._id)}
             >

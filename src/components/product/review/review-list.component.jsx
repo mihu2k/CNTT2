@@ -27,8 +27,6 @@ function ReviewList({ productId }) {
     }
   }, [commentReducer.status]);
 
-  console.log(1);
-
   return (
     <ul className={classes.list}>
       {commentReducer.comments?.length > 0 ? (

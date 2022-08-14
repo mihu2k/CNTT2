@@ -179,5 +179,10 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '120px',
     maxHeight: '32px',
     marginRight: '6px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+
+
   },
 }));

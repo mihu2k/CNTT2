@@ -10,7 +10,6 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
   },
-
   stepsContainer: {
     display: 'flex',
     flex: '1',
@@ -131,5 +130,14 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: '#2189ff',
       },
     },
+  },
+  formInfoAddressWrap: {
+    flexDirection: 'initial!important',
+  },
+  formInfoAddress: {
+    marginTop: '32px!important',
+  },
+  infoAddress: {
+    fontSize: '1.6rem!important',
   },
 }));

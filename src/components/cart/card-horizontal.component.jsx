@@ -40,11 +40,11 @@ export function CardHorizontal({ product }) {
       />
       <div className={classes.wrapInfo}>
         <div className={cx('d-f', classes.info)}>
-          <div style={{ maxWidth: '70%' }}>
+          <div style={{ maxWidth: '100%' }}>
             <Truncate
               variant="h5"
               component="h5"
-              line={2}
+              line={1}
               fontSize={20}
               fontWeight={600}
             >

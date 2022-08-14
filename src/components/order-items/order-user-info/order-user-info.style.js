@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     width: '33.33%',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
+      width: '100%',
     },
   },
   userInfoTitle: {

@@ -20,7 +20,6 @@ import {
   MenuItem,
   Pagination,
   Select,
-  Stack,
   Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -103,6 +102,7 @@ function Product() {
   React.useEffect(() => {
     fetchProducts(query);
     fetchCategories();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, query]);
 
   // console.log(query, 'CHECKED');
@@ -135,7 +135,13 @@ function Product() {
       </div>
 
       <Grid container spacing={2}>
-        <Grid item xs={0} sm={3} md={3}>
+        {/* category */}
+        <Grid 
+          item 
+          xs={0} 
+          sm={3} 
+          md={3}
+        >
           <div className={classes.wrapAccordion}>
             <Accordion expanded={expanded}>
               <AccordionSummary
@@ -193,15 +199,14 @@ function Product() {
             </Accordion>
           </div>
         </Grid>
-
+        {/* products block */}
         <Grid
           item
           xs={12}
-          sm={9}
+          sm={12}
           md={9}
-          // style={{ backgroundColor: '#f7f7f7', padding: '20px' }}
         >
-          <Grid container spacing={{ sm: 0, md: 8, lg: 2 }}>
+          <Grid container spacing={{ sm: 0, md: 0, lg: 2 }}>
             {productReducer.products.length > 0 ? (
               productReducer.products.map((product) => (
                 <Grid
@@ -229,6 +234,7 @@ function Product() {
               </Grid>
             )}
           </Grid>
+          {/* pagination */}
           <Box my={2}>
             <Pagination
               count={productReducer?.totalPage ?? 1}

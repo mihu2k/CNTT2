@@ -25,9 +25,18 @@ export const useStyles = makeStyles((theme) => ({
       {
         backgroundColor: '#f7f7f7',
       },
-    // '& .css-1jeep95-MuiTypography-root': {
-    //   margin: '32px 32px 46px 32px',
-    // },
+    '& .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2': {
+      [theme.breakpoints.only('md')]: {
+        margin: '32px 32px 46px 0',
+      },
+    },
+    '& .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-0.MuiGrid-grid-sm-3.MuiGrid-grid-md-3': {
+      [theme.breakpoints.down('md')]: {
+        maxWidth: '100%',
+        flex: '1',
+        flexDirection: 'row',
+      },
+    },
   },
   wrapHeaderFilter: {
     paddingTop: '10px',

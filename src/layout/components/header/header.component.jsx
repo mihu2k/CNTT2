@@ -1,9 +1,10 @@
 import { faUser as faUserRegular } from '@fortawesome/free-regular-svg-icons';
 import {
-  faCircleQuestion,
+  faBorderAll,
   faEarthAsia,
   faSignOut,
   faUser,
+  faHouseChimney
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
@@ -32,6 +33,16 @@ const MENU_ITEMS = [
     to: '/login',
   },
   {
+    icon: <FontAwesomeIcon icon={faHouseChimney} />,
+    title: 'Trang chủ',
+    to: '/home',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faBorderAll} />,
+    title: 'Trang sản phẩm',
+    to: '/products',
+  },
+  {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
     children: {
@@ -49,12 +60,7 @@ const MENU_ITEMS = [
         },
       ],
     },
-  },
-  {
-    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
-    title: 'Phản hồi/hỗ trợ',
-    to: '/feedback',
-  },
+  }
 ];
 
 const generalIconStyle = {

@@ -144,8 +144,9 @@ export const useStyles = makeStyles((theme) => ({
 
   invoiceWrapper: {
     backgroundColor: '#f4f4f4',
-    padding: '30px',
+    padding: '30px 28px',
     height: '100%',
+    minHeight: '680px',
     borderRadius: '20px',
   },
 
@@ -163,6 +164,22 @@ export const useStyles = makeStyles((theme) => ({
   invoiceBody: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  invoiceProductInfoWrap: {
+    width: '100%',
+    maxHeight: '320px',
+    [theme.breakpoints.down('sm')]: {
+      overflowY: 'scroll',
+    },
+  },
+
+  invoiceProductBox: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    },
   },
 
   invoiceProductInfo: {
@@ -182,6 +199,9 @@ export const useStyles = makeStyles((theme) => ({
   invoiceInfo: {
     maxWidth: '200px',
     flex: '1',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '240px',
+    },
   },
   invoiceInfoName: {
     fontFamily: 'var(--font-family-Two)',

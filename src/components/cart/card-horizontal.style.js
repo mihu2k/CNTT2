@@ -10,6 +10,7 @@ export const useStyles = makeStyles((theme) => {
       boxShadow: '0 1px 0 rgb(0 0 0 / 12%)',
       [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
+        alignItems: 'center',
       },
     },
     imgProd: {

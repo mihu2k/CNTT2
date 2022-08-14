@@ -252,9 +252,9 @@ function Checkout() {
 
             {takeOrder === 0 && (
               <>
-                <Grid container spacing={4}>
+                <Grid container spacing={{ xs: 0, sm: 0, md: 4 }} className={classes.formInfoAddressWrap}>
                   <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                    <FormControl fullWidth className={classes.formInfoAddress}>
                       <InputLabel id="demo-simple-select-label-city">
                         Chọn Tỉnh/Thành phố
                       </InputLabel>
@@ -270,6 +270,7 @@ function Checkout() {
                             <MenuItem
                               key={item.province_id}
                               value={item.province_id}
+                              className={classes.infoAddress}
                             >
                               {item.province_name}
                             </MenuItem>
@@ -278,7 +279,7 @@ function Checkout() {
                     </FormControl>
                   </Grid>
                   <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                    <FormControl fullWidth className={classes.formInfoAddress}>
                       <InputLabel id="demo-simple-select-label-district">
                         Chọn Quận/Huyện
                       </InputLabel>
@@ -294,6 +295,7 @@ function Checkout() {
                             <MenuItem
                               key={item.district_id}
                               value={item.district_id}
+                              className={classes.infoAddress}
                             >
                               {item.district_name}
                             </MenuItem>
@@ -302,9 +304,9 @@ function Checkout() {
                     </FormControl>
                   </Grid>
                 </Grid>
-                <Grid container spacing={4}>
+                <Grid container spacing={{ xs: 0, sm: 0, md: 4 }} className={classes.formInfoAddressWrap}>
                   <Grid item lg={6} md={6} sm={12} xs={12}>
-                    <FormControl fullWidth sx={{ marginTop: '32px' }}>
+                    <FormControl fullWidth className={classes.formInfoAddress}>
                       <InputLabel id="demo-simple-select-label-ward">
                         Chọn Phường
                       </InputLabel>
@@ -317,7 +319,7 @@ function Checkout() {
                       >
                         {ward.length > 0 &&
                           ward?.map((item) => (
-                            <MenuItem key={item.ward_id} value={item.ward_id}>
+                            <MenuItem key={item.ward_id} value={item.ward_id} className={classes.infoAddress}>
                               {item.ward_name}
                             </MenuItem>
                           ))}
@@ -330,8 +332,8 @@ function Checkout() {
                       fullWidth
                       type="text"
                       variant="outlined"
+                      className={classes.formInfoAddress}
                       required
-                      sx={{ marginTop: '32px' }}
                       {...register('address', {
                         required: takeOrder === 0,
                       })}

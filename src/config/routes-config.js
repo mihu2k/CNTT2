@@ -1,7 +1,7 @@
 const routes = {
   default: '/',
   home: '/home',
-  product: '/product',
+  product: '/products',
   productDetail: '/product/:slug',
   cart: '/cart',
   login: '/login',

@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
   invoiceHeader: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'baseline',
   },
 
   invoiceHeaderTitle: {
@@ -59,7 +59,8 @@ export const useStyles = makeStyles((theme) => ({
     maxWidth: '200px',
     flex: '1',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '240px',
+      maxWidth: '100%',
+      marginLeft: 'initial',
     },
   },
   invoiceInfoName: {
